@@ -14,7 +14,7 @@ Explaination of the above command:
 
 1. **MmQL** Editor Name
 2. **~ws** the handle used to generate query file mainly **mmql** files.
-3. **PATH_TO_EXISTING_QUERY_FILE : ** for example **E:\\\\file.mmql**
+3. **PATH_TO_EXISTING_QUERY_FILE** for example **E:\\\\file.mmql**
 
 # Reading Answer Files
 
