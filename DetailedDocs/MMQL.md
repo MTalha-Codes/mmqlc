@@ -28,4 +28,4 @@ Explaination of the above command:
 
 1. **MmQL** Reader Name
 2. **~rv** the handle used to read an existing answer file mainly **ans** files.
-3. **PATH_TO_EXISTING_ANSWER_FILE : ** for example **E:\\\\file.ans**
+3. **PATH_TO_EXISTING_ANSWER_FILE** for example **E:\\\\file.ans**
