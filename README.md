@@ -105,4 +105,4 @@ Using this calculator is pretty simple  , just download the either the release o
 
 ## License
 
-#### 	This Project is licensed under the GNU GPLv3 License - See The LICENSE file for more details.
+#### 	This Project is licensed under the MIT License - See The LICENSE file for more details.
