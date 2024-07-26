@@ -99,6 +99,10 @@ Using this calculator is pretty simple  , just download the either the release o
 
 - #### Ceil --> `CEILING num1`
 
+## Compound Queries
+
+#### !!! Compound Queries like a collection of two or more than two queries on a single line , are not supported !!!
+
 ## Contributions  
 
 #### 	 Contributions are welcome but once I learn how to submit a pull request.
