@@ -115,13 +115,11 @@ private:
         }
 		if(!fileExistsAndNotEmpty(Query_filePath.string()))
 		{
-			std::ofstream File(Query_filePath);
-			queryFile = File;
+			queryFile.open(Query_filePath);
 		}
 		else
 		{
-			std::ofstream File(Query_filePath, std::ios::app);
-			queryFile = File;
+			queryFile.open(Query_filePath, std::ios::app);
 		}
 		if (!queryFile.is_open() || queryFile.fail()) {
 			queryFile.clear();
