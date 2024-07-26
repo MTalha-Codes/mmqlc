@@ -141,6 +141,7 @@ private:
 		else
 		{
 			queryFile.open(Query_filePath, std::ios::app);
+			queryFile << std::endl;
 		}
 		if (!queryFile.is_open() || queryFile.fail()) {
 			queryFile.clear();
