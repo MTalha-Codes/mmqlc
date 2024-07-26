@@ -63,6 +63,8 @@ Using this calculator is pretty simple  , just download the either the release o
 
 - #### Natural Log --> `LOGARITHM param,2.171828`
 
+- #### Anti-Logarithms  (Use ***POWER*** query) --> `POWER log_base,log_result` 
+
 - #### GCD --> `GCD num1,num2`
 
 - #### LCM --> `LCM num1,num2`
