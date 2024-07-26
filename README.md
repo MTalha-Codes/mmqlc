@@ -47,7 +47,7 @@ Using this calculator is pretty simple  , just download the either the release o
 
 - #### Nth Root Of Number --> `ROOT num1,index`
 
-- #### Number Raised To Nth Power --> `POWER num1,index`
+- #### Number Raised To Nth Power --> `POWER base,index`
 
 - #### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only greater number than that will return } \infty$
 
