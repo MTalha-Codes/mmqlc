@@ -130,9 +130,11 @@ private:
         }
         resetTerminal();
 		std::ofstream queryFile(Query_filePath);
-        if (!queryFile.is_open()) {
+        if (!queryFile.is_open() || queryFile.fail()) {
+			queryFile.clear();
             throw std::runtime_error("Unable To Read Or Open Query File !"); // error
         }
+		queryFile.clear();
         for(auto const &LINE : vct)
         {
             queryFile << LINE;
