@@ -113,18 +113,6 @@ private:
         if (Query_filePath.extension() != ".mmql") {
             throw std::runtime_error("Tried To Read Unsupported File Type !"); // error
         }
-		if(!fileExistsAndNotEmpty(Query_filePath.string()))
-		{
-			queryFile.open(Query_filePath);
-		}
-		else
-		{
-			queryFile.open(Query_filePath, std::ios::app);
-		}
-		if (!queryFile.is_open() || queryFile.fail()) {
-			queryFile.clear();
-            throw std::runtime_error("Unable To Read Or Open Query File !"); // error
-			}
         std::string strPrev;
         resetTerminal();
 		std::cout << hue::light_red << "Type \":wq!\" without quotes to save queries !\n\n" << hue::reset;
@@ -146,6 +134,18 @@ private:
             vct.emplace_back(str + '\n'); // Append a newline character to the string
         }
         resetTerminal();
+		if(!fileExistsAndNotEmpty(Query_filePath.string()))
+		{
+			queryFile.open(Query_filePath);
+		}
+		else
+		{
+			queryFile.open(Query_filePath, std::ios::app);
+		}
+		if (!queryFile.is_open() || queryFile.fail()) {
+			queryFile.clear();
+            throw std::runtime_error("Unable To Read Or Open Query File !"); // error
+		}
         for(auto const &LINE : vct)
         {
             queryFile << LINE;
