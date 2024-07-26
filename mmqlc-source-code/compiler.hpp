@@ -41,7 +41,7 @@ public:
         isCorrectHandlerUsed[1] = (std::string(argv[3]) == "~w");
         if (!isCorrectHandlerUsed[0] || !isCorrectHandlerUsed[1]) {
             std::cerr <<"MmQLC: " << hue::red << "Invalid handler(s) used" << hue::reset << std::endl;
-            throw std::invalid_argument("\nInvalid Handler(s) used !");
+            throw std::runtime_error("\nInvalid Handler(s) used !");
         }
         std::string inputFilePath = argv[2];
         std::string outputFilePath = argv[4];
