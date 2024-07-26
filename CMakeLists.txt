@@ -1,5 +1,5 @@
 ################################################################################################
-cmake_minimum_required(VERSION 3.28) # Minimum version of cmake required to build project
+cmake_minimum_required(VERSION 3.28) # Minimum version of cmake required to build project. Editable
 ################################################################################################
 project(mmql-package) # Project name
 ################################################################################################
