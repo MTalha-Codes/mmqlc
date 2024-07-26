@@ -14,6 +14,10 @@ private:
    fs::path Answer_filePath;
    std::string str;
    std::vector<std::string> vct;
+   bool fileExistsAndNotEmpty(const std::string& filename) {
+    std::ifstream file(filename, std::ios::binary | std::ios::ate); // open in binary mode and move to the end
+    return file.good() && file.tellg() > 0; // check if file is open and not empty
+	}
    void handleCheck()
    {
        if(argv[1] == (std::string)"~rv")
@@ -108,6 +112,18 @@ private:
         if (Query_filePath.extension() != ".mmql") {
             throw std::runtime_error("Tried To Read Unsupported File Type !"); // error
         }
+		if(!fileExistsAndNotEmpty)
+		{
+			std::ofstream queryFile(Query_filePath);
+		}
+		else
+		{
+			std::ofstream queryFile(Query_filePath, std::ios::append);
+		}
+		if (!queryFile.is_open() || queryFile.fail()) {
+			queryFile.clear();
+            throw std::runtime_error("Unable To Read Or Open Query File !"); // error
+			}
         std::string strPrev;
         resetTerminal();
 		std::cout << hue::light_red << "Type \":wq!\" without quotes to save queries !\n\n" << hue::reset;
@@ -129,12 +145,6 @@ private:
             vct.emplace_back(str + '\n'); // Append a newline character to the string
         }
         resetTerminal();
-		std::ofstream queryFile(Query_filePath);
-        if (!queryFile.is_open() || queryFile.fail()) {
-			queryFile.clear();
-            throw std::runtime_error("Unable To Read Or Open Query File !"); // error
-        }
-		queryFile.clear();
         for(auto const &LINE : vct)
         {
             queryFile << LINE;
