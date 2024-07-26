@@ -33,7 +33,7 @@ Using this calculator is pretty simple  , just download the either the release o
 - Now for generation of answer file then you should run **MmQLC.exe .** *The method for compilation of query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
 - To view or see the answers use **MmQL.exe .** *The method for writing the query file OR reading the answer file is explained [**Here.**]()*
 - Consider adding **MmQLC.exe** and **MmQL.exe** to your environment variables for running both executables from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
-- In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step. [***Click To Download Installer if you haven't already***](https://github.com/MTalha-Codes/mmql-package/releases/download/v1.1/MmQL-Package.Installer.exe)
+- In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step. [***Click To Download Installer***](https://github.com/MTalha-Codes/mmql-package/releases/download/v1.1/MmQL-Package.Installer.exe)
 
 ## Syntax  For  Queries  Of  The  Supported  Calculations:
 
