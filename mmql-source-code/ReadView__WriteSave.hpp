@@ -101,6 +101,7 @@ private:
         vct.clear(); // clear vector to free up memory
     }
     void Write_Save() {
+		std::ofstream queryFile;
         Query_filePath = argv[2];
         if (Query_filePath.parent_path().empty()) {
             auto crtPth = fs::current_path();
@@ -114,11 +115,13 @@ private:
         }
 		if(!fileExistsAndNotEmpty(Query_filePath.string()))
 		{
-			std::ofstream queryFile(Query_filePath);
+			std::ofstream File(Query_filePath);
+			queryFile = File;
 		}
 		else
 		{
-			std::ofstream queryFile(Query_filePath, std::ios::app);
+			std::ofstream File(Query_filePath, std::ios::app);
+			queryFile = File;
 		}
 		if (!queryFile.is_open() || queryFile.fail()) {
 			queryFile.clear();
