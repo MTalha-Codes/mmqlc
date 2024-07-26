@@ -114,6 +114,7 @@ private:
         }
         std::string strPrev;
         resetTerminal();
+		std::cout << hue::light_red << "Type \":wq!\" without quotes to save queries !\n\n" << hue::reset;
         while (true) {
             std::cout << hue::green << ">>> Query: " << hue::reset;
             std::getline(std::cin, str);
