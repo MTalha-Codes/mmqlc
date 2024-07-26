@@ -112,13 +112,13 @@ private:
         if (Query_filePath.extension() != ".mmql") {
             throw std::runtime_error("Tried To Read Unsupported File Type !"); // error
         }
-		if(!fileExistsAndNotEmpty)
+		if(!fileExistsAndNotEmpty(Query_filePath.string()))
 		{
 			std::ofstream queryFile(Query_filePath);
 		}
 		else
 		{
-			std::ofstream queryFile(Query_filePath, std::ios::append);
+			std::ofstream queryFile(Query_filePath, std::ios::app);
 		}
 		if (!queryFile.is_open() || queryFile.fail()) {
 			queryFile.clear();
