@@ -122,7 +122,7 @@ long double answer(const std::tuple<std::string, double, double> &parsedQuery) {
     }else if (gotKeyword == "ABSOLUTE") {
         finalAnswer = abs(gotFirstOperand);
     }else if (gotKeyword == "ERROR"){
-		std::string error = "\nSyntax Error: The selected query file either contains bad queries or possible empty line(s)!\nCompilation Stopped Due To Misunderstood Query(ies) !";
+		std::string error = "The selected query file either contains bad queries or possible empty line(s)!\nCompilation Stopped Due To Misunderstood Query(ies) !";
         throw std::runtime_error(error);
     }
     return finalAnswer;

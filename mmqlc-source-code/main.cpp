@@ -18,6 +18,8 @@ int main(int argc, char *argv[]) {
       catch (const std::runtime_error &re)
       {
           std::cerr << "Exception Thrown: "  << hue::red << re.what() << hue::reset << std::endl;
+		  std::cout << hue::light_green << "\nPress Any Key To Quit MmQLC" << hue::reset <<  std::endl;
+	  std::cin.get();
           return -1;
       }
     return 0;

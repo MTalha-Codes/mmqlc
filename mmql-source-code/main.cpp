@@ -15,13 +15,15 @@ int main(int argc , char *argv[])
         }
         catch(const std::runtime_error &re)
         {
-            std::cout << "Exception Thrown: " << hue::red << re.what() << hue::reset <<std::endl;
+            std::cout << "Exception Thrown: " << hue::red << re.what() << hue::reset <<std::endl;;
             return -1;
         }
     }
     catch(const std::runtime_error &re)
     {
         std::cout << "Exception Thrown: " << hue::red << re.what() << hue::reset <<std::endl;
+		    std::cout << hue::light_green << "\nPress Any Key To Quit MmQL" << hue::reset <<std::endl;
+    std::cin.get();
         return -1;
     }
     return 0;

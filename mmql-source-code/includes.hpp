@@ -4,6 +4,7 @@
 #include <iostream>  // for std::cout std::getline
 #include <filesystem> // std::filesystem or fs
 #include <fstream> // std::ifstream and std::ofstream
+#include <algorithm> // std::find_first_of
 #include <vector> // for std::vector
 #include <stdexcept> // for throw and std::runtime_error
 #include <random> // for std::random_device && std::uniform_int_distribution
