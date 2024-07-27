@@ -5,6 +5,6 @@ project(mmql-package) # Project name
 ################################################################################################
 set(CMAKE_CXX_STANDARD 23) # C++ standard version
 ################################################################################################
-add_subdirectory(mmql-source-code MMQL) #compile sources from mmql-source
+#(mmql-source-code MMQL) #compile sources from mmql-source
 add_subdirectory(mmqlc-source-code MMQLC) #compile sources from mmqlc-source
 ################################################################################################
