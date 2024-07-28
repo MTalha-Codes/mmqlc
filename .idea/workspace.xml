@@ -12,7 +12,6 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="mmql-package" targetName="MmQLC" />
-      <config projectName="mmql-package" targetName="MmQL" />
     </generated>
   </component>
   <component name="CMakeSettings">
