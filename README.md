@@ -104,6 +104,8 @@ Using this calculator is pretty simple  , just download the either the release o
 
 #### !!! Compound Queries like a collection of two or more than two queries on a single line , are not supported !!!
 
+## !! Empty Lines in mmql source file will throw compilation error !!
+
 ## Contributions  
 
 #### 	 Contributions are welcome but once I learn how to submit a pull request.
