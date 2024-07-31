@@ -26,7 +26,7 @@ private:
            writeMode = true;
        else
        {
-           std::cout << "\nExpected Either ~rv or ~ws instead of " << argv[2] << std::endl;
+           std::cout << "\nExpected Either ~rv or ~ws instead of " << argv[1] << std::endl;
            readMode = false;
            writeMode = false;
            throw std::runtime_error("Unknown Handle Has Been Used !");
@@ -54,7 +54,7 @@ private:
             {color  = hue::light_green;}
             else if(randomNum == 3)
 
-            {   color = hue::yellow;}
+            {   color = hue::light_aqua;}
             else if(randomNum  == 4)
             {color = hue::light_red;}
             else if(randomNum == 5)
@@ -73,7 +73,7 @@ private:
         {
             throw std::runtime_error("Cannot Open Arbitrary Answer File That Does Not Exists !"); // error
         }
-        if(Answer_filePath.extension() != ".ans")
+        if(Answer_filePath.extension() != ".ans" || Answer_filePath.extension() != ".ANS")
         {
             throw std::runtime_error("Tried To Read Unsupported File Type !"); // error
         }
@@ -110,11 +110,11 @@ private:
         if (!fs::exists(Query_filePath.parent_path())) {
             fs::create_directories(Query_filePath.parent_path());
         }
-        if (Query_filePath.extension() != ".mmql") {
-            throw std::runtime_error("Tried To Read Unsupported File Type !"); // error
+        if (Query_filePath.extension() != ".mmql" && Query_filePath.extension() != ".MMQL") {
+            throw std::runtime_error("Tried To Write Unsupported File Type !"); // error
         }
-        std::string strPrev;
         resetTerminal();
+		std::string strPrev;
 		std::cout << hue::light_red << "Type \":wq!\" without quotes to save queries !\n\n" << hue::reset;
         while (true) {
             std::cout << hue::green << ">>> Query: " << hue::reset;
@@ -145,7 +145,7 @@ private:
 		}
 		if (!queryFile.is_open() || queryFile.fail()) {
 			queryFile.clear();
-            throw std::runtime_error("Unable To Read Or Open Query File !"); // error
+            throw std::runtime_error("Unable To Write Or Open Query File !"); // error
 		}
         for(auto const &LINE : vct)
         {

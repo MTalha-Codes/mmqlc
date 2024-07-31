@@ -16,7 +16,7 @@ MmQL based calculator is a custom lightweight but advanced calculator built with
 
 1. CMakeLists.txt<br/>You can use CMakeLists.txt by using CMake build system to generate binaries.<br/> Click to read more about the [**CMake build system**](https://cmake.org/documentation/)
 
-2. Makefile<br/>Use the following simple shell command to compile the source code. There is no included Makefile script you have to generate it using CMake-CLI or GUI.
+2. Makefile<br/>Use the following simple shell command to compile the source code. There is no included Makefile script you have to generate it using CMake-CLI or GUI based on your default compiler (GNU G++ or MSVC idk).
 
    ```makefile
    make
@@ -33,8 +33,7 @@ Using this calculator is pretty simple  , just download the either the release o
 - Now for generation of answer file then you should run **MmQLC.exe .** *The method for compilation of query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
 - To view or see the answers use **MmQL.exe .** *The method for writing the query file OR reading the answer file is explained [**Here.**]()*
 - Consider adding **MmQLC.exe** and **MmQL.exe** to your environment variables for running both executables from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
-- In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step. [***Click To Download Installer***](https://github.com/MTalha-Codes/mmql-package/releases/download/v1.1/MmQL-Package.Installer.exe)
-
+- In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 ## Syntax  For  Queries  Of  The  Supported  Calculations:
 
 - #### Addition: --> `ADD num1,num2`
@@ -47,7 +46,7 @@ Using this calculator is pretty simple  , just download the either the release o
 
 - #### Nth Root Of Number --> `ROOT num1,index`
 
-- #### Number Raised To Nth Power --> `POWER num1,index`
+- #### Number Raised To Nth Power --> `POWER base,index`
 
 - #### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only greater number than that will return } \infty$
 
@@ -62,6 +61,8 @@ Using this calculator is pretty simple  , just download the either the release o
 - #### Base 2 Log --> `LOGARITHM param,2`
 
 - #### Natural Log --> `LOGARITHM param,2.171828`
+
+- #### Anti-Logarithms  (Use ***POWER*** query) --> `POWER log_base,log_result` 
 
 - #### GCD --> `GCD num1,num2`
 
@@ -102,6 +103,8 @@ Using this calculator is pretty simple  , just download the either the release o
 ## Compound Queries
 
 #### !!! Compound Queries like a collection of two or more than two queries on a single line , are not supported !!!
+
+## !! Empty Lines in mmql source file will throw compilation error !!
 
 ## Contributions  
 

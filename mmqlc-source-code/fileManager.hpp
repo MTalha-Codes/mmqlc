@@ -21,9 +21,9 @@ private:
 public:
     void loadQueries(std::string &full_Path_To_Query_File) {
         std::filesystem::path p = full_Path_To_Query_File;
-        if(p.extension() != ".mmql")
+        if(p.extension() != ".mmql" && p.extension() != ".MMQL")
         {
-            throw std::runtime_error("\nTried to load queries from an unsupported file type !");
+            throw std::runtime_error("Tried to load queries from an unsupported file type !");
         }
         if(std::filesystem::file_size(p) == 0) {
             throw std::runtime_error("Compilation Error: " + p.filename().string() + " is empty !");
@@ -45,9 +45,9 @@ public:
 
     void saveAnswers(std::string &full_path_to_answer_file) {
         std::filesystem::path p(full_path_to_answer_file);
-        if(!(p.filename().extension() == ".ans"))
+        if(p.extension() != ".ans" && p.extension() != ".ANS")
         {
-            throw std::runtime_error("\nTried to create a file whose extension is not .ans !");
+            throw std::runtime_error("Tried to create a file whose extension is not .ans !");
         }
        if (p.parent_path().empty()) {
             auto currentPathStr = std::filesystem::current_path().string() + "\\" + full_path_to_answer_file;
@@ -72,7 +72,7 @@ public:
 		answerFile.open(p.string());
         if(!answerFile.is_open())
         {
-            throw std::runtime_error("\nFailed To Create Answer File !");
+            throw std::runtime_error("Failed To Create Answer File !");
         }
         for (const auto &answer: answers) {
                 answerFile << answer;
