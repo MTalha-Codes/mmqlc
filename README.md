@@ -108,7 +108,7 @@ Using this calculator is pretty simple  , just download the either the release o
 
 ## Contributions  
 
-#### 	 Contributions are welcome but once I learn how to submit a pull request.
+#### 	 Contributions are welcome. You can contribute to the repo using the (pull-request) branch 
 
 ## License
 
