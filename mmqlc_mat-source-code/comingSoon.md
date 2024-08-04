@@ -1,1 +1,1 @@
-# Matrices Support For MMQLC Coming SOON !
+#  Support for square matrices of order 2 and order 3 coming soon for MMQLC
