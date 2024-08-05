@@ -103,6 +103,8 @@ Using this calculator is pretty simple  , just download the either the release o
 ## Compound Queries
 
 #### !!! Compound Queries like a collection of two or more than two queries on a single line , are not supported !!!
+### !!! Example 1: ` ADD SINE 30 , SINE 60`
+### !!! Example 2: ` FACTORIAL SINE 60`
 
 ## !! Empty Lines in mmql source file will throw compilation error !!
 
