@@ -1,0 +1,5 @@
+C:/Users/EngineersPC/Documents/GitHub/mmql-package/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/EngineersPC/Documents/GitHub/mmql-package/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/EngineersPC/Documents/GitHub/mmql-package/cmake-build-debug/MMQLC/CMakeFiles/MmQLC.dir
+C:/Users/EngineersPC/Documents/GitHub/mmql-package/cmake-build-debug/MMQLC/CMakeFiles/edit_cache.dir
+C:/Users/EngineersPC/Documents/GitHub/mmql-package/cmake-build-debug/MMQLC/CMakeFiles/rebuild_cache.dir
