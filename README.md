@@ -26,13 +26,12 @@ MmQL based calculator is a custom lightweight but advanced calculator built with
 
 ## How  To  Use:
 
-Using this calculator is pretty simple  , just download the either the release or the source code **(If you want to build it for yourself.)** 
+Using this calculator is pretty simple  , just download either the release or the source code **(If you want to build it for yourself.)** 
 
-- First of all write queries by using included editor **MmQL.exe**. You can also use **Notepad++** or any text editor. 
-
+- First of all write queries by using  **Notepad++** or any text editor.
 - Now for generation of answer file then you should run **MmQLC.exe .** *The method for compilation of query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
-- To view or see the answers use **MmQL.exe .** *The method for writing the query file OR reading the answer file is explained [**Here.**]()*
-- Consider adding **MmQLC.exe** and **MmQL.exe** to your environment variables for running both executables from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
+- To view or see the answers use also **Notepad++**.Right Click the ans file and choose open with Notepad++.
+- Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
 - In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 ## Syntax  For  Queries  Of  The  Supported  Calculations:
 
@@ -48,7 +47,7 @@ Using this calculator is pretty simple  , just download the either the release o
 
 - #### Number Raised To Nth Power --> `POWER base,index`
 
-- #### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only greater number than that will return } \infty$
+- #### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only. Numbers greater than 1754 will return } \infty$
 
 - #### Permutation --> `PERMUTATION n,r`
 
