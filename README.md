@@ -4,7 +4,7 @@ MmQL based calculator is a custom lightweight but advanced calculator built with
 
 ## MmQL
 
-**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled language as well as a case sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Advanced techniques like Tokenization , Lexical Analysis and IR (**I**ntermediate **R**epresentations) are not used by this custom compiler. Moreover this is just a simple expression / attribute evaluator.
+**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled language as well as a case sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Advanced techniques like Lexing and Parsing are used by this custom compiler.
 
 ## MmQLC
 

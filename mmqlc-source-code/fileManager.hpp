@@ -8,7 +8,7 @@
 #include "color.hpp"
 #include <filesystem>
 #include <iomanip>
-#include "queryParser.hpp"
+#include "queryLexer.hpp"
 #include "calcAnswer.hpp"
 
 class file {
@@ -16,7 +16,7 @@ private:
     std::ifstream queryFile;
     std::ofstream answerFile;
     std::vector<std::string> queries;
-    std::vector<std::tuple<std::string, double, double>> parsedQueries;
+    std::vector<std::tuple<std::string, std::string, std::string>> parsedQueries;
     std::vector<std::string> answers;
 public:
     void loadQueries(std::string &full_Path_To_Query_File) {
@@ -60,9 +60,9 @@ public:
         int i = 0;
         for (const auto &parsedQuery : parsedQueries) {
             try {
-                answers.emplace_back(
-                        "Query: " + queries[i] + "\n >>> Output: " + std::to_string(answer(parsedQuery)) + "\n"
-                );
+//                answers.emplace_back(
+//                        "Query: " + queries[i] + "\n >>> Output: " + std::to_string(answer(parsedQuery)) + "\n"
+//                );
             } catch (const std::runtime_error &re) {
                 throw re;
             }
