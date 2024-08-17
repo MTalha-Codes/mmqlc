@@ -43,7 +43,8 @@ public:
             queryFile.close();
         }
         parser_ptr = std::make_unique<parser>(queries);
-        calcAnswer_ptr = std::make_unique<answer_calc>(parser_ptr->parse_nums());
+        auto parsed_tokens = parser_ptr->parse_nums();
+        calcAnswer_ptr = std::make_unique<answer_calc>(parsed_tokens);
     }
 
     void saveAnswers(std::string &full_path_to_answer_file) {
@@ -72,8 +73,9 @@ public:
         {
             throw std::runtime_error("Failed To Create Answer File !");
         }
+        int i = 0;
         for (const auto &answer: answers) {
-                answerFile << answer;
+                answerFile << (queries[i++] + "\n>>>Output: " + answer);
                 answerFile << std::endl;
         }
         answerFile.close();

@@ -31,23 +31,23 @@ private:
         degs /= pi;
         return degs;
     }
-    static double factorial(const double &param)
+    static long double factorial(const double &param)
     {
-        double fact = tgamma(param+1);
+        long double fact = tgammal(param+1);
         return fact;
     }
-    static double nPr(const double &n , const double &r)
+    static long double nPr(const double &n , const double &r)
     {
-        double numerator = factorial(n);
-        double denominator = factorial(n-r);
-        double perm = numerator; perm/= denominator;
+        long double numerator = factorial(n);
+        long double denominator = factorial(n-r);
+        long double perm = numerator; perm/= denominator;
         return perm;
     }
-    static double nCr(const double &n , const double &r)
+    static long double nCr(const double &n , const double &r)
     {
-        double rFact = 1;
+        long double rFact = 1;
         rFact /= factorial(r);
-        double comb = rFact * nPr(n,r);
+        long double comb = rFact * nPr(n,r);
         return comb;
     }
     static double HCF(const double &a , const double &b)
@@ -72,7 +72,7 @@ private:
         return str;
     }
 public:
-   answer_calc(std::vector<std::tuple<std::string ,double ,double>> parsedNumbers)
+   explicit answer_calc(std::vector<std::tuple<std::string ,double ,double>> &parsedNumbers)
    {
        num_parsed = parsedNumbers;
    }
@@ -131,7 +131,7 @@ public:
             }
             else if(query == "FACTORIAL")
             {
-                double result = factorial(fOperand);
+                long double result = factorial(fOperand);
                 answerStrings.emplace_back(stringConvert(result));
             }
             else if (query == "LCM")
@@ -139,14 +139,23 @@ public:
                 double result = LCM(fOperand,sOperand);
                 answerStrings.emplace_back(stringConvert(result));
             }
+            else if(query == "LOGARITHM")
+            {
+                // using change of base formula
+                double n = log10(fOperand);
+                double d = log10(sOperand);
+                double log_result = n;
+                log_result /= d;
+                answerStrings.emplace_back(stringConvert(log_result));
+            }
             else if(query == "PERMUTATION")
             {
-                double result = nPr(fOperand,sOperand);
+                long double result = nPr(fOperand,sOperand);
                 answerStrings.emplace_back(stringConvert(result));
             }
             else if (query == "COMBINATION")
             {
-                double result = nCr(fOperand,sOperand);
+                long double result = nCr(fOperand,sOperand);
                 answerStrings.emplace_back(stringConvert(result));
             }
             else if(query == "ABSOLUTE")

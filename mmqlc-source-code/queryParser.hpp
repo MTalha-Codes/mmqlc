@@ -13,7 +13,7 @@ private:
       * TODO: ADD Vector Tokens
       */
 public:
-    parser(std::vector<std::string> &queries) {
+    explicit parser(std::vector<std::string> &queries) {
         raw_tokens = tokenize(queries);
     }
      std::vector<std::tuple<std::string, double, double>> parse_nums() {
