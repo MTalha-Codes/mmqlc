@@ -125,7 +125,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "mmqlc-source-code/queryLexer.hpp",
+			"path" : "mmqlc-source-code/queryTokenizer.hpp",
 			"sourceGroupIndex" : 1
 		},
 		{

@@ -8,7 +8,7 @@
 #include "color.hpp"
 #include <filesystem>
 #include <iomanip>
-#include "queryLexer.hpp"
+#include "queryTokenizer.hpp"
 #include "calcAnswer.hpp"
 
 class file {
@@ -16,7 +16,8 @@ private:
     std::ifstream queryFile;
     std::ofstream answerFile;
     std::vector<std::string> queries;
-    std::vector<std::tuple<std::string, std::string, std::string>> parsedQueries;
+    std::unique_ptr<parser> parser_ptr;
+    std::unique_ptr<answer_calc> calcAnswer_ptr;
     std::vector<std::string> answers;
 public:
     void loadQueries(std::string &full_Path_To_Query_File) {
@@ -41,6 +42,8 @@ public:
             }
             queryFile.close();
         }
+        parser_ptr = std::make_unique<parser>(queries);
+        calcAnswer_ptr = std::make_unique<answer_calc>(parser_ptr->parse_nums());
     }
 
     void saveAnswers(std::string &full_path_to_answer_file) {
@@ -56,19 +59,14 @@ public:
         if (!std::filesystem::exists(p.parent_path())) {
             std::filesystem::create_directories(p.parent_path());
 		}
-        parsedQueries = parseQueries(queries);
-        int i = 0;
-        for (const auto &parsedQuery : parsedQueries) {
-            try {
-//                answers.emplace_back(
-//                        "Query: " + queries[i] + "\n >>> Output: " + std::to_string(answer(parsedQuery)) + "\n"
-//                );
-            } catch (const std::runtime_error &re) {
-                throw re;
-            }
-            i++;
+        try
+        {
+            answers = calcAnswer_ptr->calculateAnswers_real();
         }
-
+        catch (std::runtime_error &re)
+        {
+            throw re;
+        }
 		answerFile.open(p.string());
         if(!answerFile.is_open())
         {
