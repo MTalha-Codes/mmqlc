@@ -43,7 +43,7 @@ public:
             queryFile.close();
         }
         parser_ptr = std::make_unique<parser>(queries);
-        auto parsed_tokens = parser_ptr->parse_nums();
+        auto parsed_tokens = parser_ptr->parse_RealNums();
         calcAnswer_ptr = std::make_unique<answer_calc>(parsed_tokens);
     }
 

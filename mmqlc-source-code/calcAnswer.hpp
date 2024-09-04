@@ -15,7 +15,7 @@
 class answer_calc
 {
 private:
-    std::vector<std::tuple<std::string ,double ,double>> num_parsed;
+    std::vector<std::tuple<std::string ,double ,double>> realNums_parsed;
     std::vector<std::string> answerStrings;
     static double degrees_to_radians(const double &degs) noexcept
     {
@@ -74,11 +74,11 @@ private:
 public:
    explicit answer_calc(std::vector<std::tuple<std::string ,double ,double>> &parsedNumbers)
    {
-       num_parsed = parsedNumbers;
+       realNums_parsed = parsedNumbers;
    }
    std::vector<std::string> calculateAnswers_real()
    {
-        for(const auto &parsedToken : num_parsed)
+        for(const auto &parsedToken : realNums_parsed)
         {
             std::string query = std::get<0>(parsedToken);
             double fOperand = std::get<1>(parsedToken);
