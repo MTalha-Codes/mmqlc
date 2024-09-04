@@ -107,10 +107,6 @@ Using this calculator is pretty simple  , just download either the release or th
 
 ## !! Empty Lines in mmql source file will throw compilation error !!
 
-## Contributions  
-
-#### 	 Contributions are welcome. You can contribute to the repo using the (pull-request) branch 
-
 ## License
 
 #### 	This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
