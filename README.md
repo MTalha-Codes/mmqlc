@@ -1,3 +1,4 @@
+
 # MmQL Based Calculator  ( CLI - Command Line Interface )
 
 MmQL based calculator is a custom lightweight but advanced calculator built with C++23, that works on custom compiled language called **MmQL**.
@@ -99,13 +100,15 @@ Using this calculator is pretty simple  , just download either the release or th
 
 - #### Ceil --> `CEILING num1`
 
-## Compound Queries
-
-#### !!! Compound Queries like a collection of two or more than two queries on a single line , are not supported !!!
-### !!! Example 1: ` ADD SINE 30 , SINE 60`
-### !!! Example 2: ` FACTORIAL SINE 60`
-
-## !! Empty Lines in mmql source file will throw compilation error !!
+>## Possible Errors
+> Compound queries like stacking more than one query on a single line may throw an error.
+> Nesting two or more than two queries will also the same compilation error.
+>### Examples
+>- #### Compund Queries
+> > - `ADD 3,4 FACTORIAL 43`
+> - #### Nested Queries
+> > 1. `FACTORIAL ADD 3,4`
+> > 2. `INVERSE_SINE SINE 45`
 
 ## License
 
