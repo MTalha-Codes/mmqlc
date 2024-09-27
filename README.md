@@ -25,6 +25,7 @@ Using this calculator is pretty simple  , just download either the release or th
 - First of all write queries by using  **Notepad++ , VS Code** or any text editor.
 - Now for generation of answer file then you should run **MmQLC.exe .** *The method for compiling a query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
 - To view or see the answers use also **Notepad++ , VS Code**.Right Click the ans file and choose open with **Notepad++ , VSCode**.
+- > This all can also be done on OS included **notepad** as well.
 - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
 - In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 ## Syntax  For  Queries  Of  The  Supported  Calculations:
