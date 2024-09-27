@@ -13,17 +13,10 @@ MmQL based calculator is a custom lightweight but advanced calculator built with
 
 ## How  To  Build:
 
-##### 	Build is supported by CMakeLists.txt as well as Makefile.<br/>
+##### 	Build is supported by Only CMakeLists.txt.<br/>
 
-1. CMakeLists.txt<br/>You can use CMakeLists.txt by using CMake build system to generate binaries.<br/> Click to read more about the [**CMake build system**](https://cmake.org/documentation/)
+- CMakeLists.txt<br/>You can use CMakeLists.txt by using CMake build system to generate binaries.<br/> Click to read more about the [**CMake build system**](https://cmake.org/documentation/)
 
-2. Makefile<br/>Use the following simple shell command to compile the source code. There is no included Makefile script you have to generate it using CMake-CLI or GUI based on your default compiler (GNU G++ or MSVC idk).
-
-   ```makefile
-   make
-   ```
-
-   Click to read more on how to use the [**make build system**.](https://www.gnu.org/software/make/manual/make.html)
 
 ## How  To  Use:
 
