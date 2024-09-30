@@ -16,3 +16,6 @@ Explaination of the above command:
 
 ### Plus Point ⭐⭐
   If folders are missing in **PATH_TO_GENERATE_ANSWER_FILE** , it will be created automatically by the compiler.
+### Note:
+   In **PATH_TO_EXISTING_QUERY_FILE**, the name of .mmql files must not contain spaces because it will be not compiled
+	</br> because the compiler will get confused and throw an error.
