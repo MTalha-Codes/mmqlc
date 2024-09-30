@@ -8,6 +8,7 @@
 #include "color.hpp"
 #include <filesystem>
 #include <iomanip>
+#include <algorithm>
 #include "queryTokenizer.hpp"
 #include "calcAnswer.hpp"
 
@@ -43,8 +44,9 @@ public:
             queryFile.close();
         }
         parser_ptr = std::make_unique<parser>(queries);
-        auto parsed_tokens = parser_ptr->parse_RealNums();
-        calcAnswer_ptr = std::make_unique<answer_calc>(parsed_tokens);
+        auto parsed_real_tokens = parser_ptr->parse_RealNums();
+        auto parsed_complex_tokens = parser_ptr->parse_cmplxNums();
+        calcAnswer_ptr = std::make_unique<answer_calc>(parsed_real_tokens,parsed_complex_tokens);
     }
 
     void saveAnswers(std::string &full_path_to_answer_file) {
@@ -62,7 +64,7 @@ public:
 		}
         try
         {
-            answers = calcAnswer_ptr->calculateAnswers_real();
+            answers = calcAnswer_ptr->calculateAnswers();
         }
         catch (std::runtime_error &re)
         {
@@ -73,10 +75,20 @@ public:
         {
             throw std::runtime_error("Failed To Create Answer File !");
         }
+        auto removeComments = [this]()
+        {
+            auto pred = [](const std::string &s)
+            {
+                return s.rfind("%%" , 0) == 0;
+            };
+            queries.erase(std::remove_if(queries.begin(),queries.end(),pred) , queries.end());
+        };
+        removeComments();
         int i = 0;
         for (const auto &answer: answers) {
-                answerFile << (queries[i++] + "\n>>>Output: " + answer);
-                answerFile << std::endl;
+                 answerFile << (queries[i] + "\n>>>Output: " + answer);
+                 answerFile << std::endl;
+                 i++;
         }
         answerFile.close();
     }
