@@ -8,13 +8,13 @@
 #include <unordered_set>
 
 
-std::vector<std::tuple<std::string, std::string,std::string>> tokenize(std::vector<std::string> &queries) {
+std::vector<std::tuple<std::string, std::string, std::string>> tokenize(std::vector<std::string> &queries) {
     std::vector<std::tuple<std::string, std::string, std::string>> tokens;
-    auto isComment = [](const std::string &query)
-    {
-        if(query[0] =='%' && query[1] == '%')
-            return true;
-        return false;
+    auto isComment = [](const std::string &query) {
+        return (query[0] == '%' && query[1] == '%');
+    };
+    auto isEmptyLine = [](const std::string &query) {
+        return query.empty();
     };
     auto processReal = [&tokens](const std::string &query) {
         std::smatch matches;
@@ -36,8 +36,7 @@ std::vector<std::tuple<std::string, std::string,std::string>> tokenize(std::vect
                 tokens.emplace_back(keyWord, firstOperand, "");
                 return true;
             }
-        }
-        else if (std::regex_match(query, matches, real_doubleOP_ptrn) &&
+        } else if (std::regex_match(query, matches, real_doubleOP_ptrn) &&
                    matches.size() >= 5) {
             keyWord = matches[1].str();
             firstOperand = matches[2].str();
@@ -57,7 +56,7 @@ std::vector<std::tuple<std::string, std::string,std::string>> tokenize(std::vect
                 "CMPLX_SINE", "CMPLX_COSINE", "CMPLX_TANGENT", "CMPLX_INVERSE_SINE",
                 "CMPLX_INVERSE_COSINE", "CMPLX_INVERSE_TANGENT", "CMPLX_HYP_SINE",
                 "CMPLX_HYP_COSINE", "CMPLX_HYP_TANGENT", "CMPLX_INVERSE_HYP_SINE",
-                "CMPLX_INVERSE_HYP_COSINE", "CMPLX_INVERSE_HYP_TANGENT" , "CMPLX_LN", "CMPLX_EXP"
+                "CMPLX_INVERSE_HYP_COSINE", "CMPLX_INVERSE_HYP_TANGENT", "CMPLX_LN", "CMPLX_EXP"
         };
         std::regex cmplx_singleOP_ptrn(R"((\w+)\s(-?\d+(\.\d+)?[+-]-?\d+(\.\d+)?i))");
         std::regex cmplx_doubleOP_ptrn(R"((\w+)\s(-?\d+(\.\d+)?[+-]-?\d+(\.\d+)?i),(-?\d+(\.\d+)?[+-]-?\d+(\.\d+)?i))");
@@ -68,8 +67,7 @@ std::vector<std::tuple<std::string, std::string,std::string>> tokenize(std::vect
                 tokens.emplace_back(keyWord, firstOperand, "");
                 return true;
             }
-        }
-        else if (std::regex_match(query, matches, cmplx_doubleOP_ptrn) && matches.size() >= 5) {
+        } else if (std::regex_match(query, matches, cmplx_doubleOP_ptrn) && matches.size() >= 5) {
             keyWord = matches[1].str();
             firstOperand = matches[2].str();
             secondOperand = matches[5].str();
@@ -79,16 +77,15 @@ std::vector<std::tuple<std::string, std::string,std::string>> tokenize(std::vect
         return false;
     };
     for (const auto &query: queries) {
-        if(isComment(query))
+        if (isComment(query) || isEmptyLine(query))
             continue;
         bool realCall = processReal(query);
         bool complexCall = processComplex(query);
         bool noError = realCall || complexCall;
         if (noError)
             continue; // if correct  then goto new query and pass it to tokens
-        else
-        {
-            tokens.emplace_back("ERROR","","");
+        else {
+            tokens.emplace_back("ERROR", "", "");
         }
     }
     return tokens;

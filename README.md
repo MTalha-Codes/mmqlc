@@ -95,6 +95,7 @@ The MmQL language only support single-line comments.
 >## Possible Errors
 > Compound queries or **stacking more than one query on a single line** may throw an error.
 > Nesting two or more than two queries will also the same compilation error.
+> Leaving a line empty will not throw an error. In this latest update comments and empty lines are supported.
 >### Examples
 >- #### Compound Queries
 > > - `ADD 3,4 FACTORIAL 43`
@@ -104,4 +105,4 @@ The MmQL language only support single-line comments.
 
 ## License
 
-#### 	This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
+#### This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
