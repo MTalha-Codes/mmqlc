@@ -29,7 +29,11 @@ Using this calculator is pretty simple  , just download either the release or th
 - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
 - In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 ## Supported Queries
-To see the complete list of all supported queries , Click [**this**](DetailedDocs/SupportedQueries.md) 
+Following types of queries are supported by **MmQL**.
+- ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/realNumbers.md) to see.
+- ### Queries For Calculations Involving Complex Numbers. Click [**Here**](DetailedDocs/complexNumbers.md) to see.
+- ### Queries For Calculations Involving Matrices *(Under **Construction**.)* Click [**Here**](DetailedDocs/matrices.md) to see.
+- ### Queries For Calculations Involving Vectors *(Under **Construction**.)* Click [**Here**](DetailedDocs/vectors.md) to see.
 ## Comments in MmQL
 The MmQL language only support single-line comments.
 **Comment Declaration**: Comments looks like this
