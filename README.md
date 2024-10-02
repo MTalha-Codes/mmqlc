@@ -29,7 +29,7 @@ Using this calculator is pretty simple  , just download either the release or th
 - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
 - In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 ## Supported Queries
-To see the complete list of all supported queries , Click [*this*](DetailedDocs/SupportedQueries.md) 
+To see the complete list of all supported queries , Click [**this**](DetailedDocs/SupportedQueries.md) 
 ## Comments in MmQL
 The MmQL language only support single-line comments.
 **Comment Declaration**: Comments looks like this
