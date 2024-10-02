@@ -1,0 +1,26 @@
+# Queries for calculation related to complex numbers
+- ###  Addition --> `CMPLX_ADD a+bi,c+di`
+- ### Subtraction --> `CMPLX_SUBTRACT a+bi,c+di`
+- ### Multiplication --> `CMPLX_MULTIPLY a+bi,c+di`
+- ### Division --> `CMPLX_DIVIDE a+bi,c+di`
+- ### Exponentiation --> `CMPLX_POWER a+bi,c+0i`
+- ### Nth Root --> `CMPLX_ROOT a+bi,c+0i`
+- ### Complex Exponentiation --> `CMPLX_POWER a+bi,c+di`
+- ### Complex Root --> `CMPLX_ROOT a+bi,c+di`
+- ### Modulus |z| --> `CMPLX_MODULUS a+bi`
+- ### Argument |z| --> `CMPLX_ARGUMENT a+bi`
+- ### Complex Conjugate --> `CMPLX_CONJUGATE a+bi`
+- ### Complex Natural Logarithm --> `CMPLX_LN a+bi`
+- ### Base $e$ Exponentiation --> `CMPLX_EXP a+bi`
+- ### Sin(z)  --> `CMPLX_SINE a+bi`
+- ### Cos(z) --> `CMPLX_COSINE a+bi`
+- ### Tan(z) --> `CMPLX_TANGENT a+bi`
+- ### Arc Tan(z)  --> `CMPLX_INVERSE_TANGENT a+bi`
+- ### Arc  Cos(z) --> `CMPLX_INVERSE_COSINE a+bi`
+- ### Arc Sin(z) --> `CMPLX_INVERSE_SINE a+bi`
+- ### Sinh(z)   --> `CMPLX_HYP_SINE a+bi`
+- ### Cosh(z) --> `CMPLX_HYP_COSINE a+bi`
+- ### Tanh(z) --> `CMPLX_HYP_TANGENT a+bi`
+- ### Arc Tanh(z) --> `CMPLX_INVERSE_HYP_TANGENT a+bi`
+- ### Arc Cosh(z) --> `CMPLX_INVERSE_HYP_COSINE a+bi`
+- ### Arc Sinh(z) --> `CMPLX_INVERSE_HYP_SINE a+bi`
