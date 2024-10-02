@@ -103,7 +103,7 @@ The MmQL language only support single-line comments.
 > - #### Nested Queries
 > > 1. `FACTORIAL ADD 3,4`
 > > 2. `INVERSE_SINE SINE 45`
-> > - #### Inline Comments
+> - #### Inline Comments
 > > - `ADD 4,5 %% add two numbers`
 
 ## License
