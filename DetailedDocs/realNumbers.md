@@ -1,0 +1,33 @@
+# Queries For Calculation Involving Real Numbers
+- ### Addition: --> `ADD num1,num2`
+- ### Subtraction --> `SUBTRACT num1,num2`
+- ### Multiplication --> `MULTIPLY num1,num2`
+- ### Division --> `DIVIDE num1,num2`
+- ### Nth Root Of Number --> `ROOT num1,index`
+- ### Number Raised To Nth Power --> `POWER base,index`
+- ### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only. Numbers greater than 1754 will return } \infty$
+- ### Permutation --> `PERMUTATION n,r`
+- ### Combination --> `COMBINATION n,r`
+- ### Logarithm To  Any Base--> ` LOGARITHM param,base`
+- ### Base 10 Log: --> `LOGARITHM param,10`
+- ### Base 2 Log --> `LOGARITHM param,2`
+- ### Natural Log --> `LOGARITHM param,2.171828`
+- ### Anti-Logarithms  (Use ***POWER*** query) --> `POWER log_base,log_result` 
+- ### GCD --> `GCD num1,num2`
+- ### LCM --> `LCM num1,num2`
+- ### Sin(x)  --> `SINE degrees`
+- ### Cos(x) --> `COSINE degrees`
+- ### Tan(x) --> `TANGENT degrees`
+- ### Arc Tan(x)  --> `INVERSE_TANGENT param`
+- ### Arc  Cos(x) --> `INVERSE_COSINE param`
+- ### Arc Sin(x) --> `INVERSE_SINE param`
+- ### Sinh(x)   --> `HYP_SINE param`
+- ### Cosh(x) --> `HYP_COSINE param`
+- ### Tanh(x) --> `HYP_TANGENT param`
+- ### Arc Tanh(x) --> `INVERSE_HYP_TANGENT param`
+- ### Arc Cosh(x) --> `INVERSE_HYP_COSINE param`
+- ### Arc Sinh(x) --> `INVERSE_HYP_SINE param`
+- ### Absolute --> `ABSOLUTE num1`
+- ### Mod --> `MODULUS num1,num2`
+- ### Floor --> `FLOOR num1`
+- ### Ceil --> `CEILING num1`

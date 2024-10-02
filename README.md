@@ -28,66 +28,12 @@ Using this calculator is pretty simple  , just download either the release or th
 - > Note: This all can also be done on the OS included **notepad** as well.
 - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
 - In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
-## Syntax  For  Queries  Of  The  Supported  Calculations:
-### Queries for calculation related to real numbers
-- #### Addition: --> `ADD num1,num2`
-- #### Subtraction --> `SUBTRACT num1,num2`
-- #### Multiplication --> `MULTIPLY num1,num2`
-- #### Division --> `DIVIDE num1,num2`
-- #### Nth Root Of Number --> `ROOT num1,index`
-- #### Number Raised To Nth Power --> `POWER base,index`
-- #### Factorial Of A Number --> `FACTORIAL num1` $\large\ num1\ \in\ (-1,1754] \\ \text{ because this support approximations to 1754! only. Numbers greater than 1754 will return } \infty$
-- #### Permutation --> `PERMUTATION n,r`
-- #### Combination --> `COMBINATION n,r`
-- #### Logarithm To  Any Base--> ` LOGARITHM param,base`
-- #### Base 10 Log: --> `LOGARITHM param,10`
-- #### Base 2 Log --> `LOGARITHM param,2`
-- #### Natural Log --> `LOGARITHM param,2.171828`
-- #### Anti-Logarithms  (Use ***POWER*** query) --> `POWER log_base,log_result` 
-- #### GCD --> `GCD num1,num2`
-- #### LCM --> `LCM num1,num2`
-- #### Sin(x)  --> `SINE degrees`
-- #### Cos(x) --> `COSINE degrees`
-- #### Tan(x) --> `TANGENT degrees`
-- #### Arc Tan(x)  --> `INVERSE_TANGENT param`
-- #### Arc  Cos(x) --> `INVERSE_COSINE param`
-- #### Arc Sin(x) --> `INVERSE_SINE param`
-- #### Sinh(x)   --> `HYP_SINE param`
-- #### Cosh(x) --> `HYP_COSINE param`
-- #### Tanh(x) --> `HYP_TANGENT param`
-- #### Arc Tanh(x) --> `INVERSE_HYP_TANGENT param`
-- #### Arc Cosh(x) --> `INVERSE_HYP_COSINE param`
-- #### Arc Sinh(x) --> `INVERSE_HYP_SINE param`
-- #### Absolute --> `ABSOLUTE num1`
-- #### Mod --> `MODULUS num1,num2`
-- #### Floor --> `FLOOR num1`
-- #### Ceil --> `CEILING num1`
-### Queries for calculation related to complex numbers
-- ####  Addition --> `CMPLX_ADD a+bi,c+di`
-- #### Subtraction --> `CMPLX_SUBTRACT a+bi,c+di`
-- #### Multiplication --> `CMPLX_MULTIPLY a+bi,c+di`
-- #### Division --> `CMPLX_DIVIDE a+bi,c+di`
-- #### Exponentiation --> `CMPLX_POWER a+bi,c+0i`
-- #### Nth Root --> `CMPLX_ROOT a+bi,c+0i`
-- #### Complex Exponentiation --> `CMPLX_POWER a+bi,c+di`
-- #### Complex Root --> `CMPLX_ROOT a+bi,c+di`
-- #### Modulus |z| --> `CMPLX_MODULUS a+bi`
-- #### Argument |z| --> `CMPLX_ARGUMENT a+bi`
-- #### Complex Conjugate --> `CMPLX_CONJUGATE a+bi`
-- #### Complex Natural Logarithm --> `CMPLX_LN a+bi`
-- #### Base $e$ Exponentiation --> `CMPLX_EXP a+bi`
--  #### Sin(z)  --> `CMPLX_SINE a+bi`
-- #### Cos(z) --> `CMPLX_COSINE a+bi`
-- #### Tan(z) --> `CMPLX_TANGENT a+bi`
-- #### Arc Tan(z)  --> `CMPLX_INVERSE_TANGENT a+bi`
-- #### Arc  Cos(z) --> `CMPLX_INVERSE_COSINE a+bi`
-- #### Arc Sin(z) --> `CMPLX_INVERSE_SINE a+bi`
-- #### Sinh(z)   --> `CMPLX_HYP_SINE a+bi`
-- #### Cosh(z) --> `CMPLX_HYP_COSINE a+bi`
-- #### Tanh(z) --> `CMPLX_HYP_TANGENT a+bi`
-- #### Arc Tanh(z) --> `CMPLX_INVERSE_HYP_TANGENT a+bi`
-- #### Arc Cosh(z) --> `CMPLX_INVERSE_HYP_COSINE a+bi`
-- #### Arc Sinh(z) --> `CMPLX_INVERSE_HYP_SINE a+bi`
+## Supported Queries
+Following types of queries are supported by **MmQL**.
+- ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/realNumbers.md) to see.
+- ### Queries For Calculations Involving Complex Numbers. Click [**Here**](DetailedDocs/complexNumbers.md) to see.
+- ### Queries For Calculations Involving Matrices *(Under **Construction**.)* Click [**Here**](DetailedDocs/matrices.md) to see.
+- ### Queries For Calculations Involving Vectors *(Under **Construction**.)* Click [**Here**](DetailedDocs/vectors.md) to see.
 ## Comments in MmQL
 The MmQL language only support single-line comments.
 **Comment Declaration**: Comments looks like this
@@ -95,6 +41,7 @@ The MmQL language only support single-line comments.
 >## Possible Errors
 > Compound queries or **stacking more than one query on a single line** may throw an error.
 > Nesting two or more than two queries will also the same compilation error.
+> Inline comments can throw error.
 > Leaving a line empty will not throw an error. In this latest update comments and empty lines are supported.
 >### Examples
 >- #### Compound Queries
@@ -102,6 +49,8 @@ The MmQL language only support single-line comments.
 > - #### Nested Queries
 > > 1. `FACTORIAL ADD 3,4`
 > > 2. `INVERSE_SINE SINE 45`
+> - #### Inline Comments
+> > - `ADD 4,5 %% add two numbers`
 
 ## License
 
