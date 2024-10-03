@@ -9,7 +9,6 @@
 #include <filesystem>
 #include <iomanip>
 #include <algorithm>
-#include "queryTokenizer.hpp"
 #include "calcAnswer.hpp"
 
 class file {
@@ -20,6 +19,14 @@ private:
     std::unique_ptr<parser> parser_ptr;
     std::unique_ptr<answer_calc> calcAnswer_ptr;
     std::vector<std::string> answers;
+    static bool if_comment(const std::string &str)
+    {
+        return str.rfind("%%",0)==0;
+    }
+    static bool if_empty(const std::string &str)
+    {
+        return str.empty();
+    }
 public:
     void loadQueries(std::string &full_Path_To_Query_File) {
         std::filesystem::path p = full_Path_To_Query_File;
@@ -38,6 +45,8 @@ public:
             std::string singleQuery;
             while (!queryFile.eof()) {
                 std::getline(queryFile, singleQuery);
+                if(if_comment(singleQuery) || if_empty(singleQuery))
+                    continue;
                 queries.emplace_back(singleQuery);
             }
             queryFile.close();
@@ -70,20 +79,6 @@ public:
         if (!answerFile.is_open()) {
             throw std::runtime_error("Failed To Create Answer File !");
         }
-        auto removeComments = [this]() {
-            auto lambdaPredicate = [](const std::string &s) {
-                return s.rfind("%%", 0) == 0;
-            };
-            queries.erase(std::remove_if(queries.begin(), queries.end(), lambdaPredicate), queries.end());
-        };
-        auto removeEmptyLines = [this]() {
-            auto check_if_empty = [](const std::string &s) {
-                return s.empty();
-            };
-            queries.erase(std::remove_if(queries.begin(), queries.end(), check_if_empty), queries.end());
-        };
-        removeComments();
-        removeEmptyLines();
         int i = 0;
         for (const auto &answer: answers) {
             answerFile << (queries[i] + "\n>>>Output: " + answer);

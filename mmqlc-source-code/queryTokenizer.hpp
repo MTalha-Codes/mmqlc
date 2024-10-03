@@ -10,12 +10,6 @@
 
 std::vector<std::tuple<std::string, std::string, std::string>> tokenize(std::vector<std::string> &queries) {
     std::vector<std::tuple<std::string, std::string, std::string>> tokens;
-    auto isComment = [](const std::string &query) {
-        return (query[0] == '%' && query[1] == '%');
-    };
-    auto isEmptyLine = [](const std::string &query) {
-        return query.empty();
-    };
     auto processReal = [&tokens](const std::string &query) {
         std::smatch matches;
         std::string keyWord;
@@ -77,8 +71,6 @@ std::vector<std::tuple<std::string, std::string, std::string>> tokenize(std::vec
         return false;
     };
     for (const auto &query: queries) {
-        if (isComment(query) || isEmptyLine(query))
-            continue;
         bool realCall = processReal(query);
         bool complexCall = processComplex(query);
         bool noError = realCall || complexCall;

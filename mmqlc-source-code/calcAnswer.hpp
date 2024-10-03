@@ -280,6 +280,10 @@ public:
                     answerStrings.emplace_back(stringConvert(prod));
                     return true;
                 } else if (query == "CMPLX_DIVIDE") {
+                    auto zero = std::complex<double>(0,0);
+                    if (sOperand == zero) {
+                        throw std::runtime_error("Cannot divide complex number by zero !");
+                    }
                     auto div = fOperand / sOperand;
                     answerStrings.emplace_back(stringConvert(div));
                     return true;
@@ -288,6 +292,10 @@ public:
                     answerStrings.emplace_back(stringConvert(POW));
                     return true;
                 } else if (query == "CMPLX_ROOT") {
+                    auto zero = std::complex<double>(0,0);
+                    if (sOperand == zero) {
+                        throw std::runtime_error("Zeroth root of complex number is undefined !");
+                    }
                     auto one = std::complex<double>(1, 0);
                     auto ind = one / sOperand;
                     auto root = std::pow(fOperand, ind);
@@ -356,6 +364,10 @@ public:
                     answerStrings.emplace_back(stringConvert(inverseHypTangent));
                     return true;
                 } else if (query == "CMPLX_LN") {
+                    auto zero = std::complex<double>(0,0);
+                    if (fOperand == zero) {
+                        throw std::runtime_error("Cannot take log of zero !");
+                    }
                     auto ln = std::log(fOperand);
                     answerStrings.emplace_back(stringConvert(ln));
                     return true;
