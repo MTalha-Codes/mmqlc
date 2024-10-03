@@ -40,9 +40,9 @@ To always achieve the perfect output, arrange the queries in the following order
 - Queries Involving 2x2 Matrices.
 - Queries Involving 3x3 Matrices.
 
-**FAQ #1 : Why The Queries Needs To Be Ordered Like This ?**
-**Answer**: Because **MmQL** tends to compile the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always the perfect output.
-**FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw A Compilation Error ?**
+**FAQ #1 : Why The Queries Needs To Be Ordered Like This ?**</br>
+**Answer**: Because **MmQL** tends to compile the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always the perfect output.</br>
+**FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw A Compilation Error ?**</br>
 **Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output than a compilation error.
 
 ## Comments in MmQL
