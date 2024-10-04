@@ -77,7 +77,7 @@ std::vector<std::tuple<std::string, std::string, std::string>> tokenize(std::vec
         if (noError)
             continue; // if correct  then goto new query and pass it to tokens
         else {
-            tokens.emplace_back("ERROR", "", "");
+            tokens.emplace_back(query, "", "");
         }
     }
     return tokens;

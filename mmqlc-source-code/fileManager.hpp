@@ -19,14 +19,15 @@ private:
     std::unique_ptr<parser> parser_ptr;
     std::unique_ptr<answer_calc> calcAnswer_ptr;
     std::vector<std::string> answers;
-    static bool if_comment(const std::string &str)
-    {
-        return str.rfind("%%",0)==0;
+
+    static bool if_comment(const std::string &str) {
+        return str.rfind("%%", 0) == 0;
     }
-    static bool if_empty(const std::string &str)
-    {
+
+    static bool if_empty(const std::string &str) {
         return str.empty();
     }
+
 public:
     void loadQueries(std::string &full_Path_To_Query_File) {
         std::filesystem::path p = full_Path_To_Query_File;
@@ -45,7 +46,7 @@ public:
             std::string singleQuery;
             while (!queryFile.eof()) {
                 std::getline(queryFile, singleQuery);
-                if(if_comment(singleQuery) || if_empty(singleQuery))
+                if (if_comment(singleQuery) || if_empty(singleQuery))
                     continue;
                 queries.emplace_back(singleQuery);
             }

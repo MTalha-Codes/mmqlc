@@ -17,6 +17,7 @@ private:
     std::vector<std::tuple<std::string, double, double>> realNums_parsed;
     std::vector<std::tuple<std::string, std::complex<double>, std::complex<double>>> cmplxNums_parsed;
     std::vector<std::string> answerStrings;
+    std::vector<std::string> error_messages;
 
     static double degrees_to_radians(const double &degs) noexcept {
         const double pi = 3.14159265359;
@@ -90,6 +91,23 @@ private:
 
     static std::string stringConvert(const long double &ldarg) {
         return std::to_string(ldarg);
+    }
+
+    void appendError(const std::string &err) {
+        error_messages.emplace_back(err);
+    }
+
+    std::string get_string_errors() {
+        std::sort(error_messages.begin(), error_messages.end());
+        auto l = std::unique(error_messages.begin(), error_messages.end());
+        error_messages.erase(l, error_messages.end());
+        std::string allErrors;
+        for (const auto &err: error_messages) {
+            allErrors.append("\n");
+            allErrors.append(err);
+            allErrors.append("\n");
+        }
+        return allErrors;
     }
 
 public:
@@ -258,8 +276,10 @@ public:
             bool noError = singleCall || doubleCall;
             if (noError)
                 continue;
-            else
-                throw std::runtime_error("MmQLC got struck with an unknown query.Compilation Halted !");
+            else {
+                std::string current_error = "Syntax Fault: MmQLC failed to process " + query;
+                appendError(current_error);
+            }
         }
         for (const auto &parsedToken: cmplxNums_parsed) {
             std::string query = std::get<0>(parsedToken);
@@ -280,7 +300,7 @@ public:
                     answerStrings.emplace_back(stringConvert(prod));
                     return true;
                 } else if (query == "CMPLX_DIVIDE") {
-                    auto zero = std::complex<double>(0,0);
+                    auto zero = std::complex<double>(0, 0);
                     if (sOperand == zero) {
                         throw std::runtime_error("Cannot divide complex number by zero !");
                     }
@@ -292,7 +312,7 @@ public:
                     answerStrings.emplace_back(stringConvert(POW));
                     return true;
                 } else if (query == "CMPLX_ROOT") {
-                    auto zero = std::complex<double>(0,0);
+                    auto zero = std::complex<double>(0, 0);
                     if (sOperand == zero) {
                         throw std::runtime_error("Zeroth root of complex number is undefined !");
                     }
@@ -364,7 +384,7 @@ public:
                     answerStrings.emplace_back(stringConvert(inverseHypTangent));
                     return true;
                 } else if (query == "CMPLX_LN") {
-                    auto zero = std::complex<double>(0,0);
+                    auto zero = std::complex<double>(0, 0);
                     if (fOperand == zero) {
                         throw std::runtime_error("Cannot take log of zero !");
                     }
@@ -388,9 +408,13 @@ public:
             bool noError = singleCall || doubleCall;
             if (noError)
                 continue;
-            else
-                throw std::runtime_error("MmQLC got struck with an unknown query.Compilation Halted !");
+            else {
+                std::string current_error = "Syntax Fault: MmQLC failed to process " + query;
+                appendError(current_error);
+            }
         }
+        if (!error_messages.empty())
+            throw std::runtime_error(get_string_errors());
         return answerStrings;
     }
 

@@ -53,9 +53,6 @@ public:
             throw re;
         }
         std::cout << "\nCompiling queries .....\n";
-
-        // Optional UI element to show progress
-
         hue::reset();
         std::filesystem::path out(outputFilePath);
         try {

@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
             compiler->startCompilation();
         }
         catch (const std::runtime_error &re) {
-            std::cerr << "Exception Thrown: " << hue::red << re.what() << hue::reset << std::endl;
+            std::cerr << "Exception(s) Thrown: " << hue::red << re.what() << hue::reset << std::endl;
             return -1;
         }
     }
