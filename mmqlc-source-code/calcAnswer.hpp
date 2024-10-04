@@ -351,15 +351,15 @@ public:
                     auto hyperTangent = std::tanh(fOperand);
                     answerStrings.emplace_back(stringConvert(hyperTangent));
                     return true;
-                } else if (query == "CMPLX_HYP_INVERSE_SINE") {
+                } else if (query == "CMPLX_INVERSE_HYP_SINE") {
                     auto inverseHypSine = std::asinh(fOperand);
                     answerStrings.emplace_back(stringConvert(inverseHypSine));
                     return true;
-                } else if (query == "CMPLX_HYP_INVERSE_COSINE") {
+                } else if (query == "CMPLX_INVERSE_HYP_COSINE") {
                     auto inverseHypCosine = std::acosh(fOperand);
                     answerStrings.emplace_back(stringConvert(inverseHypCosine));
                     return true;
-                } else if (query == "CMPLX_HYP_INVERSE_TANGENT") {
+                } else if (query == "CMPLX_INVERSE_HYP_TANGENT") {
                     auto inverseHypTangent = std::atanh(fOperand);
                     answerStrings.emplace_back(stringConvert(inverseHypTangent));
                     return true;
