@@ -22,9 +22,10 @@ Use the included CMakeLists.txt by using CMake build system to generate binaries
 - First of all write queries by using  **Notepad++ , VS Code** or any text editor.
 - Now for generation of answer file then you should run **MmQLC.exe** with special command line **arguements** defined for **MmQLC** *The method for compiling a query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
 - To view or see the answers use also **Notepad++ , VS Code**. Right-Click the ans file and choose open with **Notepad++ , VSCode**.
- > [!NOTE]: This all can also be done on the OS included **notepad** as well.
-- Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
--  In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
+ > [!NOTE]
+ > This all can also be done on the OS included **notepad** as well.
+ > - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click  [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
+ > -  In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 
 ## Supported Queries
 Following types of queries are supported by **MmQL**.
@@ -52,18 +53,18 @@ The MmQL language only support single-line comments.
 - `%% Comment`
 > [!CAUTION]
 >## Possible Errors
-Compound queries or **stacking more than one query on a single line** may throw an error.</br>
- Nesting two or more than two queries will also the same compilation error.</br>
- Inline comments will also throw error.</br>
- Leaving a line empty will not throw an error. In this latest update comments and empty lines are supported.
- **Examples**
-- **Compound Queries**
-  - `ADD 3,4 FACTORIAL 43`
- - **Nested Queries**
-   -    `FACTORIAL ADD 3,4`
-   -    `INVERSE_SINE SINE 45`
--  **Inline Comments**
-   -  `ADD 4,5 %% add two numbers`
+>Compound queries or **stacking more than one query on a single line** may throw an error.</br>
+>Nesting two or more than two queries will also the same compilation error.</br>
+>Inline comments will also throw error.</br>
+>Leaving a line empty will not throw an error. In this latest update comments and empty lines are supported.
+>**Examples**
+> - **Compound Queries**
+> - `ADD 3,4 FACTORIAL 43`
+> - **Nested Queries**
+> -    `FACTORIAL ADD 3,4`
+> -    `INVERSE_SINE SINE 45`
+> -  **Inline Comments**
+> -  `ADD 4,5 %% add two numbers`
 
 ## License
 This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
