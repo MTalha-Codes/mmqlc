@@ -22,9 +22,10 @@ Use the included CMakeLists.txt by using CMake build system to generate binaries
 - First of all write queries by using  **Notepad++ , VS Code** or any text editor.
 - Now for generation of answer file then you should run **MmQLC.exe** with special command line **arguements** defined for **MmQLC** *The method for compiling a query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).*
 - To view or see the answers use also **Notepad++ , VS Code**. Right-Click the ans file and choose open with **Notepad++ , VSCode**.
-- > Note: This all can also be done on the OS included **notepad** as well.
+ > [!NOTE]: This all can also be done on the OS included **notepad** as well.
 - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
-- > In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
+-  In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
+
 ## Supported Queries
 Following types of queries are supported by **MmQL**.
 - ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/realNumbers.md) to see.
@@ -49,7 +50,8 @@ To always achieve the perfect output, arrange the queries in the following order
 The MmQL language only support single-line comments.
 **Comment Declaration**: Comments looks like this
 - `%% Comment`
-## Possible Errors
+> [!CAUTION]
+>## Possible Errors
 Compound queries or **stacking more than one query on a single line** may throw an error.</br>
  Nesting two or more than two queries will also the same compilation error.</br>
  Inline comments will also throw error.</br>
