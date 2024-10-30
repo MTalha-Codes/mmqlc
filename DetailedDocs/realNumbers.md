@@ -1,6 +1,6 @@
 # Queries For Calculations Involving Real Numbers
 ## Arithmetic Operations
- - **Addition**: $ a+b $ --> `ADD a,b`
+ - **Addition**: $a+b$ --> `ADD a,b`
  - **Subtraction**: $ a-b $ --> `SUBTRACT a,b`
  - **Multiplication**: $ a\times b $ --> `MUTIPLY a,b`
  - **Division**: $ a÷b $ --> `DIVIDE a,b`
