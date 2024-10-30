@@ -48,7 +48,7 @@ Use the included CMakeLists.txt by using CMake build system to generate binaries
 - To view or see the answers, open the **.ans** in any text editor.
 
 > [!TIP]
-> Use **Sublime Text, if you can afford** for syntax highlighting.
+> For Syntax Highlighting; Use **Sublime Text, if you can afford it**.
 
  > [!NOTE]
  > - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click  [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
