@@ -1,15 +1,16 @@
-#ifndef MMQLC_FILEMANAGER_HPP
-#define MMQLC_FILEMANAGER_HPP
+#ifndef MMQLC_FILESYSTEM_MMQLC_HPP
+#define MMQLC_FILESYSTEM_MMQLC_HPP
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <fstream>
 #include <cctype>
 #include "color.hpp"
 #include <filesystem>
 #include <iomanip>
 #include <algorithm>
-#include "calcAnswer.hpp"
+#include "calculator.hpp"
 
 class file {
 private:
@@ -17,7 +18,7 @@ private:
     std::ofstream answerFile;
     std::vector<std::string> queries;
     std::unique_ptr<parser> parser_ptr;
-    std::unique_ptr<answer_calc> calcAnswer_ptr;
+    std::unique_ptr<Calculator> calcAnswer_ptr;
     std::vector<std::string> answers;
 
     static bool if_comment(const std::string &str) {
@@ -55,7 +56,7 @@ public:
         parser_ptr = std::make_unique<parser>(queries);
         auto parsed_real_tokens = parser_ptr->parse_RealNums();
         auto parsed_complex_tokens = parser_ptr->parse_cmplxNums();
-        calcAnswer_ptr = std::make_unique<answer_calc>(parsed_real_tokens, parsed_complex_tokens);
+        calcAnswer_ptr = std::make_unique<Calculator>(parsed_real_tokens, parsed_complex_tokens);
     }
 
     void saveAnswers(std::string &full_path_to_answer_file) {
@@ -80,11 +81,8 @@ public:
         if (!answerFile.is_open()) {
             throw std::runtime_error("Failed To Create Answer File !");
         }
-        int i = 0;
         for (const auto &answer: answers) {
-            answerFile << (queries[i] + "\n>>>Output: " + answer);
-            answerFile << std::endl;
-            i++;
+            answerFile << answer;
         }
         answerFile.close();
     }

@@ -1,7 +1,7 @@
-#ifndef MMQLC_COMPILER_HPP
-#define MMQLC_COMPILER_HPP
+#ifndef MMQLC_MMQLC_BODY_HPP
+#define MMQLC_MMQLC_BODY_HPP
 
-#include "fileManager.hpp"
+#include "filesystem.hpp"
 #include <thread>
 
 
@@ -9,6 +9,8 @@ class compileMmQL : public file {
 private:
     int argc;
     char **argv;
+    const std::string lessARGC_error = "Less than needed arguments were provided !";
+    const std::string moreARGC_error = "More than needed arguments were provided !";
 
     static void showHelp() {
         using std::cout, std::endl;
@@ -20,25 +22,20 @@ private:
 
 public:
     compileMmQL(int argsC, char **argvA) : argc(argsC), argv(argvA) {
-        if (argc != 5) {
+        if (argc < 5) {
             std::cerr << "\nCompiler requires 5 arguments but only " << argc << " were provided" << std::endl;
             showHelp();
-            throw std::runtime_error("Incomplete arguments provided !");
+            throw std::runtime_error(lessARGC_error);
+        } else if (argc > 5) {
+            std::cerr << "\nCompiler requires 5 arguments but " << argc << " were provided" << std::endl;
+            showHelp();
+            throw std::runtime_error(moreARGC_error);
         }
     }
 
     void startCompilation() {
         using namespace std::chrono_literals;
         using namespace std::this_thread;
-        /*
-         * command line argument: MmQLC.exe ~i $path to mmql file$ ~o $path to generate ans file$
-         * here
-         * argv[0] = MmQLC.exe [Program Name]
-         * argv[1] = ~i [Input handler]
-         * argv[2] = $path to mmql file$ [must not have spaces]
-         * argv[3] = ~o [output handler]
-         * argv[4] = $path to generate ans file$ [must not have spaces]
-         */
         std::vector<bool> isCorrectHandlerUsed(2);
         isCorrectHandlerUsed[0] = (std::string(argv[1]) == "~r");
         isCorrectHandlerUsed[1] = (std::string(argv[3]) == "~w");
@@ -52,7 +49,6 @@ public:
         } catch (const std::runtime_error &re) {
             throw re;
         }
-        std::cout << "\nCompiling queries .....\n";
         hue::reset();
         std::filesystem::path out(outputFilePath);
         try {
@@ -60,15 +56,11 @@ public:
         } catch (const std::runtime_error &re) {
             throw re;
         }
-        for (int i = 0; i <= 100; i += 2) {
-            std::cout << hue::green << "\rDone: [" << i << " %]";
-            sleep_for(25ms);
-        }
-        std::cout << hue::reset;
+        std::cout << hue::green << "Compilation Successful !" << hue::reset;
         if (out.parent_path() == "") {
-            outputFilePath = std::filesystem::current_path().string() + "\\";
-        } else { outputFilePath = out.parent_path().string() + "\\"; }
-        std::cout << "\nCompilation Done!\nAnswer file has been successfully generated at " << outputFilePath
+            outputFilePath = std::filesystem::current_path().string() + "\\" + out.filename().string();
+        } else { outputFilePath = out.parent_path().string() + "\\" + out.filename().string(); }
+        std::cout << "\nAnswer file has been successfully generated !\nPath To Answer File:" << outputFilePath
                   << std::endl;
     }
 
@@ -77,4 +69,4 @@ public:
     }
 };
 
-#endif //MMQLC_COMPILER_HPP
+#endif //MMQLC_MMQLC_BODY_HPP
