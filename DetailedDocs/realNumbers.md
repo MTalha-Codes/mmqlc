@@ -48,5 +48,4 @@
    - **Arc Csch**: $\text{csch}^{-1}(x)$ where x is the parameter of function --> `INVERSE_HYP_COSECANT x`   
  
 
-<!--> [!IMPORTANT]
-> You can invoke any of these queries with variables as `QUERY $a,$b` where a and b are two distinct variables, although they can be the same like `QUERY $a,$a`.-->
+<!--> [!IMPORTANT] > You can invoke any of these queries with variables as `QUERY $a,$b` where a and b are two distinct variables, although they can be the same like `QUERY $a,$a`.-->
