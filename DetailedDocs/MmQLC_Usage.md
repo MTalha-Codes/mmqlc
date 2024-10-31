@@ -5,15 +5,15 @@
 To use the MmQLC compiler, enter the following command in your terminal or command prompt:
 
 ```cmd
-mmqlc ~r PATH_TO_EXISTING_QUERY_FILE ~w PATH_TO_GENERATE_ANSWER_FILE
+mmqlc -r PATH_TO_EXISTING_QUERY_FILE -w PATH_TO_GENERATE_ANSWER_FILE
 ```
 
 Explanation of the above command:
 
 1. **mmqlc**  Compiler name in lowercase(**Recommended when using terminal or cmd**).
-2. **~r** the handle used to load query file.[file of **mmql** extension type].
+2. **-r** the handle used to load query file.[file of **mmql** extension type].
 3. **PATH_TO_EXISTING_QUERY_FILE** for example **E:\\\\file.mmql**.
-4. **~w** the handle used to write answers to answer file.[files of **ans** extension. type]
+4. **-w** the handle used to write answers to answer file.[files of **ans** extension. type]
 5. **PATH_TO_GENERATE_ANSWER_FILE** for example **E:\\\\file.ans**.
 
 > [!WARNING]
@@ -26,7 +26,11 @@ Explanation of the above command:
 > [!TIP]
 > - Enclosing **PATH_TO_EXISTING_QUERY_FILE** and **PATH_TO_GENERATE_ANSWER_FILE** in quotation marks can save you from exceptions thrown by compiler. For Example
 > ```cmd
-> mmqlc ~r "E:\\tests\\My Queries.mmql" ~w "E:\\tests\\Test Results\\MyAns.ans"
+> mmqlc -r "E:\\tests\\My Queries.mmql" -w "E:\\tests\\Test Results\\MyAns.ans"
 > ```
 > - If folders are missing in **PATH_TO_GENERATE_ANSWER_FILE** , it will be created 
 >  automatically by the compiler.
+
+## New Command Line Options
+ **The Following Command line options are available !**
+ - Type `mmqlc --help` in terminal to see all options !
