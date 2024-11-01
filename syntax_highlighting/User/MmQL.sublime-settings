@@ -1,0 +1,7 @@
+// These settings override both User and Default settings for the MmQL syntax
+{
+    "extensions": [ "mmql" ],
+    "color_scheme": "Packages/User/MmQL.sublime-color-scheme",
+}
+
+

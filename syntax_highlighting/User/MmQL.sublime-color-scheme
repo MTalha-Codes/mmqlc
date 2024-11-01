@@ -1,0 +1,51 @@
+{
+	"variables": 
+	{
+        "bg_clr": "#3f4541",
+        "txt_clr": "#8ca191",
+		"comment_color": "#2fb528",
+		"real_color": "#e0a55c",
+        "cmplx_color": "#6e99c4",
+		"Num_color": "#c79a08",
+	},
+        "globals": {
+        "background": "var(bg_clr)",
+        "foreground": "var(txt_clr)"
+    },
+    "rules": [
+        {
+            "scope": "keyword.real_double.example-mmql",
+            "foreground": "var(real_color)",  // Color for real double keywords
+            "font_style": "bold"
+        },
+        {
+            "scope": "keyword.real_single.example-mmql",
+            "foreground": "var(real_color)",  // Color for real single keywords
+            "font_style": "bold"
+        },
+         {
+            "scope": "keyword.cmplx_double.example-mmql",
+            "foreground": "var(cmplx_color)",  // Color for real double keywords
+            "font_style": "bold"
+        },
+        {
+            "scope": "keyword.cmplx_single.example-mmql",
+            "foreground": "var(cmplx_color)",  // Color for real single keywords
+            "font_style": "bold"
+        },
+        {
+            "scope": "constant.numeric.example-mmql",
+            "foreground": "var(Num_color)",   // Color for numbers
+            "font_style": "italic"
+        },
+        {
+            "scope": "punctuation.definition.comment.example-mmql",
+            "foreground": "var(comment_color)"   // Color for comment punctuation
+        },
+        {
+            "scope": "comment.line.example-mmql",
+            "foreground": "var(comment_color)",  // Color for comments
+            "font_style": "italic"
+        }
+    ]
+}
