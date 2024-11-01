@@ -20,7 +20,7 @@ Explanation of the above command:
 > In **PATH_TO_EXISTING_QUERY_FILE** and **PATH_TO_GENERATE_ANSWER_FILE**, any kind of
 > spaces are not allowed . Since MmQLC works on command line arguments and single space can increase the argument count which can throw exception. For example.
 > ```cmd
->   mmqlc ~r E:\\tests\\My Queries.mmql ~w E:\\tests\\Test Results\\MyAns.ans
+>   mmqlc -r E:\\tests\\My Queries.mmql -w E:\\tests\\Test Results\\MyAns.ans
 > ```
 
 > [!TIP]
