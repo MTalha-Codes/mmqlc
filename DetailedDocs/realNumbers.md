@@ -10,7 +10,7 @@
  - **Ceiling**: $\lceil a \rceil$ --> `CEILING a`
  - **Floor**: $\lfloor a \rfloor$ --> `FLOOR a`
 ## Combinatorial Operations
- - **Factorial**:   $n!$ --> `FACTORIAL n` *such that* $ n\in (-1,10207268] $
+ - **Factorial**:   $n!$ --> `FACTORIAL n` *such that* $n\in (-1,10207268]$
  - **Permutation**: $P^n_r$ --> `PERMUTATION n,r`
  - **Combination**: $C^n_r$ --> `COMBINATION n,r`
 ## Logarithmic Operations
