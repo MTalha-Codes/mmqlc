@@ -1,8 +1,7 @@
-
 # MmQL - The Mathematical Query Language
 **MmQL** is a very lightweight computational tool in comparison to other contenders like ***MAPLE , Wolfram Mathematica and MATLAB*** developed purely in **C++23**. Though it is not as advanced as these tools but it really do some of the calculations swiftly and perfectly. 
 ## What is MmQL ?
-**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenizing and Parsing are used by this custom compiler.
+**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenization and Parsing are used by this custom compiler.
 
 ## What is MmQLC ?
 

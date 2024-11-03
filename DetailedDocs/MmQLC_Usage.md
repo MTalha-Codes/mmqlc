@@ -30,7 +30,3 @@ Explanation of the above command:
 > ```
 > - If folders are missing in **PATH_TO_GENERATE_ANSWER_FILE** , it will be created 
 >  automatically by the compiler.
-
-## New Command Line Options
- **The Following Command line options are available !**
- - Type `mmqlc --help` in terminal to see all options !
