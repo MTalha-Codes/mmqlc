@@ -118,7 +118,7 @@ private:
 
 public:
     Calculator(std::vector<std::tuple<std::string, double50, double50> > const &parsedReal,
-               std::vector<std::tuple<std::string, complex50, std::complex<double50> > > const &parsedComplex) {
+               std::vector<std::tuple<std::string, complex50, complex50> > const &parsedComplex) {
         realNums_parsed = parsedReal;
         cmplxNums_parsed = parsedComplex;
     }

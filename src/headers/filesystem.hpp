@@ -26,7 +26,7 @@ class file {
 
 public:
     void loadQueries(const std::string &full_Path_To_Query_File) {
-       const  path p = full_Path_To_Query_File;
+        const path p = full_Path_To_Query_File;
         if (p.extension() != ".mmql" && p.extension() != ".MMQL") {
             throw std::runtime_error("Tried to load queries from an unsupported file type !");
         }
@@ -59,7 +59,7 @@ public:
             throw std::runtime_error("Tried to create a file whose extension is not .ans !");
         }
         if (p.parent_path().empty()) {
-           const std::string currentPathStr = current_path().string() + "\\" + full_path_to_answer_file;
+            const std::string currentPathStr = current_path().string() + "\\" + full_path_to_answer_file;
             p = currentPathStr;
         }
         if (!exists(p.parent_path())) {
@@ -67,8 +67,7 @@ public:
         }
         try {
             answers = calcAnswer_ptr->calculateAnswers();
-        }
-        catch (std::runtime_error &re) {
+        } catch (std::runtime_error &re) {
             throw std::runtime_error(re);
         }
         answerFile.open(p.string());
