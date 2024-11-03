@@ -87,6 +87,7 @@ The MmQL language only support single-line comments.
 > - -    `INVERSE_SINE SINE 45`
 > 3.  **Inline Comments**
 > - -  `ADD 4,5 %% add two numbers`
-
+## 🎈🎉 MmQLC v2.2 Has Been Released ! 🎈
+Click To Read [**ChangeLog v2.2**](DetailedDocs/Change_Log.md)
 ## License
 This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
