@@ -7,4 +7,5 @@
 using namespace boost::multiprecision;
 using double50 = cpp_dec_float_50;
 using complex50 = std::complex<double50>;
+using int100 = cpp_int;
 #endif

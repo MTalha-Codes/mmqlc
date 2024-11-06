@@ -4,16 +4,16 @@
 #include <vector>
 #include <fstream>
 #include <filesystem>
-#include "calculator.hpp"
+#include "mmqlc.calculator.hpp"
 
 using namespace std::filesystem;
 
-class file {
+class mmqlc_filesystem {
     std::ifstream queryFile;
     std::ofstream answerFile;
     std::vector<std::string> queries;
     std::unique_ptr<parser> parser_ptr;
-    std::unique_ptr<Calculator> calcAnswer_ptr;
+    std::unique_ptr<mmqlc_calculator> calcAnswer_ptr;
     std::vector<std::string> answers;
 
     static bool if_comment(const std::string &str) {
@@ -50,7 +50,7 @@ public:
         parser_ptr = std::make_unique<parser>(queries);
         auto parsed_real_tokens = parser_ptr->parse_RealNums();
         auto parsed_complex_tokens = parser_ptr->parse_cmplxNums();
-        calcAnswer_ptr = std::make_unique<Calculator>(parsed_real_tokens, parsed_complex_tokens);
+        calcAnswer_ptr = std::make_unique<mmqlc_calculator>(parsed_real_tokens, parsed_complex_tokens);
     }
 
     void saveAnswers(const std::string &full_path_to_answer_file) {
@@ -74,8 +74,9 @@ public:
         if (!answerFile.is_open()) {
             throw std::runtime_error("Failed To Create Answer File !");
         }
+        answerFile << "%% After each answer string, a line has been left empty for clarity ! %%\n\n";
         for (const auto &answer: answers) {
-            answerFile << answer;
+            answerFile << answer << "\n";
         }
         answerFile.close();
     }

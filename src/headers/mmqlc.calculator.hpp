@@ -15,19 +15,17 @@
 #include <vector>
 #include <tuple>
 #include <string>
-#include <numeric>
 #include <stdexcept>
-#include "parser.hpp"
-#include "multiprecision.hpp"
-#include "functions.hpp"
-#include "constants.hpp"
+#include "mmqlc.parser.hpp"
+#include "mmqlc.multiprecision.hpp"
+#include "mmqlc.functions.hpp"
+#include "mmqlc.constants.hpp"
 
 using namespace math::functions::imported_from_boost;
 using namespace math::functions::real::trig;
 using namespace math::functions::complex::trig;
 
-class Calculator {
-private:
+class mmqlc_calculator {
     std::vector<std::tuple<std::string, double50, double50> > realNums_parsed;
     std::vector<std::tuple<std::string, complex50, complex50> > cmplxNums_parsed;
     std::vector<std::string> answerStrings;
@@ -71,7 +69,7 @@ private:
         return comb;
     }
 
-    [[maybe_unused]] static std::string stringConvert(const complex50 &complexArg) {
+    static std::string stringConvert(const complex50 &complexArg) {
         std::string realStr = complexArg.real().str();
         std::string imagStr = complexArg.imag().str() + "i";
         if (imagStr[0] != '-')
@@ -83,18 +81,20 @@ private:
     static std::string stringConvert(const double50 &darg) {
         return darg.str();
     }
-
+    static std::string stringConvert(const int100& arg) {
+        return arg.str();
+    }
     template<typename T, typename U, typename R>
-    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50>) &&
-                     (std::is_same_v<U, double50> || std::is_same_v<U, complex50>) &&
-                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50>), std::string>
+    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50> || std::is_same_v<T, int100>)   &&
+                     (std::is_same_v<U, double50> || std::is_same_v<U, complex50> || std::is_same_v<U, int100>) &&
+                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50> || std::is_same_v<R, int100>), std::string>
     constructAnswer(const std::string &q, const T &f, const U &s, const R &r) {
         return q + " " + stringConvert(f) + "," + stringConvert(s) + " = " + stringConvert(r) + "\n";
     }
 
     template<typename T, typename R>
-    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50>) &&
-                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50>), std::string>
+    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50> || std::is_same_v<T, int100>) &&
+                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50> || std::is_same_v<T, int100>), std::string>
     constructAnswer(const std::string &q, const T &f, const R &r) {
         return q + " " + stringConvert(f) + " = " + stringConvert(r) + "\n";
     }
@@ -117,7 +117,7 @@ private:
     }
 
 public:
-    Calculator(std::vector<std::tuple<std::string, double50, double50> > const &parsedReal,
+    mmqlc_calculator(std::vector<std::tuple<std::string, double50, double50> > const &parsedReal,
                std::vector<std::tuple<std::string, complex50, complex50> > const &parsedComplex) {
         realNums_parsed = parsedReal;
         cmplxNums_parsed = parsedComplex;
@@ -181,9 +181,9 @@ public:
                     double50 result(nCr(fOperand, sOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "MODULUS") {
+                } else if (query == "MOD") {
                     if (sOperand != 0) {
-                        double50 result(fmod(fOperand, sOperand));
+                        int100 result = static_cast<int100>(fOperand) % static_cast<int100>(sOperand);
                         answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                         return true;
                     } else {
@@ -370,30 +370,30 @@ public:
             auto sOperand = std::get<2>(parsedToken);
             auto calculate_complex_double = [this](const std::string &query, const complex50 &fOperand,
                                                    const complex50 &sOperand) {
-                if (query == "CMPLX_ADD") {
+                if (query == "ADD") {
                     auto result = fOperand + sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "CMPLX_SUBTRACT") {
+                } else if (query == "SUBTRACT") {
                     auto result = fOperand - sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "CMPLX_MULTIPLY") {
+                } else if (query == "MULTIPLY") {
                     auto result = fOperand * sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "CMPLX_DIVIDE") {
+                } else if (query == "DIVIDE") {
                     if (sOperand == zero) {
                         throw std::runtime_error("Cannot divide complex number by zero !");
                     }
                     auto result = fOperand / sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "CMPLX_POWER") {
+                } else if (query == "POWER") {
                     auto result = std::pow(fOperand, sOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
-                } else if (query == "CMPLX_ROOT") {
+                } else if (query == "ROOT") {
                     if (sOperand == zero) {
                         throw std::runtime_error("Zeroth root of complex number is undefined !");
                     }
@@ -406,123 +406,123 @@ public:
                 }
             };
             auto calculate_complex_single = [this](const std::string &query, const complex50 &fOperand) {
-                if (query == "CMPLX_MODULUS") {
+                if (query == "MODULUS") {
                     double50 MOD(std::abs(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, MOD));
                     return true;
-                } else if (query == "CMPLX_ARGUMENT") {
+                } else if (query == "ARGUMENT") {
                     double50 rads(std::arg(fOperand));
                     double50 degs(radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, degs));
                     return true;
-                } else if (query == "CMPLX_SINE") {
+                } else if (query == "SINE") {
                     auto sine = std::sin(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sine));
                     return true;
-                } else if (query == "CMPLX_COSINE") {
+                } else if (query == "COSINE") {
                     auto cosine = std::cos(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, cosine));
                     return true;
-                } else if (query == "CMPLX_TANGENT") {
+                } else if (query == "TANGENT") {
                     auto tang = std::tan(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, tang));
                     return true;
-                } else if (query == "CMPLX_COTANGENT") {
+                } else if (query == "COTANGENT") {
                     auto cotangent = cot(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, cotangent));
                     return true;
-                } else if (query == "CMPLX_SECANT") {
+                } else if (query == "SECANT") {
                     auto secant = sec(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, secant));
                     return true;
-                } else if (query == "CMPLX_COSECANT") {
+                } else if (query == "COSECANT") {
                     auto cosecant = csc(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, cosecant));
                     return true;
-                } else if (query == "CMPLX_INVERSE_SINE") {
+                } else if (query == "INVERSE_SINE") {
                     auto inverseSine = std::asin(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseSine));
                     return true;
-                } else if (query == "CMPLX_INVERSE_COSINE") {
+                } else if (query == "INVERSE_COSINE") {
                     auto inverseCosine = std::acos(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseCosine));
                     return true;
-                } else if (query == "CMPLX_INVERSE_TANGENT") {
+                } else if (query == "INVERSE_TANGENT") {
                     auto inverseTangent = std::atan(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseTangent));
                     return true;
-                } else if (query == "CMPLX_INVERSE_COTANGENT") {
+                } else if (query == "INVERSE_COTANGENT") {
                     auto inverseCot = acot(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseCot));
                     return true;
-                } else if (query == "CMPLX_INVERSE_SECANT") {
+                } else if (query == "INVERSE_SECANT") {
                     auto inverseSec = asec(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseSec));
                     return true;
-                } else if (query == "CMPLX_INVERSE_COSECANT") {
+                } else if (query == "INVERSE_COSECANT") {
                     auto inverseCsc = acsc(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseCsc));
                     return true;
-                } else if (query == "CMPLX_HYP_SINE") {
+                } else if (query == "HYP_SINE") {
                     auto hyperSine = std::sinh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, hyperSine));
                     return true;
-                } else if (query == "CMPLX_HYP_COSINE") {
+                } else if (query == "HYP_COSINE") {
                     auto hyperCosine = std::cosh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, hyperCosine));
                     return true;
-                } else if (query == "CMPLX_HYP_TANGENT") {
+                } else if (query == "HYP_TANGENT") {
                     auto hyperTangent = std::tanh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, hyperTangent));
                     return true;
-                } else if (query == "CMPLX_HYP_COTANGENT") {
+                } else if (query == "HYP_COTANGENT") {
                     auto Cothan = coth(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, Cothan));
                     return true;
-                } else if (query == "CMPLX_HYP_SECANT") {
+                } else if (query == "HYP_SECANT") {
                     auto Shek = sech(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, Shek));
                     return true;
-                } else if (query == "CMPLX_HYP_COSECANT") {
+                } else if (query == "HYP_COSECANT") {
                     auto CoShek = csch(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, CoShek));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_SINE") {
+                } else if (query == "INVERSE_HYP_SINE") {
                     auto inverseHypSine = std::asinh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseHypSine));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_COSINE") {
+                } else if (query == "INVERSE_HYP_COSINE") {
                     auto inverseHypCosine = std::acosh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseHypCosine));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_TANGENT") {
+                } else if (query == "INVERSE_HYP_TANGENT") {
                     auto inverseHypTangent = std::atanh(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseHypTangent));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_COTANGENT") {
+                } else if (query == "INVERSE_HYP_COTANGENT") {
                     auto InvCOTH = acoth(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, InvCOTH));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_SECANT") {
+                } else if (query == "INVERSE_HYP_SECANT") {
                     auto InvSheck = asech(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, InvSheck));
                     return true;
-                } else if (query == "CMPLX_INVERSE_HYP_COSECANT") {
+                } else if (query == "INVERSE_HYP_COSECANT") {
                     auto INV_CSCH = acsch(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, INV_CSCH));
                     return true;
-                } else if (query == "CMPLX_NATURAL_LOGARITHM") {
+                } else if (query == "NATURAL_LOGARITHM") {
                     if (fOperand == zero) {
                         throw std::runtime_error("Cannot take log of zero !");
                     }
                     auto ln = std::log(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, ln));
                     return true;
-                } else if (query == "CMPLX_EXP") {
+                } else if (query == "POWER_E") {
                     auto expo = std::exp(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, expo));
                     return true;
-                } else if (query == "CMPLX_CONJUGATE") {
+                } else if (query == "CONJUGATE") {
                     auto conjg = std::conj(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, conjg));
                     return true;

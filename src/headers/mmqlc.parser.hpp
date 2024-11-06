@@ -1,9 +1,9 @@
 #ifndef MMQL_PACKAGE_QUERYPARSER_HPP
 #define MMQL_PACKAGE_QUERYPARSER_HPP
 
-#include "tokenizer.hpp"
-#include "constants.hpp"
-#include "multiprecision.hpp"
+#include "mmqlc.tokenizer.hpp"
+#include "mmqlc.constants.hpp"
+#include "mmqlc.multiprecision.hpp"
 #include<complex>
 #include <utility>
 
@@ -13,8 +13,7 @@ class parser {
     std::vector<std::tuple<std::string, complex50, complex50> > complexNums_parsed;
 
     static double50 STOD(const std::string &num) {
-        const std::regex realNumberRegex(R"((-?\d+(\.\d+)?([Ee][+-]\d+(\.\d+)?)?))");
-        if (std::smatch matches; std::regex_match(num, matches, realNumberRegex))
+        if (std::smatch matches; std::regex_match(num, matches, regex::real::realNumberRegex))
             return double50(matches[1].str());
         else if (num.empty())
             return {0};
@@ -23,9 +22,7 @@ class parser {
     }
 
     static complex50 convert_to_complex(const std::string &cmplx_num) {
-        const std::regex complexNumberRegex(
-            R"(((-?\d+(\.\d+)?([Ee][+-]\d+(\.\d+)?)?)?(([-+]?\d+(\.\d+)?([Ee][+-]\d+(\.\d+)?)?)i)))");
-        if (std::smatch matches; std::regex_match(cmplx_num, matches, complexNumberRegex)) {
+        if (std::smatch matches; std::regex_match(cmplx_num, matches, regex::complex::complexNumberRegex)) {
             const double50 realPart(matches[2].str());
             const double50 imagPart(matches[7].str());
             complex50 complex1(realPart, imagPart);

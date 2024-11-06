@@ -11,7 +11,7 @@
 #ifndef MMQLC_CONSTANTS_HPP
 #define MMQLC_CONSTANTS_HPP
 #include <limits>
-#include "multiprecision.hpp"
+#include "mmqlc.multiprecision.hpp"
 const double50 Pi(3.141592653589793238462643383279);
 const double50 ONE(1);
 const double50 ZERO(0);

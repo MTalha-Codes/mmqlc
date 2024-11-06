@@ -1,13 +1,13 @@
 #ifndef MMQLC_MMQLC_BODY_HPP
 #define MMQLC_MMQLC_BODY_HPP
 
-#include "filesystem.hpp"
+#include "mmqlc.filesystem.hpp"
 #include <color.hpp>
 #include <thread>
 #include <cstring>
 
 
-class compileMmQL : public file {
+class mmqlc_ui : public mmqlc_filesystem {
     int argc;
     char **argv;
     std::string inputPath, outputPath;
@@ -44,24 +44,22 @@ class compileMmQL : public file {
                   << "' to shut real-time interpretation session. \n\n";
         std::string query;
         while (true) {
-            std::cout << ">>> ";
+            std::cout << hue::aqua << ">>> " << hue::reset;
             std::getline(std::cin, query);
 
             if (query.empty() || query.rfind("%%", 0) == 0) continue;
-            if (query == quit_command) break;  // Safely exit loop
-
-            // Inner local scope for calculation
+            if (query == quit_command) break;
             const auto answer = [&]() {
                 const auto token = tokenize({query});
                 const auto parse_ptr = std::make_unique<parser>(token);
-                const auto ansPTR = std::make_unique<Calculator>(
+                const auto ansPTR = std::make_unique<mmqlc_calculator>(
                     parse_ptr->parse_RealNums(), parse_ptr->parse_cmplxNums()
                 );
                 return ansPTR->calculateAnswers()[0];
             }();
 
             if (const size_t pos = answer.find('='); pos != std::string::npos) {
-                std::cout << answer.substr(pos + 2) << "\n";  // Skip "= "
+                std::cout << hue::bright_white << answer.substr(pos + 2) << hue::reset << "\n";  // Skip "= "
             }
         }
     }
@@ -89,7 +87,7 @@ class compileMmQL : public file {
     }
 
 public:
-    compileMmQL(const int argsC, char **argvA) : argc(argsC), argv(argvA) {
+    mmqlc_ui(const int argsC, char **argvA) : argc(argsC), argv(argvA) {
         if (argc == 1) {
             blankError();
             exit(EXIT_FAILURE);
@@ -143,7 +141,7 @@ public:
                 << std::endl;
     }
 
-    ~compileMmQL() {
+    ~mmqlc_ui() {
         delete[] argv;
     }
 };

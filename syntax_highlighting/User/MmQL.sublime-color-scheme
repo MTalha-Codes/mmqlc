@@ -5,7 +5,6 @@
         "txt_clr": "#8ca191",
 		"comment_color": "#2fb528",
 		"real_color": "#e0a55c",
-        "cmplx_color": "#6e99c4",
 		"Num_color": "#c79a08",
 	},
         "globals": {
@@ -21,16 +20,6 @@
         {
             "scope": "keyword.real_single.example-mmql",
             "foreground": "var(real_color)",  // Color for real single keywords
-            "font_style": "bold"
-        },
-         {
-            "scope": "keyword.cmplx_double.example-mmql",
-            "foreground": "var(cmplx_color)",  // Color for real double keywords
-            "font_style": "bold"
-        },
-        {
-            "scope": "keyword.cmplx_single.example-mmql",
-            "foreground": "var(cmplx_color)",  // Color for real single keywords
             "font_style": "bold"
         },
         {

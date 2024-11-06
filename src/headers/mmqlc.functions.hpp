@@ -10,9 +10,9 @@
 #ifndef MMQLC_FUNCTIONS_HPP
 #define MMQLC_FUNCTIONS_HPP
 
-#include "constants.hpp"
+#include "mmqlc.constants.hpp"
 #include <cmath>
-#include "multiprecision.hpp"
+#include "mmqlc.multiprecision.hpp"
 
 
 namespace math::functions::imported_from_boost {

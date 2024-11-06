@@ -1,9 +1,9 @@
-#include "headers/mmqlc.hpp"
+#include "headers/mmqlc.ui.hpp"
 #include <memory>
 
 int main(int argc, char *argv[]) {
     try {
-        const auto compiler = std::make_unique<compileMmQL>(argc, argv);
+        const auto compiler = std::make_unique<mmqlc_ui>(argc, argv);
         try {
             compiler->startCompilation();
         } catch (const std::runtime_error &re) {
