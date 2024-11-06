@@ -6,7 +6,7 @@
  - **Division**: $a÷b$ --> `DIVIDE a,b`
  - **Exponentiation**: $a^b$ --> `POWER a,b`
  - **Root**: $\sqrt[n]{a}$ --> `ROOT a,n`
- - **Modulus**: $a \ mod\ b$ --> `MODULUS a,b`
+ - **Modulus**: $a \ mod\ b$ --> `MOD a,b`
  - **Ceiling**: $\lceil a \rceil$ --> `CEILING a`
  - **Floor**: $\lfloor a \rfloor$ --> `FLOOR a`
 ## Combinatorial Operations
