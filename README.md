@@ -4,14 +4,16 @@
 **MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled ***(Read the important tip block down there !)*** language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenization and Parsing are used by this custom compiler.
 > [!IMPORTANT]
 > **Avoid Confusion Here**
-> When we say compiled language, we are referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
+> 
+> When we say compiled language, I am referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
 
 ## What is MmQLC ?
 
 **MmQLC** stands for **M**athe**m**atical **Q**uery **L**anguage **C**ompiler. This compiler ***(Read the important tip block down there !)*** is used to generate answer files.
 > [!IMPORTANT]
 > **Avoid Confusion Here**
-> By compiler, we mean an evaluator or processor, not a traditional language compiler like GCC, Clang, or MSVC. The MmQLC simply processes the queries and provides the results.
+> 
+> By compiler, I mean an evaluator or processor, not a traditional language compiler like GCC, Clang, or MSVC. The MmQLC simply processes the queries and provides the results.
 
 **MmQL** is very lightweight and fast computing tool specifically designed for students that don't want to use bloated computational tools like **MapleSoft** , **MATLAB** or **Wolfram Mathematica** for calculations that are specific to the following types.
 - ***Real Numbers***
@@ -84,18 +86,16 @@ Comments looks like this
 - `%% Comment`
 ## Possible Errors
 > [!CAUTION]
->Compound queries or **stacking more than one query on a single line** may throw an error.</br>
->Nesting two or more than two queries will also the same compilation error.</br>
->Inline comments will also throw error.</br> Following are the examples that you may like to see.
-> ### Examples
-> 1. **Compound Queries**
-> - - `ADD 3,4 FACTORIAL 43`
-> 1. **Nested Queries**
-> - -    `FACTORIAL ADD 3,4`
-> - -    `INVERSE_SINE SINE 45`
-> 3.  **Inline Comments**
-> - -  `ADD 4,5 %% add two numbers`
+Compound queries or stacking multiple queries on a single line may cause errors.
+Nesting two or more queries or using inline comments will also throw errors.
+### Examples of errors:
+- Compound Queries: `ADD 3,4 FACTORIAL 43`
+- Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`
+- Inline Comments: `ADD 4,5 %% add two numbers`
 ## 🎈🎉 MmQLC v2.2 Has Been Released ! 🎉🎈 
 Click To Read [**ChangeLog v2.2**](DetailedDocs/Change_Log.md).
+## Too Many Commits! 😁
+- **Most commits are for fixing markdown files.**
+- **As a solo developer, it's a challenge to manage both markdown and source code! 😢**
 ## License
 This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
