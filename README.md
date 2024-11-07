@@ -4,18 +4,15 @@
 **MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled ***(Read the important tip block down there !)*** language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenization and Parsing are used by this custom compiler.
 > [!IMPORTANT]
 > **Avoid Confusion Here**
-> By a compiled language I doesnot mean a standard compiled language like C or C++.
-> I call it **compiled** language in my sense, you can call it **evaluated, interpreted or even processed** language. It is totally upto you !
+> When we say compiled language, we are referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
 
 ## What is MmQLC ?
 
 **MmQLC** stands for **M**athe**m**atical **Q**uery **L**anguage **C**ompiler. This compiler ***(Read the important tip block down there !)*** is used to generate answer files.
 > [!IMPORTANT]
 > **Avoid Confusion Here**
-> By a compiler I doesnot mean a standard language compiler  like **GCC** or **G++** **Clang** or **MSVC**, rather I mean that this takes query file and produce answer file in terms of output.
-> I call it **compiler** in my sense, you can call it **evaluator, interpreter or even processor (!CPU)**. It is totally upto you !
+> By compiler, we mean an evaluator or processor, not a traditional language compiler like GCC, Clang, or MSVC. The MmQLC simply processes the queries and provides the results.
 
-## Why it was needed ?
 **MmQL** is very lightweight and fast computing tool specifically designed for students that don't want to use bloated computational tools like **MapleSoft** , **MATLAB** or **Wolfram Mathematica** for calculations that are specific to the following types.
 - ***Real Numbers***
 - ***Complex Numbers***
