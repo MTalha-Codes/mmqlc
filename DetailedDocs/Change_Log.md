@@ -5,7 +5,8 @@
 > [!NOTE]
 > - 12 Trigonometric Queries Added for Real Numbers
 > - 12 Trigonometric Queries Added for Complex Numbers
-
+### Arbitrary Number Precision Supported !
+- ***MmQLC* now support arbitrary precision for both integers and floating point numbers**.
 ### New Command Line Options Added
 - **MmQLC v2.2 Supports Following Command Line Options.**
 1. `mmqlc --htc`: **Show The Command For Invoking Compilation Process.**
