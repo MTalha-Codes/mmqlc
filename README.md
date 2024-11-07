@@ -6,6 +6,9 @@
 ## What is MmQLC ?
 
 **MmQLC** stands for **M**athe**m**atical **Q**uery **L**anguage **C**ompiler. This compiler is used to generate answer files.
+> [!NOTE]
+> **MmQLC** can be invoked as interpretor to do real time query interpretation.
+
 ## Why it was needed ?
 **MmQL** is very lightweight and fast computing tool specifically designed for students that don't want to use bloated computational tools like **MapleSoft** , **MATLAB** or **Wolfram Mathematica** for calculations that are specific to the following types.
 - ***Real Numbers***
