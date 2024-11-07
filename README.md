@@ -75,7 +75,9 @@ To always achieve the perfect output, arrange the queries in the following order
 
 ## Comments in MmQL
 The MmQL language only support single-line comments.
-**Comment Declaration**: Comments looks like this
+
+**Comment Declaration**: 
+Comments looks like this
 - `%% Comment`
 ## Possible Errors
 > [!CAUTION]
