@@ -1,5 +1,5 @@
 # MmQL - The Mathematical Query Language
-**MmQL** is a very lightweight computational tool in comparison to other contenders like ***MAPLE , Wolfram Mathematica and MATLAB*** developed purely in **C++23**. Though it is not as advanced as these tools but it really do some of the calculations swiftly and perfectly. 
+**MmQL** is a very lightweight computational tool in comparison to other strong contenders like ***MAPLE , Wolfram Mathematica and MATLAB*** developed purely in **C++23**. Though it is not as advanced as these tools but it really do some of the calculations swiftly and perfectly. 
 ## What is MmQL ?
 **MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled ***(Read the important tip block down there !)*** language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenization and Parsing are used by this custom compiler.
 > [!IMPORTANT]
@@ -74,9 +74,11 @@ To always achieve the perfect output, arrange the queries in the following order
 - Queries Involving Complex Numbers.
 ## FAQs - Frequently Asked Questions
 **FAQ #1 : Why The Queries Needs To Be Ordered Like This ?**</br>
-**Answer**: Because **MmQLC** tends to compile the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always get the perfect output.</br>
+**Answer**: Because **MmQLC** tends to compile/interpret/evaluate the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always get the perfect output.</br>
 **FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw A Compilation Error ?**</br>
-**Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a compilation error.
+**Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a compilation/interpretation/evaluation error.
+> [!NOTE]
+> The above terms not applied to interactive mode in **MmQLC v2.2**(See Changlog)
 
 ## Comments in MmQL
 The MmQL language only support single-line comments.
