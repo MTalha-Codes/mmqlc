@@ -78,7 +78,7 @@ To always achieve the perfect output, arrange the queries in the following order
 **FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw A Compilation Error ?**</br>
 **Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a compilation/interpretation/evaluation error.
 > [!NOTE]
-> The above terms not applied to interactive mode in **MmQLC v2.2**(See Changlog)
+> The above terms not applied to interactive mode in **MmQLC v2.2**(See Changlog for more details)
 
 ## Comments in MmQL
 The MmQL language only support single-line comments.
