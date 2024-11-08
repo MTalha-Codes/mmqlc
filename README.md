@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > **Avoid Confusion Here**
 > 
-> When we say compiled language, I am referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
+> By compiled language, I am referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
 
 ## What is MmQLC ?
 
