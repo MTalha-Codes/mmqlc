@@ -60,18 +60,18 @@ If you want to build from source, then the you should download the libraries des
 > - [X] **Install MinGW. Watch this [video](https://youtu.be/oC69vlWofJQ) for detailed installation guide by `Microsoft` via `MSYS2`**
 > - [X] **Extract the library archive into your `MinGW` base directory**
 > - [X] Install `scoop`:
-```cmd
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
+>  ```cmd
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+> ```
 > - [X] Install `cmake` via `scoop`:
-```cmd
-scoop install main/cmake
-```
+>```cmd
+>scoop install main/cmake
+>```
 > - [X] Install `make` via `scoop`:
-```cmd
-scoop install main/make
-```
+>```cmd
+>scoop install main/make
+>```
 
 🎉 Congratulations ! 🎉
 You have set up the environment for building **MmQLC** for your OS.
