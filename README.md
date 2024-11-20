@@ -1,21 +1,16 @@
-<<<<<<< HEAD
-# MmQL - The Mathematical Query Language  
-=======
 # MmQL - The Mathematical Query Language
 **MmQL** is a very lightweight computational tool in comparison to other strong contenders like ***MAPLE , Wolfram Mathematica and MATLAB*** developed purely in **C++23**. Though it is not as advanced as these tools but it really do some of the calculations swiftly and perfectly. 
+
+---
+
 ## What is MmQL ?
-**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is a compiled ***(Read the important tip block down there !)*** language as well as a case-sensitive **where uppercase and  lowercase matters**. The compiler (**MmQLC**) is a custom and a very simple compiler. Techniques like Tokenization and Parsing are used by this custom compiler.
-> [!IMPORTANT]
-> **Avoid Confusion Here**
-> 
-> By compiled language, I am referring to a language that is processed into results, not in the traditional sense of compiling into machine code. You can think of MmQL as being evaluated, interpreted, or processed.
->>>>>>> 6d5f82bcd0c84c3e460b8aa32cfe5fba4cbde790
+**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is aa interpreted language as well as a case-sensitive **where uppercase and  lowercase matters**. The interpreter (**MmQLC**) is a custom and and yet a very simple interpreter. Techniques like Tokenization and Parsing are used by **MmQLC**.
 
 **MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries, offering an efficient alternative to tools like **MAPLE**, **Wolfram Mathematica**, or **MATLAB**.  
 
 ---
 
-## What is MmQL?  
+# What is MmQLC ?  
 
 **MmQL** stands for **M**athe**m**atical **Q**uery **L**anguage. It is a **case-sensitive** interpreted query language with a minimalistic syntax, focused on mathematical operations.  
 
@@ -28,18 +23,6 @@
   - **Complex Numbers**  
 
 **MmQL** is particularly suited for users who need fast, precise calculations without the overhead of complex mathematical software.
-
----
-
-## What is MmQLC?  
-
-**MmQLC** is the **interpreter** used to execute **MmQL** queries. While **MmQL** itself is platform-independent, **MmQLC** must be **compiled for your specific operating system** to ensure compatibility. Once compiled, it enables users to process and run **MmQL** queries efficiently.  
-
-### Features of MmQLC:  
-- **Cross-Platform Compatibility:** Can be compiled for any major operating system, including Windows, Linux, and macOS.  
-- **Query Parsing and Execution:** Interprets mathematical commands using tokenization and parsing.  
-- **Answer Generation:** Produces outputs or result files based on queries.  
-- **Optimized for Speed:** Runs computations quickly and effectively.  
 
 ---
 
@@ -70,6 +53,7 @@ If you want to build from source, then the you should download the libraries des
 
  The checked libraries **(built by MSYS2)** will be provided in the release section of the repository.
 
+---
 
 ## Building From Source
 > [!IMPORTANT]
@@ -91,6 +75,7 @@ scoop install main/make
 
 🎉 Congratulations ! 🎉
 You have set up the environment for building **MmQLC** for your OS.
+
 ---
 
 
@@ -104,7 +89,9 @@ You have set up the environment for building **MmQLC** for your OS.
 make
 ```
 - Wait for the compilation to complete and... `MmQLC` is ready to use !
+
 ---
+
 ## Using the MmQL Language For Calculations
 
 **MmQL**  is pretty simple to use , just download either the installer from **Release** section or the source code **(If you want to build it for yourself.)** 
@@ -120,10 +107,14 @@ make
  > - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click  [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
  > -  In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 
+---
+
 ## Supported Queries
 Following types of queries are supported by **MmQL**.
 - ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/realNumbers.md) to see.
 - ### Queries For Calculations Involving Complex Numbers. Click [**Here**](DetailedDocs/complexNumbers.md) to see.
+
+---
 
 ##  Getting the perfect output
 To always achieve the perfect output, arrange the queries in the following order:
@@ -131,17 +122,14 @@ To always achieve the perfect output, arrange the queries in the following order
 - Queries Involving Complex Numbers.
 ## FAQs - Frequently Asked Questions
 **FAQ #1 : Why The Queries Needs To Be Ordered Like This ?**</br>
-<<<<<<< HEAD
 **Answer**: Because **MmQLC** tends to interpret the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always get the perfect output.</br>
 **FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw An Error ?**</br>
 **Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a interpretation error.
-=======
-**Answer**: Because **MmQLC** tends to compile/interpret/evaluate the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always get the perfect output.</br>
-**FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw A Compilation Error ?**</br>
-**Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a compilation/interpretation/evaluation error.
+
 > [!NOTE]
-> The above terms not applied to interactive mode in **MmQLC v2.2**(See Changlog for more details)
->>>>>>> 6d5f82bcd0c84c3e460b8aa32cfe5fba4cbde790
+> The above terms not applied to interactive mode from **MmQLC v2.2**(See Change log for more details)
+
+---
 
 ## Comments in MmQL
 The MmQL language only support single-line comments.
@@ -149,6 +137,9 @@ The MmQL language only support single-line comments.
 **Comment Declaration**: 
 Comments looks like this
 - `%% Comment`
+
+---
+
 ## Possible Errors
 > [!CAUTION]
 Compound queries or stacking multiple queries on a single line may cause errors.
@@ -159,8 +150,16 @@ Nesting two or more queries or using inline comments will also throw errors.
 - Inline Comments: `ADD 4,5 %% add two numbers`
 ## 🎈🎉 MmQLC v2.3 Has Been Released ! 🎉🎈 
 Click To Read [**ChangeLog v2.3**](DetailedDocs/Change_Log.md).
+
+---
+
 ## Too Many Commits! 😁
 - **Most commits are for fixing markdown files.**
 - **As a solo developer, it's a challenge to manage both markdown and source code! 😢**
+
+---
+
 ## License
 This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
+
+---
