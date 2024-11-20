@@ -7,8 +7,6 @@ if (Boost_FOUND)
 else ()
     message(FATAL_ERROR "Boost Was Not Found On Your System !")
 endif ()
-#[[find_package(Eigen3 REQUIRED) # Find Eigen3
-if(EIGEN3_FOUND)
-    include_directories(${EIGEN3_INCLUDE_DIR}) 
-endif()]]
+
 add_subdirectory(src MmQLC)
+

@@ -9,26 +9,26 @@
 
 class parser {
     std::vector<std::tuple<std::string, std::string, std::string> > raw_tokens;
-    std::vector<std::tuple<std::string, double50, double50> > realNum_parsed;
-    std::vector<std::tuple<std::string, complex50, complex50> > complexNums_parsed;
+    std::vector<std::tuple<std::string, float1000, float1000> > realNum_parsed;
+    std::vector<std::tuple<std::string, complex_float1000, complex_float1000> > complexNums_parsed;
 
-    static double50 STOD(const std::string &num) {
+    static float1000 STOD(const std::string &num) {
         if (std::smatch matches; std::regex_match(num, matches, regex::real::realNumberRegex))
-            return double50(matches[1].str());
+            return float1000(matches[1].str());
         else if (num.empty())
             return {0};
         else
             throw std::invalid_argument("No Number ??");
     }
 
-    static complex50 convert_to_complex(const std::string &cmplx_num) {
+    static complex_float1000 convert_to_complex(const std::string &cmplx_num) {
         if (std::smatch matches; std::regex_match(cmplx_num, matches, regex::complex::complexNumberRegex)) {
-            const double50 realPart(matches[2].str());
-            const double50 imagPart(matches[7].str());
-            complex50 complex1(realPart, imagPart);
+            const float1000 realPart(matches[2].str());
+            const float1000 imagPart(matches[7].str());
+            complex_float1000 complex1(realPart, imagPart);
             return complex1;
         } else if (cmplx_num.empty()) {
-            return {double50(0), double50(0)};
+            return {float1000(0), float1000(0)};
         } else
             throw std::invalid_argument("No Complex Number ??");
     }
@@ -42,12 +42,12 @@ public:
         raw_tokens = token;
     }
 
-    std::vector<std::tuple<std::string, double50, double50> > parse_RealNums() {
+    std::vector<std::tuple<std::string, float1000, float1000> > parse_RealNums() {
         for (const auto &raw_token: raw_tokens) {
             [[maybe_unused]]
-                    double50 fOperand(0);
+                    float1000 fOperand(0);
             [[maybe_unused]]
-                    double50 sOperand(0);
+                    float1000 sOperand(0);
             std::string queryToken = std::get<0>(raw_token);
             try {
                 fOperand = STOD(std::get<1>(raw_token));
@@ -67,10 +67,10 @@ public:
         return realNum_parsed;
     }
 
-    std::vector<std::tuple<std::string, complex50, complex50> > parse_cmplxNums() {
+    std::vector<std::tuple<std::string, complex_float1000, complex_float1000> > parse_cmplxNums() {
         for (const auto &raw_token: raw_tokens) {
-            complex50 fOperand(double50(0), double50(0));
-            complex50 sOperand(double50(0), double50(0));
+            complex_float1000 fOperand(float1000(0), float1000(0));
+            complex_float1000 sOperand(float1000(0), float1000(0));
             std::string queryToken = std::get<0>(raw_token);
             try {
                 fOperand = convert_to_complex(std::get<1>(raw_token));

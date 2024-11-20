@@ -21,13 +21,13 @@
 #include "mmqlc.functions.hpp"
 #include "mmqlc.constants.hpp"
 
-using namespace math::functions::imported_from_boost;
-using namespace math::functions::real::trig;
-using namespace math::functions::complex::trig;
+namespace  rt = math::functions::realTrig; // namespace alias for realTrig;
+namespace ct = math::functions::complexTrig; // namespace alias for complexTrig;
+namespace hf = math::functions::helperFunctions; // namespace alias for helperFunctions;
 
 class mmqlc_calculator {
-    std::vector<std::tuple<std::string, double50, double50> > realNums_parsed;
-    std::vector<std::tuple<std::string, complex50, complex50> > cmplxNums_parsed;
+    std::vector<std::tuple<std::string, float1000, float1000> > realNums_parsed;
+    std::vector<std::tuple<std::string, complex_float1000, complex_float1000> > cmplxNums_parsed;
     std::vector<std::string> answerStrings;
     std::vector<std::string> error_messages;
 
@@ -37,40 +37,8 @@ class mmqlc_calculator {
         return false;
     }
 
-    static double50 degrees_to_radians(const double50 &degs) noexcept {
-        double50 rads(degs * Pi);
-        rads /= 180;
-        return rads;
-    }
-
-    static double50 radians_to_degrees(const double50 &rads) noexcept {
-        double50 degs(rads * 180);
-        degs /= Pi;
-        return degs;
-    }
-
-    static double50 factorial(const double50 &param) {
-        double50 fact(tgamma(param + ONE));
-        return fact;
-    }
-
-    static double50 nPr(const double50 &n, const double50 &r) {
-        double50 numerator(factorial(n));
-        double50 denominator(factorial(n - r));
-        double50 perm(numerator);
-        perm /= denominator;
-        return perm;
-    }
-
-    static double50 nCr(const double50 &n, const double50 &r) {
-        double50 rFact = ONE;
-        rFact /= factorial(r);
-        double50 comb(rFact * nPr(n, r));
-        return comb;
-    }
-
-    static std::string stringConvert(const complex50 &complexArg) {
-        std::string realStr = complexArg.real().str();
+    static std::string stringConvert(const complex_float1000 &complexArg) {
+       const std::string realStr = complexArg.real().str();
         std::string imagStr = complexArg.imag().str() + "i";
         if (imagStr[0] != '-')
             imagStr.insert(0, 1, '+');
@@ -78,23 +46,21 @@ class mmqlc_calculator {
         return complexStr;
     }
 
-    static std::string stringConvert(const double50 &darg) {
+    static std::string stringConvert(const float1000 &darg) {
         return darg.str();
     }
-    static std::string stringConvert(const int100& arg) {
-        return arg.str();
-    }
+
     template<typename T, typename U, typename R>
-    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50> || std::is_same_v<T, int100>)   &&
-                     (std::is_same_v<U, double50> || std::is_same_v<U, complex50> || std::is_same_v<U, int100>) &&
-                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50> || std::is_same_v<R, int100>), std::string>
+    std::enable_if_t<(std::is_same_v<T, float1000> || std::is_same_v<T, complex_float1000>)   &&
+                     (std::is_same_v<U, float1000> || std::is_same_v<U, complex_float1000> ) &&
+                     (std::is_same_v<R, float1000> || std::is_same_v<R, complex_float1000> ), std::string>
     constructAnswer(const std::string &q, const T &f, const U &s, const R &r) {
         return q + " " + stringConvert(f) + "," + stringConvert(s) + " = " + stringConvert(r) + "\n";
     }
 
     template<typename T, typename R>
-    std::enable_if_t<(std::is_same_v<T, double50> || std::is_same_v<T, complex50> || std::is_same_v<T, int100>) &&
-                     (std::is_same_v<R, double50> || std::is_same_v<R, complex50> || std::is_same_v<T, int100>), std::string>
+    std::enable_if_t<(std::is_same_v<T, float1000> || std::is_same_v<T, complex_float1000> ) &&
+                     (std::is_same_v<R, float1000> || std::is_same_v<R, complex_float1000> ), std::string>
     constructAnswer(const std::string &q, const T &f, const R &r) {
         return q + " " + stringConvert(f) + " = " + stringConvert(r) + "\n";
     }
@@ -117,8 +83,8 @@ class mmqlc_calculator {
     }
 
 public:
-    mmqlc_calculator(std::vector<std::tuple<std::string, double50, double50> > const &parsedReal,
-               std::vector<std::tuple<std::string, complex50, complex50> > const &parsedComplex) {
+    mmqlc_calculator(std::vector<std::tuple<std::string, float1000, float1000> > const &parsedReal,
+               std::vector<std::tuple<std::string, complex_float1000, complex_float1000> > const &parsedComplex) {
         realNums_parsed = parsedReal;
         cmplxNums_parsed = parsedComplex;
     }
@@ -127,39 +93,39 @@ public:
         for (const auto &parsedToken: realNums_parsed) {
             std::string query = std::get<0>(parsedToken);
             if (isComplex(query)) { break; }
-            double50 fOperand = std::get<1>(parsedToken);
-            double50 sOperand = std::get<2>(parsedToken);
-            auto calculate_real_double = [this](const std::string &query, const double50 &fOperand,
-                                                const double50 &sOperand) {
+            float1000 fOperand = std::get<1>(parsedToken);
+            float1000 sOperand = std::get<2>(parsedToken);
+            auto calculate_real_double = [this](const std::string &query, const float1000 &fOperand,
+                                                const float1000 &sOperand) {
                 if (query == "ADD") {
-                    double50 result(fOperand + sOperand);
+                    float1000 result(fOperand + sOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "SUBTRACT") {
-                    double50 result(fOperand - sOperand);
+                    float1000 result(fOperand - sOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "MULTIPLY") {
-                    double50 result(fOperand * sOperand);
+                    float1000 result(fOperand * sOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "DIVIDE") {
                     if (sOperand != 0) {
-                        double50 result(fOperand / sOperand);
+                        float1000 result(fOperand / sOperand);
                         answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                         return true;
                     } else {
                         throw std::runtime_error("Cannot divide by zero");
                     }
                 } else if (query == "POWER") {
-                    double50 result(pow(fOperand, sOperand));
+                    float1000 result(round(pow(fOperand, sOperand)));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "ROOT") {
                     if (sOperand != 0) {
-                        double50 index(1);
+                        float1000 index(1);
                         index /= sOperand;
-                        double50 result(pow(fOperand, index));
+                        float1000 result(round(pow(fOperand, index)));
                         answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                         return true;
                     } else {
@@ -167,23 +133,23 @@ public:
                     }
                 } else if (query == "LOGARITHM") {
                     // using change of base formula
-                    double50 n(log10(fOperand));
-                    double50 d(log10(sOperand));
-                    double50 log_result(n);
+                    float1000 n(log10(fOperand));
+                    float1000 d(log10(sOperand));
+                    float1000 log_result(n);
                     log_result /= d;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, log_result));
                     return true;
                 } else if (query == "PERMUTATION") {
-                    double50 result(nPr(fOperand, sOperand));
+                    float1000 result(hf::nPr(fOperand, sOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "COMBINATION") {
-                    double50 result(nCr(fOperand, sOperand));
+                    float1000 result(hf::nCr(fOperand, sOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "MOD") {
                     if (sOperand != 0) {
-                        int100 result = static_cast<int100>(fOperand) % static_cast<int100>(sOperand);
+                        float1000 result = fmod(fOperand,sOperand);
                         answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                         return true;
                     } else {
@@ -192,31 +158,31 @@ public:
                 } else
                     return false;
             };
-            auto calculate_real_single = [this](const std::string &query, const double50 &fOperand) {
+            auto calculate_real_single = [this](const std::string &query, const float1000 &fOperand) {
                 if (query == "FACTORIAL") {
-                    double50 result(factorial(fOperand));
+                    float1000 result(hf::factorial(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "ABSOLUTE") {
-                    double50 result(fabs(fOperand));
+                    float1000 result(fabs(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "FLOOR") {
-                    double50 result(floor(fOperand));
+                    float1000 result(floor(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "CEILING") {
-                    double50 result(ceil(fOperand));
+                    float1000 result(ceil(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "SINE") {
-                    double50 rads(degrees_to_radians(fOperand));
-                    double50 result(sin(rads));
+                    float1000 rads(hf::degrees_to_radians(fOperand));
+                    float1000 result(sin(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "COSINE") {
-                    double50 rads(degrees_to_radians(fOperand));
-                    double50 result(cos(rads));
+                    float1000 rads(hf::degrees_to_radians(fOperand));
+                    float1000 result(cos(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "TANGENT") {
@@ -224,8 +190,8 @@ public:
                         answerStrings.emplace_back(constructAnswer(query, fOperand, infinity));
                         return true;
                     } else {
-                        double50 rads(degrees_to_radians(fOperand));
-                        double50 result(tan(rads));
+                        float1000 rads(hf::degrees_to_radians(fOperand));
+                        float1000 result(tan(rads));
                         answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                         return true;
                     }
@@ -237,8 +203,8 @@ public:
                         answerStrings.emplace_back(constructAnswer(query, fOperand, infinity));
                         return true;
                     } else {
-                        double50 rads(degrees_to_radians(fOperand));
-                        double50 result(cot(rads));
+                        float1000 rads(hf::degrees_to_radians(fOperand));
+                        float1000 result(rt::cot(rads));
                         answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                         return true;
                     }
@@ -247,8 +213,8 @@ public:
                         answerStrings.emplace_back(constructAnswer(query, fOperand, infinity));
                         return true;
                     } else {
-                        double50 rads(degrees_to_radians(fOperand));
-                        double50 result(csc(rads));
+                        float1000 rads(hf::degrees_to_radians(fOperand));
+                        float1000 result(rt::csc(rads));
                         answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                         return true;
                     }
@@ -257,99 +223,99 @@ public:
                         answerStrings.emplace_back(constructAnswer(query, fOperand, infinity));
                         return true;
                     } else {
-                        double50 rads(degrees_to_radians(fOperand));
-                        double50 result(sec(rads));
+                        float1000 rads(hf::degrees_to_radians(fOperand));
+                        float1000 result(rt::sec(rads));
                         answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                         return true;
                     }
                 } else if (query == "INVERSE_SINE") {
-                    double50 rads(asin(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(asin(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_COSINE") {
-                    double50 rads(acos(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(acos(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_TANGENT") {
-                    double50 rads(atan(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(atan(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_COTANGENT") {
-                    double50 rads(acot(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(rt::acot(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_COSECANT") {
-                    double50 rads(acsc(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(rt::acsc(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_SECANT") {
-                    double50 rads(asec(fOperand));
-                    double50 result(radians_to_degrees(rads));
+                    float1000 rads(rt::asec(fOperand));
+                    float1000 result(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "HYP_SINE") {
-                    double50 result(sinh(fOperand));
+                    float1000 result(sinh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "HYP_COSINE") {
-                    double50 result(cosh(fOperand));
+                    float1000 result(cosh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "HYP_TANGENT") {
-                    double50 result(tanh(fOperand));
+                    float1000 result(tanh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "HYP_COTANGENT") {
-                    double50 result_val(coth(fOperand));
+                    float1000 result_val(rt::coth(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
                     return true;
                 } else if (query == "HYP_COSECANT") {
-                    double50 result_val(csch(fOperand));
-                    answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
+                    float1000 result_val(rt::csch(fOperand));
+                    answerStrings.emplace_back(constructAnswer(query, fOperand,result_val));
                     return true;
                 } else if (query == "HYP_SECANT") {
-                    double50 result_val(sech(fOperand));
+                    float1000 result_val(rt::sech(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
                     return true;
                 } else if (query == "INVERSE_HYP_TANGENT") {
-                    double50 result(atanh(fOperand));
+                    float1000 result(atanh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_HYP_SINE") {
-                    double50 result(asinh(fOperand));
+                    float1000 result(asinh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_HYP_COSINE") {
-                    double50 result(acosh(fOperand));
+                    float1000 result(acosh(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result));
                     return true;
                 } else if (query == "INVERSE_HYP_COTANGENT") {
-                    double50 result_val(acoth(fOperand));
+                    float1000 result_val(rt::acoth(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
                     return true;
                 } else if (query == "INVERSE_HYP_COSECANT") {
-                    double50 result_val(acsch(fOperand));
-                    answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
+                    float1000 result_val(rt::acsch(fOperand));
+                    answerStrings.emplace_back(constructAnswer(query, fOperand , result_val));
                     return true;
                 } else if (query == "INVERSE_HYP_SECANT") {
-                    double50 result_val(asech(fOperand));
+                    float1000 result_val(rt::asech(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, result_val));
                     return true;
                 } else if (query == "NATURAL_LOGARITHM") {
-                    double50 res(log(fOperand));
+                    float1000 res(log(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, res));
                     return true;
                 } else if (query == "BINARY_LOGARITHM") {
-                    double50 res(log2(fOperand));
+                    float1000 res(log2(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, res));
                     return true;
                 } else if (query == "COMMON_LOGARITHM") {
-                    double50 res(log10(fOperand));
+                    float1000 res(log10(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, res));
                     return true;
                 } else {
@@ -368,8 +334,8 @@ public:
             std::string query = std::get<0>(parsedToken);
             auto fOperand = std::get<1>(parsedToken);
             auto sOperand = std::get<2>(parsedToken);
-            auto calculate_complex_double = [this](const std::string &query, const complex50 &fOperand,
-                                                   const complex50 &sOperand) {
+            auto calculate_complex_double = [this](const std::string &query, const complex_float1000 &fOperand,
+                                                   const complex_float1000 &sOperand) {
                 if (query == "ADD") {
                     auto result = fOperand + sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
@@ -386,7 +352,7 @@ public:
                     if (sOperand == zero) {
                         throw std::runtime_error("Cannot divide complex number by zero !");
                     }
-                    auto result = fOperand / sOperand;
+                    const auto result = fOperand / sOperand;
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else if (query == "POWER") {
@@ -397,22 +363,22 @@ public:
                     if (sOperand == zero) {
                         throw std::runtime_error("Zeroth root of complex number is undefined !");
                     }
-                    auto ind = one / sOperand;
-                    auto result = std::pow(fOperand, ind);
+                    const auto ind = one / sOperand;
+                    const auto result = std::pow(fOperand, ind);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, sOperand, result));
                     return true;
                 } else {
                     return false;
                 }
             };
-            auto calculate_complex_single = [this](const std::string &query, const complex50 &fOperand) {
+            auto calculate_complex_single = [this](const std::string &query, const complex_float1000 &fOperand) {
                 if (query == "MODULUS") {
-                    double50 MOD(std::abs(fOperand));
+                    float1000 MOD(std::abs(fOperand));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, MOD));
                     return true;
                 } else if (query == "ARGUMENT") {
-                    double50 rads(std::arg(fOperand));
-                    double50 degs(radians_to_degrees(rads));
+                    float1000 rads(std::arg(fOperand));
+                    float1000 degs(hf::radians_to_degrees(rads));
                     answerStrings.emplace_back(constructAnswer(query, fOperand, degs));
                     return true;
                 } else if (query == "SINE") {
@@ -428,15 +394,15 @@ public:
                     answerStrings.emplace_back(constructAnswer(query, fOperand, tang));
                     return true;
                 } else if (query == "COTANGENT") {
-                    auto cotangent = cot(fOperand);
+                    auto cotangent = ct::cot(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, cotangent));
                     return true;
                 } else if (query == "SECANT") {
-                    auto secant = sec(fOperand);
+                    auto secant = ct::sec(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, secant));
                     return true;
                 } else if (query == "COSECANT") {
-                    auto cosecant = csc(fOperand);
+                    auto cosecant = ct::csc(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, cosecant));
                     return true;
                 } else if (query == "INVERSE_SINE") {
@@ -452,15 +418,15 @@ public:
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseTangent));
                     return true;
                 } else if (query == "INVERSE_COTANGENT") {
-                    auto inverseCot = acot(fOperand);
+                    auto inverseCot = ct::acot(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseCot));
                     return true;
                 } else if (query == "INVERSE_SECANT") {
-                    auto inverseSec = asec(fOperand);
+                    auto inverseSec = ct::asec(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseSec));
                     return true;
                 } else if (query == "INVERSE_COSECANT") {
-                    auto inverseCsc = acsc(fOperand);
+                    auto inverseCsc = ct::acsc(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseCsc));
                     return true;
                 } else if (query == "HYP_SINE") {
@@ -476,15 +442,15 @@ public:
                     answerStrings.emplace_back(constructAnswer(query, fOperand, hyperTangent));
                     return true;
                 } else if (query == "HYP_COTANGENT") {
-                    auto Cothan = coth(fOperand);
+                    auto Cothan = ct::coth(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, Cothan));
                     return true;
                 } else if (query == "HYP_SECANT") {
-                    auto Shek = sech(fOperand);
+                    auto Shek = ct::sech(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, Shek));
                     return true;
                 } else if (query == "HYP_COSECANT") {
-                    auto CoShek = csch(fOperand);
+                    auto CoShek = ct::csch(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, CoShek));
                     return true;
                 } else if (query == "INVERSE_HYP_SINE") {
@@ -500,15 +466,15 @@ public:
                     answerStrings.emplace_back(constructAnswer(query, fOperand, inverseHypTangent));
                     return true;
                 } else if (query == "INVERSE_HYP_COTANGENT") {
-                    auto InvCOTH = acoth(fOperand);
+                    auto InvCOTH = ct::acoth(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, InvCOTH));
                     return true;
                 } else if (query == "INVERSE_HYP_SECANT") {
-                    auto InvSheck = asech(fOperand);
+                    auto InvSheck = ct::asech(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, InvSheck));
                     return true;
                 } else if (query == "INVERSE_HYP_COSECANT") {
-                    auto INV_CSCH = acsch(fOperand);
+                    auto INV_CSCH = ct::acsch(fOperand);
                     answerStrings.emplace_back(constructAnswer(query, fOperand, INV_CSCH));
                     return true;
                 } else if (query == "NATURAL_LOGARITHM") {

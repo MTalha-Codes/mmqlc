@@ -2,10 +2,26 @@
 #define MMQLC_MMQLC_BODY_HPP
 
 #include "mmqlc.filesystem.hpp"
-#include <color.hpp>
+#include "fmt/color.h"
 #include <thread>
 #include <cstring>
 
+#if WIN32
+#include <windows.h>
+inline void enable_virtual_terminal_processing() {
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+
+    if (hOut == INVALID_HANDLE_VALUE)
+        return;
+
+    // Enable ANSI escape code support
+    if (GetConsoleMode(hOut, &dwMode)) {
+        dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        SetConsoleMode(hOut, dwMode);
+    }
+}
+#endif
 
 class mmqlc_ui : public mmqlc_filesystem {
     int argc;
@@ -13,66 +29,93 @@ class mmqlc_ui : public mmqlc_filesystem {
     std::string inputPath, outputPath;
 
     static void generalError() noexcept {
-        std::cerr << hue::bright_white << "mmqlc: " << hue::red << "error: " << hue::reset <<
-                " mmqlc invoked with unrecognised command-line option\ncompilation terminated.\n";
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
+        fmt::print(fg(fmt::color::red), "error: ");
+        fmt::print("mmqlc invoked with unrecognised command-line option\ninterpretation terminated.\n");
     }
 
     static void blankError() noexcept {
-        std::cerr << hue::bright_white << "mmqlc: " << hue::red << "fatal error: " << hue::reset <<
-                "no input files\ncompilation terminated.\n";
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
+        fmt::print(fg(fmt::color::red), "fatal error: ");
+        fmt::print("no input files\ninterpretation terminated.\n");
     }
 
     static void showHelp() {
         std::cout << "Usage: mmqlc [command-line-option]\n";
         std::cout << "Available Commands:\n";
-        std::cout << "  --htc [how-to-compile]  Displays the full procedure for compilation\n";
+        std::cout << "  --htu                   Displays the full procedure for bulk interpretation [ .mmql --> .ans ]\n";
         std::cout << "  --version               Displays the current version of mmqlc\n";
         std::cout << "  --help                  Displays the list of all available mmqlc commands\n";
         std::cout << "  --live                  Starts a temporary interpretation session for real-time query evaluation\n";
         exit(EXIT_SUCCESS);
     }
 
+    static void cross_platform_clrscr() {
+#if WIN32
+        system("cls");
+#else
+        system("clear");
+#endif
+    }
+
     static void launch_live() {
         constexpr auto copyright_notice =
-            "MmQLC (MTalha-Codes) 2.2\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+            "MmQLC (MTalha-Codes) 2.3\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
         constexpr auto quit_command = "QUIT";
+        constexpr auto cls_command = "CLEAR";
+        constexpr auto hlp_cmd  = "HELP";
 
         std::cout << copyright_notice;
-        std::cout << "\n" << hue::bright_white << "mmqlc: " << hue::green
-                  << "real-time query interpreter started !\n" << hue::reset;
-        std::cout << "'" << hue::bright_white << quit_command << hue::reset
-                  << "' to shut real-time interpretation session. \n\n";
+        fmt::print("\n");
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
+        fmt::print(fg(fmt::color::green), "real-time query interpreter started!\n");
+
+        fmt::print("'{}' to show session-specific commands. \n\n",
+               fmt::format(fg(fmt::color::white) | fmt::emphasis::bold, hlp_cmd));
         std::string query;
         while (true) {
-            std::cout << hue::aqua << ">>> " << hue::reset;
+            fmt::print(fg(fmt::color::cyan), ">>> ");
             std::getline(std::cin, query);
-
+            if(query == hlp_cmd) {
+                std::cout << "Commands               Effect\n";
+                std::cout << "CLEAR                  Clears and refreshes the console screen.\n";
+                std::cout << "QUIT                   Exits the interpreter.\n\n";
+                continue;
+            }
             if (query.empty() || query.rfind("%%", 0) == 0) continue;
+            if(query == cls_command) {
+                cross_platform_clrscr();
+                continue;
+            }
             if (query == quit_command) break;
+
             const auto answer = [&]() {
                 const auto token = tokenize({query});
                 const auto parse_ptr = std::make_unique<parser>(token);
-                const auto ansPTR = std::make_unique<mmqlc_calculator>(
-                    parse_ptr->parse_RealNums(), parse_ptr->parse_cmplxNums()
-                );
+                const auto ansPTR = std::make_unique<mmqlc_calculator>(parse_ptr->parse_RealNums(), parse_ptr->parse_cmplxNums());
                 return ansPTR->calculateAnswers()[0];
             }();
-
             if (const size_t pos = answer.find('='); pos != std::string::npos) {
-                std::cout << hue::bright_white << answer.substr(pos + 2) << hue::reset << "\n";  // Skip "= "
+                fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}\n", answer.substr(pos + 2));  // Skip "= "
             }
         }
     }
 
     static void r_hookError(const std::string &op) {
-        std::cerr << hue::bright_white << "mmqlc: " << hue::red << "error: " << hue::reset << "unrecognised hook used "
-                << hue::bright_white << "\'" << op << "\'" << hue::reset << "; did you mean \'-r\'?\n";
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
+        fmt::print(fg(fmt::color::red), "error: ");
+        fmt::print("unrecognised hook used '");
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}' ", op);
+        fmt::print(fg(fmt::color::red), "; did you mean '-r'?\n");
         blankError();
     }
 
     static void w_hookError(const std::string &op) {
-        std::cerr << hue::bright_white << "mmqlc: " << hue::red << "error: " << hue::reset << "unrecognised hook used "
-                << hue::bright_white << "\'" << op << "\'" << hue::reset << "; did you mean \'-w\'?\n";
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
+        fmt::print(fg(fmt::color::red), "error: ");
+        fmt::print("unrecognised hook used '");
+        fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}' ", op);
+        fmt::print(fg(fmt::color::red), "; did you mean '-w'?\n");
         blankError();
     }
 
@@ -82,21 +125,24 @@ class mmqlc_ui : public mmqlc_filesystem {
     }
 
     static void showVersion() {
-        std::cout << "MmQLC (MTalha-Codes) 2.2\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+        std::cout << "MmQLC (MTalha-Codes) 2.3\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
         exit(EXIT_SUCCESS);
     }
 
 public:
     mmqlc_ui(const int argsC, char **argvA) : argc(argsC), argv(argvA) {
+#if WIN32
+        enable_virtual_terminal_processing();
+#endif
         if (argc == 1) {
             blankError();
             exit(EXIT_FAILURE);
         } else if (argc == 2 && (strcmp(argv[1], "--vers") == 0 || strcmp(argv[1], "--versi") == 0 ||
                                  strcmp(argv[1], "--versio") == 0 || strcmp(argv[1], "--version") == 0)) {
             showVersion();
-        } else if (argc == 2 && strcmp(argv[1], "--htc") == 0) {
+        } else if (argc == 2 && strcmp(argv[1], "--htu") == 0) {
             show_howToUse();
-        } else if (argc == 2 && strcmp(argv[1], "--live") == 0) { launch_live(); } else if (
+        } else if (argc == 2 && strcmp(argv[1], "--live") == 0) { launch_live(); exit(1);} else if (
             argc == 2 && (strcmp(argv[1], "--h") == 0 || strcmp(argv[1], "--he") == 0 || strcmp(argv[1], "--hel") == 0
                           || strcmp(argv[1], "--help") == 0)) {
             showHelp();
@@ -126,19 +172,19 @@ public:
         } catch (const std::runtime_error &re) {
             throw std::runtime_error(re);
         }
-        hue::reset();
+
         const path out(outputPath);
         try {
             saveAnswers(outputPath);
         } catch (const std::runtime_error &re) {
             throw std::runtime_error(re);
         }
-        std::cout << hue::green << "Compilation Successful !" << hue::reset;
+
+        fmt::print(fg(fmt::color::green), "Compilation Successful!\n");
         if (out.parent_path() == "") {
             outputPath = current_path().string() + "\\" + out.filename().string();
         } else { outputPath = out.parent_path().string() + "\\" + out.filename().string(); }
-        std::cout << "\nAnswer file has been successfully generated !\nPath To Answer File:" << outputPath
-                << std::endl;
+        fmt::print("\nAnswer file has been successfully generated!\nPath To Answer File: {}\n", outputPath);
     }
 
     ~mmqlc_ui() {

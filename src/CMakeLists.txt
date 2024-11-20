@@ -1,5 +1,4 @@
 set(MAIN main.cpp)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/dependencies)
 set(
         HEADERS
         headers/mmqlc.ui.hpp
@@ -12,4 +11,13 @@ set(
         headers/mmqlc.constants.hpp
         headers/mmqlc.regex.hpp
 )
-add_executable(mmqlc ${MAIN} ${HEADERS})
+
+add_executable(MmQLC ${MAIN} ${HEADERS})
+set(GMP_MPFR_FMT_LIB_DIR "E:/Softwares (Installed)/CLion/bin/mingw/lib")
+
+find_library(GMP_LIB gmp PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
+find_library(GMPXX_LIB gmpxx PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
+find_library(MPFR_LIB mpfr PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
+find_library(FMT_LIB fmt PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
+
+target_link_libraries(MmQLC ${GMP_LIB} ${GMPXX_LIB} ${MPFR_LIB} ${FMT_LIB})

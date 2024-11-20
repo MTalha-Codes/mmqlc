@@ -12,11 +12,11 @@
 #define MMQLC_CONSTANTS_HPP
 #include <limits>
 #include "mmqlc.multiprecision.hpp"
-const double50 Pi(3.141592653589793238462643383279);
-const double50 ONE(1);
-const double50 ZERO(0);
-const complex50 one(ONE, ZERO);
-const complex50 zero(ZERO, ZERO);
-const double50 infinity(std::numeric_limits<double>::infinity());
-const double50 NaN(std::numeric_limits<double>::quiet_NaN());
+const float1000 Pi(3.141592653589793238462643383279);
+const float1000 ONE(1);
+const float1000 ZERO(0);
+const complex_float1000 one(ONE, ZERO);
+const complex_float1000 zero(ZERO, ZERO);
+const float1000 infinity(std::numeric_limits<double>::infinity());
+const float1000 NaN(std::numeric_limits<double>::quiet_NaN());
 #endif

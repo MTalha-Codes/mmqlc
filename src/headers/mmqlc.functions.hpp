@@ -15,157 +15,183 @@
 #include "mmqlc.multiprecision.hpp"
 
 
-namespace math::functions::imported_from_boost {
-    using boost::math::tgamma;
-}
-
-namespace math::functions::real::trig {
-    inline double50 cot(const double50 &arg) {
-        double50 tang = tan(arg);
-        double50 coT = 1 / tang;
+namespace math::functions::realTrig {
+    inline float1000 cot(const float1000 &arg) {
+        const float1000 tang = tan(arg);
+        float1000 coT = 1 / tang;
         return coT;
     }
 
-    inline double50 sec(const double50 &arg) {
-        double50 COS = cos(arg);
-        double50 SEC = 1 / COS;
+    inline float1000 sec(const float1000 &arg) {
+        const float1000 COS = cos(arg);
+        float1000 SEC = 1 / COS;
         return SEC;
     }
 
-    inline double50 csc(const double50 &arg) {
-        double50 SIN = sin(arg);
-        double50 CSC = 1 / SIN;
+    inline float1000 csc(const float1000 &arg) {
+        const float1000 SIN = sin(arg);
+        float1000 CSC = 1 / SIN;
         return CSC;
     }
 
-    inline double50 acot(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 acotngt = atan(suitable_arg);
+    inline float1000 acot(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 acotngt = atan(suitable_arg);
         return acotngt;
     }
 
-    inline double50 asec(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 asecnt = acos(suitable_arg);
+    inline float1000 asec(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 asecnt = acos(suitable_arg);
         return asecnt;
     }
-
-    inline double50 acsc(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 cscnt = asin(suitable_arg);
+    inline float1000 acsc(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 cscnt = asin(suitable_arg);
         return cscnt;
     }
 
-    inline double50 coth(const double50 &arg) {
-        double50 tangh = tanh(arg);
-        double50 coTh = 1 / tangh;
+    inline float1000 coth(const float1000 &arg) {
+        const float1000 tangh = tanh(arg);
+        float1000 coTh = 1 / tangh;
         return coTh;
     }
 
-    inline double50 sech(const double50 &arg) {
-        double50 COSh = cosh(arg);
-        double50 SECh = 1 / COSh;
+    inline float1000 sech(const float1000 &arg) {
+        const float1000 COSh = cosh(arg);
+        float1000 SECh = 1 / COSh;
         return SECh;
     }
 
-    inline double50 csch(const double50 &arg) {
-        double50 SINh = sinh(arg);
-        double50 CSCh = 1 / SINh;
+    inline float1000 csch(const float1000 &arg) {
+        const float1000 SINh = sinh(arg);
+        float1000 CSCh = 1 / SINh;
         return CSCh;
     }
 
-    inline double50 acoth(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 acotngth = atanh(suitable_arg);
+    inline float1000 acoth(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 acotngth = atanh(suitable_arg);
         return acotngth;
     }
-
-    inline double50 asech(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 asecnth = acosh(suitable_arg);
+    inline float1000 asech(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 asecnth = acosh(suitable_arg);
         return asecnth;
     }
 
-    inline double50 acsch(const double50 &arg) {
-        double50 suitable_arg(1 / arg);
-        double50 cscnth = asinh(suitable_arg);
+    inline float1000 acsch(const float1000 &arg) {
+        const float1000 suitable_arg(1 / arg);
+        float1000 cscnth = asinh(suitable_arg);
         return cscnth;
     }
 }
 
-namespace math::functions::complex::trig {
-    inline complex50 cot(const complex50 &arg) {
-        complex50 tang = std::tan(arg);
-        complex50 coT = one / tang;
+namespace math::functions::complexTrig {
+    inline complex_float1000 cot(const complex_float1000 &arg) {
+        const complex_float1000 tang = std::tan(arg);
+        complex_float1000 coT = one / tang;
         return coT;
     }
 
-    inline complex50 sec(const complex50 &arg) {
-        complex50 COS = std::cos(arg);
-        complex50 SEC = one / COS;
+    inline complex_float1000 sec(const complex_float1000 &arg) {
+        const complex_float1000 COS = std::cos(arg);const
+        complex_float1000 SEC = one / COS;
         return SEC;
     }
 
-    inline complex50 csc(const complex50 &arg) {
-        complex50 SIN = std::sin(arg);
-        complex50 CSC = one / SIN;
+    inline complex_float1000 csc(const complex_float1000 &arg) {
+        const complex_float1000 SIN = std::sin(arg);
+        complex_float1000 CSC = one / SIN;
         return CSC;
     }
 
-    inline complex50 acot(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 acotngt = std::atan(suitable_arg);
+    inline complex_float1000 acot(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 acotngt = std::atan(suitable_arg);
         return acotngt;
     }
 
-    inline complex50 asec(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 asecnt = std::acos(suitable_arg);
+    inline complex_float1000 asec(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 asecnt = std::acos(suitable_arg);
         return asecnt;
     }
 
 
-    inline complex50 acsc(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 cscnt = std::asin(suitable_arg);
+    inline complex_float1000 acsc(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 cscnt = std::asin(suitable_arg);
         return cscnt;
     }
 
-    inline complex50 coth(const complex50 &arg) {
-        complex50 tangh = std::tanh(arg);
-        complex50 coTh = one / tangh;
+    inline complex_float1000 coth(const complex_float1000 &arg) {
+        const complex_float1000 tangh = std::tanh(arg);
+        complex_float1000 coTh = one / tangh;
         return coTh;
     }
 
-    inline complex50 sech(const complex50 &arg) {
-        complex50 COSh = std::cosh(arg);
-        complex50 SECh = one / COSh;
+    inline complex_float1000 sech(const complex_float1000 &arg) {
+        const complex_float1000 COSh = std::cosh(arg);
+        complex_float1000 SECh = one / COSh;
         return SECh;
     }
 
-    inline complex50 csch(const complex50 &arg) {
-        complex50 SINh = std::sinh(arg);
-        complex50 CSCh = one / SINh;
+    inline complex_float1000 csch(const complex_float1000 &arg) {
+        const complex_float1000 SINh = std::sinh(arg);
+        complex_float1000 CSCh = one / SINh;
         return CSCh;
     }
 
-    inline complex50 acoth(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 acotngth = std::atanh(suitable_arg);
+    inline complex_float1000 acoth(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 acotngth = std::atanh(suitable_arg);
         return acotngth;
     }
 
-    inline complex50 asech(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 asecnth = std::acosh(suitable_arg);
+    inline complex_float1000 asech(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 asecnth = std::acosh(suitable_arg);
         return asecnth;
     }
 
-    inline complex50 acsch(const complex50 &arg) {
-        complex50 suitable_arg(one / arg);
-        complex50 cscnth = std::asinh(suitable_arg);
+    inline complex_float1000 acsch(const complex_float1000 &arg) {
+        const complex_float1000 suitable_arg(one / arg);
+        complex_float1000 cscnth = std::asinh(suitable_arg);
         return cscnth;
     }
 }
+namespace math::functions::helperFunctions {
+    inline float1000 degrees_to_radians(const float1000 &degs) {
+        float1000 rads(degs * Pi);
+        rads /= 180;
+        return rads;
+    }
 
+    inline float1000 radians_to_degrees(const float1000 &rads) {
+        float1000 degs(rads * 180);
+        degs /= Pi;
+        return degs;
+    }
+
+    inline float1000 factorial(const float1000 &param) {
+        float1000 fact(tgamma(param + ONE));
+        return fact;
+    }
+
+    inline float1000 nPr(const float1000 &n, const float1000 &r) {
+        const float1000 numerator(factorial(n));
+        const float1000 denominator(factorial(n - r));
+        float1000 perm(numerator);
+        perm /= denominator;
+        return perm;
+    }
+
+    inline float1000 nCr(const float1000 &n, const float1000 &r) {
+        float1000 rFact = ONE;
+        rFact /= factorial(r);
+        float1000 comb(rFact * nPr(n, r));
+        return comb;
+    }
+}
 #endif //MMQLC_FUNCTIONS_HPP
