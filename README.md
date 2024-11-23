@@ -6,7 +6,9 @@
 ## What is MmQL ?
 **MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is an interpreted language as well as a case-sensitive **where uppercase and  lowercase matters**. The interpreter (**MmQLC**) is a custom and and yet a very simple interpreter. Techniques like Tokenization and Parsing are used by **MmQLC**.
 
-**MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries, offering an efficient alternative to tools like **MAPLE**, **Wolfram Mathematica**, or **MATLAB**.  
+**MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries, offering an efficient alternative to tools like **MAPLE**, **Wolfram Mathematica**, or **MATLAB**.
+> [!NOTE]
+> Please note that **MmQL** is not a symbolic language and it doenot uses CAS (Computer Algebra Systems)
 
 ---
 
