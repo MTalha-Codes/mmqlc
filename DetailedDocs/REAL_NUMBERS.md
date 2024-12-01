@@ -47,3 +47,5 @@
    - **Arc Sech**: $\text{sech}^{-1}(x)$ where x is the parameter of function --> `INVERSE_HYP_SECANT x`   
    - **Arc Csch**: $\text{csch}^{-1}(x)$ where x is the parameter of function --> `INVERSE_HYP_COSECANT x`   
 
+## Want to have more control over queries with the help of variables ?
+Read [**this**](VARIABLES.md).

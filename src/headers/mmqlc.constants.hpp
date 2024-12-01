@@ -1,12 +1,11 @@
 /*
- * Filename: constants.hpp
+ * Filename: mmqlc.constants.hpp
  * Author: Muhammad Talha
  * Github: MTalha-Codes
- * Repo: mmqlc
+ * Repository: mmqlc
  * Copyright(C) - 2024
  * */
 
-// This file contains some mathematical constants for type double50 and complex50
 
 #ifndef MMQLC_CONSTANTS_HPP
 #define MMQLC_CONSTANTS_HPP

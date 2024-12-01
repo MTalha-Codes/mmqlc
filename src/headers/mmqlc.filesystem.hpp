@@ -1,10 +1,18 @@
+/*
+ * Filename: mmqlc.filesystem.hpp
+ * Author: Muhammad Talha
+ * Github: MTalha-Codes
+ * Repository: mmqlc
+ * Copyright(C) - 2024
+ * */
+
 #ifndef MMQLC_FILESYSTEM_MMQLC_HPP
 #define MMQLC_FILESYSTEM_MMQLC_HPP
 
 #include <vector>
 #include <fstream>
 #include <filesystem>
-#include "mmqlc.calculator.hpp"
+#include "mmqlc.variables.hpp"
 
 using namespace std::filesystem;
 
@@ -47,7 +55,8 @@ public:
             }
             queryFile.close();
         }
-        parser_ptr = std::make_unique<parser>(queries);
+        const auto varMap = find_and_resolve_vars(queries);
+        parser_ptr = std::make_unique<parser>(queries, varMap);
         auto parsed_real_tokens = parser_ptr->parse_RealNums();
         auto parsed_complex_tokens = parser_ptr->parse_cmplxNums();
         calcAnswer_ptr = std::make_unique<mmqlc_calculator>(parsed_real_tokens, parsed_complex_tokens);

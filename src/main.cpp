@@ -1,3 +1,11 @@
+/*
+ * Filename: main.cpp
+ * Author: Muhammad Talha
+ * Github: MTalha-Codes
+ * Repository: mmqlc
+ * Copyright(C) - 2024
+ * */
+
 #include "headers/mmqlc.ui.hpp"
 #include <memory>
 

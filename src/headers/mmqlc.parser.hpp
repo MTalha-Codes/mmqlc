@@ -1,10 +1,18 @@
-#ifndef MMQL_PACKAGE_QUERYPARSER_HPP
-#define MMQL_PACKAGE_QUERYPARSER_HPP
+/*
+ * Filename: mmqlc.parser.hpp
+ * Author: Muhammad Talha
+ * Github: MTalha-Codes
+ * Repository: mmqlc
+ * Copyright(C) - 2024
+ * */
+
+#ifndef MMQLC_PARSER_HPP
+#define MMQLC_PARSER_HPP
 
 #include "mmqlc.tokenizer.hpp"
 #include "mmqlc.constants.hpp"
 #include "mmqlc.multiprecision.hpp"
-#include<complex>
+#include <complex>
 #include <utility>
 
 class parser {
@@ -13,7 +21,7 @@ class parser {
     std::vector<std::tuple<std::string, complex_float1000, complex_float1000> > complexNums_parsed;
 
     static float1000 STOD(const std::string &num) {
-        if (std::smatch matches; std::regex_match(num, matches, regex::real::realNumberRegex))
+        if (std::smatch matches; std::regex_match(num, matches, regex::numbers::realNum))
             return float1000(matches[1].str());
         else if (num.empty())
             return {0};
@@ -22,7 +30,7 @@ class parser {
     }
 
     static complex_float1000 convert_to_complex(const std::string &cmplx_num) {
-        if (std::smatch matches; std::regex_match(cmplx_num, matches, regex::complex::complexNumberRegex)) {
+        if (std::smatch matches; std::regex_match(cmplx_num, matches, regex::numbers::complexNum)) {
             const float1000 realPart(matches[2].str());
             const float1000 imagPart(matches[7].str());
             complex_float1000 complex1(realPart, imagPart);
@@ -34,8 +42,9 @@ class parser {
     }
 
 public:
-    explicit parser(const std::vector<std::string> &queries) {
-        raw_tokens = tokenize(queries);
+    explicit parser(const std::vector<std::string> &queries,
+                    const std::unordered_map<std::string, std::string> &varMap = {}) {
+        raw_tokens = tokenize(queries, varMap);
     }
 
     explicit parser(const std::vector<std::tuple<std::string, std::string, std::string> > &token) {
@@ -49,6 +58,17 @@ public:
             [[maybe_unused]]
                     float1000 sOperand(0);
             std::string queryToken = std::get<0>(raw_token);
+            if (queryToken == "GET") {
+                std::string full = "GET " + std::get<1>(raw_token) + " = ";
+                try {
+                    auto s = STOD(std::get<2>(raw_token));
+                    full += std::get<2>(raw_token);
+                } catch (...) {
+                    continue;
+                }
+                realNum_parsed.emplace_back(full, ZERO, ZERO);
+                continue;
+            }
             try {
                 fOperand = STOD(std::get<1>(raw_token));
                 sOperand = STOD(std::get<2>(raw_token));
@@ -72,6 +92,17 @@ public:
             complex_float1000 fOperand(float1000(0), float1000(0));
             complex_float1000 sOperand(float1000(0), float1000(0));
             std::string queryToken = std::get<0>(raw_token);
+            if (queryToken == "GET") {
+                std::string full = "GET " + std::get<1>(raw_token) + " = ";
+                try {
+                    auto s = convert_to_complex(std::get<2>(raw_token));
+                    full += std::get<2>(raw_token);
+                } catch (...) {
+                    continue;
+                }
+                complexNums_parsed.emplace_back(full, zero, zero);
+                continue;
+            }
             try {
                 fOperand = convert_to_complex(std::get<1>(raw_token));
                 sOperand = convert_to_complex(std::get<2>(raw_token));

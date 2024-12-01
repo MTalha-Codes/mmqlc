@@ -1,5 +1,14 @@
-#ifndef MMQLC_MMQLC_BODY_HPP
-#define MMQLC_MMQLC_BODY_HPP
+/*
+ * Filename: mmqlc.ui.hpp
+ * Author: Muhammad Talha
+ * Github: MTalha-Codes
+ * Repository: mmqlc
+ * Copyright(C) - 2024
+ * */
+
+
+#ifndef MMQLC_MMQLC_UI_HPP
+#define MMQLC_MMQLC_UI_HPP
 
 #include "mmqlc.filesystem.hpp"
 #include "fmt/color.h"
@@ -8,6 +17,7 @@
 
 #if WIN32
 #include <windows.h>
+
 inline void enable_virtual_terminal_processing() {
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
@@ -43,10 +53,12 @@ class mmqlc_ui : public mmqlc_filesystem {
     static void showHelp() {
         std::cout << "Usage: mmqlc [command-line-option]\n";
         std::cout << "Available Commands:\n";
-        std::cout << "  --htu                   Displays the full procedure for bulk interpretation [ .mmql --> .ans ]\n";
+        std::cout <<
+                "  --htu                   Displays the full procedure for bulk interpretation [ .mmql --> .ans ]\n";
         std::cout << "  --version               Displays the current version of mmqlc\n";
         std::cout << "  --help                  Displays the list of all available mmqlc commands\n";
-        std::cout << "  --live                  Starts a temporary interpretation session for real-time query evaluation\n";
+        std::cout <<
+                "  --live                  Starts a temporary interpretation session for real-time query evaluation\n";
         exit(EXIT_SUCCESS);
     }
 
@@ -60,44 +72,66 @@ class mmqlc_ui : public mmqlc_filesystem {
 
     static void launch_live() {
         constexpr auto copyright_notice =
-            "MmQLC (MTalha-Codes) 2.3\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
-        constexpr auto quit_command = "QUIT";
-        constexpr auto cls_command = "CLEAR";
-        constexpr auto hlp_cmd  = "HELP";
-
+                "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+        constexpr auto exit_cmd = "QUIT";
+        constexpr auto clrscr_cmd = "CLRSCR";
+        constexpr auto refresh_cmd = "REFRESH";
+        constexpr auto help_cmd = "HELP";
         std::cout << copyright_notice;
         fmt::print("\n");
         fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "mmqlc: ");
         fmt::print(fg(fmt::color::green), "real-time query interpreter started!\n");
 
         fmt::print("'{}' to show session-specific commands. \n\n",
-               fmt::format(fg(fmt::color::white) | fmt::emphasis::bold, hlp_cmd));
+                   fmt::format(fg(fmt::color::white) | fmt::emphasis::bold, help_cmd));
         std::string query;
+        std::unordered_map<std::string, std::string> varMap;
+        auto empty_line = [](const std::string &q) {
+            return q.empty();
+        };
+        auto commented_line = [](const std::string &q) {
+            return q.rfind("%%", 0) == 0;
+        };
+        auto var_declaration_line = [](const std::string &q) {
+            return q.rfind("SET", 0) == 0;
+        };
         while (true) {
             fmt::print(fg(fmt::color::cyan), ">>> ");
             std::getline(std::cin, query);
-            if(query == hlp_cmd) {
-                std::cout << "Commands               Effect\n";
-                std::cout << "CLEAR                  Clears and refreshes the console screen.\n";
-                std::cout << "QUIT                   Exits the interpreter.\n\n";
+            if (empty_line(query) || commented_line(query))
                 continue;
-            }
-            if (query.empty() || query.rfind("%%", 0) == 0) continue;
-            if(query == cls_command) {
+            if (query == clrscr_cmd) {
                 cross_platform_clrscr();
                 continue;
             }
-            if (query == quit_command) break;
-
+            if (query == exit_cmd) break;
+            if (query == refresh_cmd) {
+                varMap.clear();
+                cross_platform_clrscr();
+                continue;
+            }
+            if (var_declaration_line(query)) {
+                for (auto kp = find_and_resolve_vars({query}, varMap); const auto &[varName,varValue]: kp)
+                    // this loop will always have one pass
+                    varMap[varName] = varValue;
+                continue;
+            }
+            if (query == help_cmd) {
+                std::cout << "Commands               Effect\n";
+                std::cout << "CLRSCR                 Clears the console screen.\n";
+                std::cout << "REFRESH                Clears and refreshes the console screen and session memory\n";
+                std::cout << "QUIT                   Exits the interpreter.\n\n";
+                continue;
+            }
             const auto answer = [&]() {
-                const auto token = tokenize({query});
+                const auto token = tokenize({query}, varMap);
                 const auto parse_ptr = std::make_unique<parser>(token);
-                const auto ansPTR = std::make_unique<mmqlc_calculator>(parse_ptr->parse_RealNums(), parse_ptr->parse_cmplxNums());
+                const auto ansPTR = std::make_unique<mmqlc_calculator>(parse_ptr->parse_RealNums(),
+                                                                       parse_ptr->parse_cmplxNums());
                 return ansPTR->calculateAnswers()[0];
             }();
-            if (const size_t pos = answer.find('='); pos != std::string::npos) {
-                fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}\n", answer.substr(pos + 2));  // Skip "= "
-            }
+            fmt::print(fg(fmt::color::white) | fmt::emphasis::bold, "{}\n",
+                       answer.substr(answer.find('=') + 2)); // Skip "= "
         }
     }
 
@@ -125,7 +159,7 @@ class mmqlc_ui : public mmqlc_filesystem {
     }
 
     static void showVersion() {
-        std::cout << "MmQLC (MTalha-Codes) 2.3\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+        std::cout << "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
         exit(EXIT_SUCCESS);
     }
 
@@ -142,7 +176,10 @@ public:
             showVersion();
         } else if (argc == 2 && strcmp(argv[1], "--htu") == 0) {
             show_howToUse();
-        } else if (argc == 2 && strcmp(argv[1], "--live") == 0) { launch_live(); exit(1);} else if (
+        } else if (argc == 2 && strcmp(argv[1], "--live") == 0) {
+            launch_live();
+            exit(1);
+        } else if (
             argc == 2 && (strcmp(argv[1], "--h") == 0 || strcmp(argv[1], "--he") == 0 || strcmp(argv[1], "--hel") == 0
                           || strcmp(argv[1], "--help") == 0)) {
             showHelp();

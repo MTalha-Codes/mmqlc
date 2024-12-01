@@ -6,6 +6,7 @@
 		"comment_color": "#2fb528",
 		"real_color": "#e0a55c",
 		"Num_color": "#c79a08",
+        "var_color": "#e7eb09",
 	},
         "globals": {
         "background": "var(bg_clr)",
@@ -13,12 +14,12 @@
     },
     "rules": [
         {
-            "scope": "keyword.real_double.example-mmql",
+            "scope": "keyword.double.example-mmql",
             "foreground": "var(real_color)",  // Color for real double keywords
             "font_style": "bold"
         },
         {
-            "scope": "keyword.real_single.example-mmql",
+            "scope": "keyword.single.example-mmql",
             "foreground": "var(real_color)",  // Color for real single keywords
             "font_style": "bold"
         },
@@ -35,6 +36,16 @@
             "scope": "comment.line.example-mmql",
             "foreground": "var(comment_color)",  // Color for comments
             "font_style": "italic"
+        },
+        {
+            "scope": "set.variable.example-mmql",
+            "foreground": "var(var_color)",
+            "font_style": "bold"
+        },
+        {
+            "scope": "get.variable.example-mmql",
+            "foreground": "var(var_color)",
+            "font_style": "bold"
         }
     ]
 }

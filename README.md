@@ -8,7 +8,7 @@
 
 **MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries, offering an efficient alternative to tools like **MAPLE**, **Wolfram Mathematica**, or **MATLAB**.
 > [!NOTE]
-> Please note that **MmQL** is not a symbolic language and it doenot uses CAS (Computer Algebra Systems)
+> Please note that **MmQL** is not a symbolic language and it does not uses CAS (Computer Algebra Systems)
 
 ---
 
@@ -42,10 +42,10 @@ With its clean syntax and custom interpreter, **MmQL** delivers a tailored solut
 ## Dependencies
 This project depends upon the following libraries
 They are as follows:
-- [ ]  Boost C++ Library v 1.86.0
-- [ ] GNU GMP Library **(mingw64)**
-- [ ] MPFR Library **(mingw64)**
-- [ ] FMT Library **(mingw64)**
+- [ ] Boost C++ Library v 1.86.0
+- [ ] GNU GMP Library 
+- [ ] MPFR Library 
+- [ ] FMT Library
 
 ---
 
@@ -133,12 +133,13 @@ You have set up the environment for building **MmQLC** for Linux.
 
 **MmQL**  is pretty simple to use , just download either the installer(**Windows**) from **Release** section or the source code **(If you want to build it for yourself.)(Other than Windows)** 
 
-- First of all write queries by using  text editor.
+- First of all write queries by using text editor.
 - Now for generation of answer file then you should run **MmQLC.exe** with special command line **arguments** defined for **MmQLC** The method for generating answer file from a query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).
 - To view or see the answers, open the **.ans** in any text editor.
 
 > [!TIP]
-> For Syntax Highlighting; Use **Sublime Text, if you can afford it**.
+>- For Syntax Highlighting; Use **Sublime Text, if you can afford it**.
+>- **MmQLC v2.2+** also includes a sophisticated **REPL** mode if you want direct calculations.
 
  > [!NOTE]
  > - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click  [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
@@ -148,23 +149,8 @@ You have set up the environment for building **MmQLC** for Linux.
 
 ## Supported Queries
 Following types of queries are supported by **MmQL**.
-- ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/realNumbers.md) to see.
-- ### Queries For Calculations Involving Complex Numbers. Click [**Here**](DetailedDocs/complexNumbers.md) to see.
-
----
-
-##  Getting the perfect output
-To always achieve the perfect output, arrange the queries in the following order:
-- Queries Involving Real Numbers.
-- Queries Involving Complex Numbers.
-## FAQs - Frequently Asked Questions
-**FAQ #1 : Why The Queries Needs To Be Ordered Like This ?**</br>
-**Answer**: Because **MmQLC** tends to interpret the easier queries first and the harder queries second. Thus, by arranging queries in the specified order , you'll always get the perfect output.</br>
-**FAQ #2: What If The Queries Are Not Arranged In The Specified Order ? Will MmQLC Throw An Error ?**</br>
-**Answer**: If the queries are not arranged in the above specified order then it is more like to get an unexpected output rather than a interpretation error.
-
-> [!NOTE]
-> The above terms not applied to interactive mode from **MmQLC v2.2**(See Change log for more details)
+- ### Queries For Calculations Involving Real Numbers. Click [**Here**](DetailedDocs/REAL_NUMBERS.md) to see.
+- ### Queries For Calculations Involving Complex Numbers. Click [**Here**](DetailedDocs/COMPLEX_NUMBERS.md) to see.
 
 ---
 
@@ -183,12 +169,12 @@ Compound queries or stacking multiple queries on a single line may cause errors.
 Nesting two or more queries or using inline comments will also throw errors.
 ### Examples of errors:
 - Compound Queries: `ADD 3,4 FACTORIAL 43`
-- Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`
+- Direct Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`
 - Inline Comments: `ADD 4,5 %% add two numbers`
 
 
-## 🎈🎉 MmQLC v2.3 Has Been Released ! 🎉🎈 
-Click To Read [**ChangeLog v2.3**](DetailedDocs/Change_Log.md).
+## 🎈🎉 MmQLC v3.0 Has Been Released ! 🎉🎈 
+Click To Read [**ChangeLog v3.0**](DetailedDocs/CHANGELOG.md).
 
 ---
 

@@ -1,17 +1,34 @@
-#ifndef MMQLC_QUERYPARSER_HPP
-#define MMQLC_QUERYPARSER_HPP
+/*
+ * Filename: mmqlc.tokenizer.hpp
+ * Author: Muhammad Talha
+ * Github: MTalha-Codes
+ * Repository: mmqlc
+ * Copyright(C) - 2024
+ * */
+
+
+#ifndef MMQLC_TOKENIZER_HPP
+#define MMQLC_TOKENIZER_HPP
 
 #include <vector>
 #include <tuple>
 #include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include "mmqlc.regex.hpp"
 
 
 inline std::vector<std::tuple<std::string, std::string, std::string> >
-tokenize(const std::vector<std::string> &queries) {
+tokenize(const std::vector<std::string> &queries,
+         const std::unordered_map<std::string, std::string> &resolved_varMap = {}) {
     std::vector<std::tuple<std::string, std::string, std::string> > tokens;
-    auto processReal = [&tokens](const std::string &query) {
+    auto getVar = [&resolved_varMap](const std::string &varName) {
+        auto it = resolved_varMap.find(varName);
+        if (it == resolved_varMap.end())
+            return std::string("");
+        return it->second;
+    };
+    auto processReal = [&](const std::string &query) {
         const std::unordered_set<std::string> SingleOperand_Queries = {
             "FACTORIAL",
             "SINE", "COSINE", "TANGENT",
@@ -24,22 +41,50 @@ tokenize(const std::vector<std::string> &queries) {
             "INVERSE_HYP_SECANT", "INVERSE_HYP_COTANGENT", "INVERSE_HYP_COSECANT",
             "FLOOR", "CEILING", "ABSOLUTE", "NATURAL_LOGARITHM", "BINARY_LOGARITHM", "COMMON_LOGARITHM"
         };
-        if (std::smatch matches; std::regex_match(query, matches, regex::real::singlePattern_noVariable)) {
-                if (const std::string keyWord = matches[1].str(); SingleOperand_Queries.contains(keyWord)) {
-                    std::string firstOperand = matches[2].str();
-                    tokens.emplace_back(keyWord, firstOperand, "");
-                    return true;
-                }
-        } else if (std::regex_match(query, matches, regex::real::doublePattern_noVariable)) {
-            const std::string keyWord = matches[1].str(); if(SingleOperand_Queries.contains(keyWord)) return false;
+        if (query.rfind("SET", 0) == 0) // if query is variable definition skip tokenization
+            return true;
+        if (std::smatch matches; std::regex_match(query, matches, regex::queries::var_get)) {
+            if (!resolved_varMap.contains(matches[2].str()))
+                throw std::runtime_error("\nError: Attempt to access undefined variable");
+            std::string keyWord = matches[1].str();
+            std::string firstOperand = matches[2].str();
+            std::string secondOperand = resolved_varMap.at(matches[2].str());
+            tokens.emplace_back(keyWord, firstOperand, secondOperand);
+            return true;
+        } else if (std::regex_match(query, matches, regex::queries::realQueryS)) {
+            if (const std::string keyWord = matches[1].str(); SingleOperand_Queries.contains(keyWord)) {
+                std::string firstOperand = matches[2].str();
+                tokens.emplace_back(keyWord, firstOperand, "");
+                return true;
+            }
+        } else if (std::regex_match(query, matches, regex::queries::QuerySV)) {
+            if (const std::string keyWord = matches[1].str(); SingleOperand_Queries.contains(keyWord)) {
+                std::string firstOperand = getVar(matches[2].str());
+                if (firstOperand.empty())
+                    throw std::runtime_error("\nError: Undeclared Variable Called !");
+                tokens.emplace_back(keyWord, firstOperand, "");
+                return true;
+            }
+        } else if (std::regex_match(query, matches, regex::queries::realQueryD)) {
+            const std::string keyWord = matches[1].str();
+            if (SingleOperand_Queries.contains(keyWord)) return false;
             const std::string firstOperand = matches[2].str();
             const std::string secondOperand = matches[6].str();
+            tokens.emplace_back(keyWord, firstOperand, secondOperand);
+            return true;
+        } else if (std::regex_match(query, matches, regex::queries::QueryDV)) {
+            const std::string keyWord = matches[1].str();
+            if (SingleOperand_Queries.contains(keyWord)) return false;
+            const std::string firstOperand = getVar(matches[2].str());
+            const std::string secondOperand = getVar(matches[3].str());
+            if (firstOperand.empty() || secondOperand.empty())
+                throw std::runtime_error("\nError: Undeclared Variable Called !");
             tokens.emplace_back(keyWord, firstOperand, secondOperand);
             return true;
         }
         return false;
     };
-    auto processComplex = [&tokens](const std::string &query) {
+    auto processComplex = [&](const std::string &query) {
         const std::unordered_set<std::string> SingleOperand_Queries = {
             "MODULUS", "CONJUGATE", "ARGUMENT",
             "SINE", "COSINE", "TANGENT",
@@ -52,16 +97,44 @@ tokenize(const std::vector<std::string> &queries) {
             "INVERSE_HYP_COSECANT", "INVERSE_HYP_SECANT", "INVERSE_HYP_COTANGENT",
             "NATURAL_LOGARITHM", "POWER_E"
         };
-        if (std::smatch matches; std::regex_match(query, matches, regex::complex::singlePattern_noVariable)) {
+        if (query.rfind("SET", 0) == 0) // if query is variable definition skip tokenization+parsing
+            return true;
+        if (std::smatch matches; std::regex_match(query, matches, regex::queries::var_get)) {
+            if (!resolved_varMap.contains(matches[2].str()))
+                throw std::runtime_error("\nError: Attempt to access undefined variable");
+            std::string keyWord = matches[1].str();
+            std::string firstOperand = matches[2].str();
+            std::string secondOperand = resolved_varMap.at(matches[2].str());
+            tokens.emplace_back(keyWord, firstOperand, secondOperand);
+            return true;
+        } else if (std::regex_match(query, matches, regex::queries::complexQueryS)) {
             if (const std::string keyWord = matches[1].str(); SingleOperand_Queries.contains(keyWord)) {
                 const std::string firstOperand = matches[2].str();
                 tokens.emplace_back(keyWord, firstOperand, "");
                 return true;
             }
-        } else if (std::regex_match(query, matches, regex::complex::doublePattern_noVariable)) {
-            const std::string keyWord = matches[1].str(); if(SingleOperand_Queries.contains(keyWord)) return false;
+        } else if (std::regex_match(query, matches, regex::queries::QuerySV)) {
+            if (const std::string keyWord = matches[1].str(); SingleOperand_Queries.contains(keyWord)) {
+                std::string firstOperand = getVar(matches[2].str());
+                if (firstOperand.empty())
+                    throw std::runtime_error("\nError: Undeclared Variable Called !");
+                tokens.emplace_back(keyWord, firstOperand, "");
+                return true;
+            }
+        } else if (std::regex_match(query, matches, regex::queries::complexQueryD)) {
+            const std::string keyWord = matches[1].str();
+            if (SingleOperand_Queries.contains(keyWord)) return false;
             const std::string firstOperand = matches[2].str();
             const std::string secondOperand = matches[12].str();
+            tokens.emplace_back(keyWord, firstOperand, secondOperand);
+            return true;
+        } else if (std::regex_match(query, matches, regex::queries::QueryDV)) {
+            const std::string keyWord = matches[1].str();
+            if (SingleOperand_Queries.contains(keyWord)) return false;
+            const std::string firstOperand = getVar(matches[2].str());
+            const std::string secondOperand = getVar(matches[3].str());
+            if (firstOperand.empty() || secondOperand.empty())
+                throw std::runtime_error("\nError: Undeclared Variable Called !");
             tokens.emplace_back(keyWord, firstOperand, secondOperand);
             return true;
         }
@@ -76,4 +149,6 @@ tokenize(const std::vector<std::string> &queries) {
     }
     return tokens;
 }
+
+
 #endif // MMQLC_QUERYPARSER_HPP

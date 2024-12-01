@@ -1,12 +1,11 @@
 /*
- * Filename: functions.hpp
+ * Filename: mmqlc.functions.hpp
  * Author: Muhammad Talha
  * Github: MTalha-Codes
- * Repo: mmqlc
+ * Repository: mmqlc
  * Copyright(C) - 2024
  * */
 
-// This file contains those functions that are not found in boost or c++ standard library
 #ifndef MMQLC_FUNCTIONS_HPP
 #define MMQLC_FUNCTIONS_HPP
 
@@ -45,6 +44,7 @@ namespace math::functions::realTrig {
         float1000 asecnt = acos(suitable_arg);
         return asecnt;
     }
+
     inline float1000 acsc(const float1000 &arg) {
         const float1000 suitable_arg(1 / arg);
         float1000 cscnt = asin(suitable_arg);
@@ -74,6 +74,7 @@ namespace math::functions::realTrig {
         float1000 acotngth = atanh(suitable_arg);
         return acotngth;
     }
+
     inline float1000 asech(const float1000 &arg) {
         const float1000 suitable_arg(1 / arg);
         float1000 asecnth = acosh(suitable_arg);
@@ -95,8 +96,9 @@ namespace math::functions::complexTrig {
     }
 
     inline complex_float1000 sec(const complex_float1000 &arg) {
-        const complex_float1000 COS = std::cos(arg);const
-        complex_float1000 SEC = one / COS;
+        const complex_float1000 COS = std::cos(arg);
+        const
+                complex_float1000 SEC = one / COS;
         return SEC;
     }
 
@@ -161,6 +163,7 @@ namespace math::functions::complexTrig {
         return cscnth;
     }
 }
+
 namespace math::functions::helperFunctions {
     inline float1000 degrees_to_radians(const float1000 &degs) {
         float1000 rads(degs * Pi);

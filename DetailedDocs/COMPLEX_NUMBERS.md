@@ -42,3 +42,6 @@
 - **Arc Coth**: $\coth(z)$ --> `INVERSE_HYP_COTANGENT a+bi`
 - **Arc Sech**: $\text{sech}(z)$ --> `INVERSE_HYP_SECANT a+bi`
 - **Arc Csch**: $\text{csch}(z)$ --> `INVERSE_HYP_COSECANT a+bi`
+
+## Want to have more control over queries with the help of variables ?
+Read [**this**](VARIABLES.md).

@@ -10,6 +10,7 @@ set(
         headers/mmqlc.functions.hpp
         headers/mmqlc.constants.hpp
         headers/mmqlc.regex.hpp
+        headers/mmqlc.variables.hpp
 )
 
 add_executable(MmQLC ${MAIN} ${HEADERS})
