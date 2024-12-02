@@ -185,6 +185,13 @@ Click To Read [**ChangeLog v3.0**](DetailedDocs/CHANGELOG.md).
 ---
 
 ## License
-This Project is licensed under the CC0-1.0 License - See The LICENSE file for more details.
+This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
+
+### Key Restrictions:
+1. Forking, redistribution, or creating derivative works is prohibited.
+2. The code may not be used for academic submissions (e.g., final year projects, assignments) or included in resumes/portfolios.
+3. Contributions are allowed only with prior written permission. Send an email to [your email address] if you'd like to contribute.
+
+For more details, see the [LICENSE](LICENSE) file.
 
 ---
