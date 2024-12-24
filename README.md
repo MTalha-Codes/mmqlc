@@ -178,11 +178,6 @@ Click To Read [**ChangeLog v3.0**](DetailedDocs/CHANGELOG.md).
 
 ---
 
-## Too Many Commits! 😁
-- **Most commits are for fixing markdown files.**
-- **As a solo developer, it's a challenge to manage both markdown and source code! 😢**
-
----
 
 ## License
 This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
