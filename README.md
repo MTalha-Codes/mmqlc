@@ -178,6 +178,8 @@ Click To Read [**ChangeLog v3.0**](DetailedDocs/CHANGELOG.md).
 
 ---
 
+## Message !:
+Active development has been stopped from now till my 12th class exam ends.... Development will be continued somewhere in May 2025.
 
 ## License
 This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
