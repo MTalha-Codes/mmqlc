@@ -3,15 +3,15 @@
 </p>
 
 
-# MmQL - The Mathematical Query Language
-**MmQL** is a very lightweight computational tool in comparison to other strong contenders like ***MAPLE , Wolfram Mathematica and MATLAB*** developed purely in **C++23**. Though it is not as advanced as these tools but it really do some of the calculations swiftly and perfectly. 
+# MmQL - The Mathematical Query Language 
+**MmQL** is a very lightweight computational query language used to compute operations involving real and complex numbers (the queries are interpreted by **MmQLC**) developed purely in **C++23**.
 
 ---
 
 ## What is MmQL ?
 **MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is an interpreted language as well as a case-sensitive **where uppercase and  lowercase matters**. The interpreter (**MmQLC**) is a custom and and yet a very simple interpreter. Techniques like Tokenization and Parsing are used by **MmQLC**.
 
-**MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries, offering an efficient alternative to tools like **MAPLE**, **Wolfram Mathematica**, or **MATLAB**.
+**MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries.
 > [!NOTE]
 > Please note that **MmQL** is not a symbolic language and it does not uses CAS (Computer Algebra Systems)
 
@@ -37,7 +37,7 @@
 
 **MmQL** provides a lightweight and flexible environment for mathematical queries, perfect for students and professionals looking for:  
 - A **simple and efficient query language** for real and complex number calculations.  
-- A **cross-platform tool**, customizable for your operating system via compilation.  
+- A **cross-platform tool**, for any operating system (Windows, Linux and Mac) via compilation.  
 - An **unbloated alternative** to large-scale computational platforms.  
 
 With its clean syntax and custom interpreter, **MmQL** delivers a tailored solution for performing mathematical computations. Compile **MmQLC** on your preferred OS, and you're ready to handle your queries with speed and precision!
