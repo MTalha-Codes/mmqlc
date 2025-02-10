@@ -13,7 +13,8 @@
 
 **MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries.
 > [!NOTE]
-> Please note that **MmQL** is not a symbolic language and it does not uses CAS (Computer Algebra Systems)
+> - Please note that **MmQL** is not a symbolic language and it does not uses CAS (Computer Algebra Systems)
+> - **MmQL** is a unique because it does not uses an **Abstract Syntax Tree**.
 
 ---
 
