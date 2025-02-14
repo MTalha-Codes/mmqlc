@@ -59,15 +59,13 @@ They are as follows:
 ### Windows:  
 > [!IMPORTANT]  
 > - [X] **Install MinGW. Watch this [video](https://youtu.be/oC69vlWofJQ) for detailed installation guide by `Microsoft` via `MSYS2`**  
-> - (***!! Remove the `-ucrt` from the given command as shown in the video !!***)  
 > - [X] **Don't close `MSYS2` terminal yet! Paste these commands one by one:**  
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
-> # pacman -S mingw-w64-x86_64-gcc # Installs GCC compiler. It may not be needed as we have installed latest version ! 
-> pacman -S mingw-w64-x86_64-gmp # Installs GMP.  
-> pacman -S mingw-w64-x86_64-mpfr # Installs MPFR.  
-> pacman -S mingw-w64-x86_64-fmt # Installs FMT.  
-> pacman -S mingw-w64-x86_64-boost # Installs Boost.  
+> pacman -S mingw-w64-x86_64-ucrt-gmp # Installs GMP.  
+> pacman -S mingw-w64-x86_64-ucrt-mpfr # Installs MPFR.  
+> pacman -S mingw-w64-x86_64-ucrt-fmt # Installs FMT.  
+> pacman -S mingw-w64-x86_64-ucrt-boost # Installs Boost.  
 > ```  
 > - [X] Add the base **dir** of `boost` as a new **environment variable**.  
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
