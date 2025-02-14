@@ -58,10 +58,10 @@ They are as follows:
 ## Setting Up The Environment for Building From Source  
 ### Windows:  
 > [!IMPORTANT]  
-> - [X] **Install MinGW. Watch this [video](https://youtu.be/oC69vlWofJQ) for detailed installation guide by `Microsoft` via `MSYS2`**  
-> - [X] **Don't close `MSYS2` terminal yet! Paste these commands one by one:**  
+> - [X] **Install MSYS2**. A UCRT Terminal Instance will open then you will enter the following commands one bye one.
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
+> pacman -S mingw-w64-x86_64-ucrt-gcc # Install Latest version of GNU GCC Compiler.
 > pacman -S mingw-w64-x86_64-ucrt-gmp # Installs GMP.  
 > pacman -S mingw-w64-x86_64-ucrt-mpfr # Installs MPFR.  
 > pacman -S mingw-w64-x86_64-ucrt-fmt # Installs FMT.  
