@@ -61,7 +61,7 @@ They are as follows:
 > - [X] **Install MSYS2**. A UCRT Terminal Instance will open then you will enter the following commands one bye one.
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
-> pacman -S mingw-w64-x86_64-ucrt-gcc # Install Latest version of GNU GCC Compiler.
+> pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain # Install Latest version of GNU GCC Compiler.
 > pacman -S mingw-w64-x86_64-ucrt-gmp # Installs GMP.  
 > pacman -S mingw-w64-x86_64-ucrt-mpfr # Installs MPFR.  
 > pacman -S mingw-w64-x86_64-ucrt-fmt # Installs FMT.  
