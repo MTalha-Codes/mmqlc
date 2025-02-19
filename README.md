@@ -192,7 +192,7 @@ This project is protected under a custom license. You are permitted to clone thi
 ### Key Restrictions:
 1. Forking, redistribution, or creating derivative works is prohibited.
 2. The code may not be used for your academic submissions (e.g., final year projects, assignments) or included in resumes/portfolios.
-3. Contributions are allowed only with prior written permission. Send an email to [khankkhan123apsacs@gmail.com] if you'd like to contribute.
+3. Contributions are allowed only with prior written permission. Send an email to mailto:khankkhan123apsacs@gmail.com if you'd like to contribute.
 
 For more details, see the [LICENSE](LICENSE) file.
 
