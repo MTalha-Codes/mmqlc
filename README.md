@@ -1,8 +1,3 @@
-<p align="center" width="100%">
-    <img height="100" src="https://github.com/said7388/developer-portfolio/assets/77630868/c0064908-cd5f-4751-a77c-eba90a62b55c">
-</p>
-
-
 # MmQL - The Mathematical Query Language 
 **MmQL** is a very lightweight computational query language used to compute operations involving real and complex numbers (the queries are interpreted by **MmQLC**) developed purely in **C++23**.
 
@@ -48,7 +43,7 @@ With its clean syntax and custom interpreter, **MmQL** delivers a tailored solut
 ## Dependencies
 This project depends upon the following libraries
 They are as follows:
-- [ ] Boost C++ Library v 1.86.0
+- [ ] Boost C++ Library
 - [ ] GNU GMP Library 
 - [ ] MPFR Library 
 - [ ] FMT Library
@@ -58,14 +53,14 @@ They are as follows:
 ## Setting Up The Environment for Building From Source  
 ### Windows:  
 > [!IMPORTANT]  
-> - [X] **Install MSYS2**. A UCRT Terminal Instance will open then you will enter the following commands one bye one.
+> - [X] **Download And Install MSYS2**. Click [**this**](https://github.com/msys2/msys2-installer/releases/download/2025-02-21/msys2-x86_64-20250221.exe) to start downloading !.
+> - [X] **After Installation, A **UCRT64** Environment will open up for you, you need to close it and navigate to *C:\msys64* on your machine and start a **MINGW64 Environment** by executing *mingw64.exe* in the msys64 directory.
+> - [X] After the **MINGW64 Environment** is lit, then enter the following commands one by one. 
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
-> pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain # Install Latest version of GNU GCC Compiler.
-> pacman -S mingw-w64-x86_64-ucrt-gmp # Installs GMP.  
-> pacman -S mingw-w64-x86_64-ucrt-mpfr # Installs MPFR.  
-> pacman -S mingw-w64-x86_64-ucrt-fmt # Installs FMT.  
-> pacman -S mingw-w64-x86_64-ucrt-boost # Installs Boost.  
+> pacman -S mingw-w64-x86_64-gcc # Install Latest version of GNU GCC Compiler.
+> pacman -S mingw-w64-x86_64-fmt # Installs FMT.
+> pacman -S mingw-w64-x86_64-boost # Installs Boost.  
 > ```  
 > - [X] Add the base **dir** of `boost` as a new **environment variable**.  
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
