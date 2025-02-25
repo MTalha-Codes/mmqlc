@@ -57,9 +57,9 @@ They are as follows:
 > - [X] After Installation, A **UCRT64** Environment will open up for you, Enter the following commands one by one.
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
-> pacman -S mingw-w64-x86_64-gcc # Install Latest version of GNU GCC Compiler.
-> pacman -S mingw-w64-x86_64-fmt # Installs FMT.
-> pacman -S mingw-w64-x86_64-boost # Installs Boost.  
+> pacman -S mingw-w64-ucrt-x86_64-gcc # Install Latest version of GNU GCC Compiler.
+> pacman -S mingw-w64-ucrt-x86_64-fmt # Installs FMT.
+> pacman -S mingw-w64-ucrt-x86_64-boost # Installs Boost.  
 > ```  
 > - [X] Add the base **dir** of `boost` as a new **environment variable**.  
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
