@@ -54,8 +54,7 @@ They are as follows:
 ### Windows:  
 > [!IMPORTANT]  
 > - [X] **Download And Install MSYS2**. Click [**this**](https://github.com/msys2/msys2-installer/releases/download/2025-02-21/msys2-x86_64-20250221.exe) to start downloading !.
-> - [X] After Installation, A **UCRT64** Environment will open up for you, you need to close it and navigate to *C:\msys64* on your machine and start a **MINGW64 Environment** by executing *mingw64.exe* in the msys64 directory.
-> - [X] After the **MINGW64 Environment** is lit, then enter the following commands one by one. 
+> - [X] After Installation, A **UCRT64** Environment will open up for you, Enter the following commands one by one.
 > ```bash  
 > pacman -Syu # Updates the package database for latest metadata.  
 > pacman -S mingw-w64-x86_64-gcc # Install Latest version of GNU GCC Compiler.
