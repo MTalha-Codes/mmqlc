@@ -171,15 +171,11 @@ Nesting two or more queries or using inline comments will also throw errors.
 - Direct Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`
 - Inline Comments: `ADD 4,5 %% add two numbers`
 
-
-## 🎈🎉 MmQLC v3.0 Has Been Released ! 🎉🎈 
-Click To Read [**ChangeLog v3.0**](DetailedDocs/CHANGELOG.md).
-
----
+--
 
 ## Message !:
-Active development has been stopped from now till my 12th class exam ends.... Development will be continued somewhere in May 2025.
-However, the codebase will be reviewed and optimizations and refactorings may be done after two months if possible.
+Active development has been stopped from now till my 12th class exam ends.... Development will be continued somewhere after 20th July 2025, after I qualify the GIKI Entrance Test with Fully Funded Scholarship (Please Pray For Me 🤲 😢).
+However, the codebase will be constantly reviewed and optimizations and refactorings will done when needed
 
 ## License
 This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
