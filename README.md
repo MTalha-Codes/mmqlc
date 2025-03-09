@@ -119,7 +119,8 @@ You have set up the environment for building **MmQLC** for Linux.
 - After the generation of the `Makefile` is complete, open a terminal (or `cmd` on Windows) in the build directory.
 - Paste this command into the terminal:
   ```cmd
-  make
+  make -j4
+  make install
   ```
 - Wait for the compilation to complete and... `MmQLC` is ready to use !
 
