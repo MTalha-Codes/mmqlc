@@ -34,7 +34,6 @@
 **MmQL** provides a lightweight and flexible environment for mathematical queries, perfect for students and professionals looking for:  
 - A **simple and efficient query language** for real and complex number calculations.  
 - A **cross-platform tool**, for any operating system (Windows, Linux and Mac) via compilation.  
-- An **unbloated alternative** to large-scale computational platforms.  
 
 With its clean syntax and custom interpreter, **MmQL** delivers a tailored solution for performing mathematical computations. Compile **MmQLC** on your preferred OS, and you're ready to handle your queries with speed and precision!
 
