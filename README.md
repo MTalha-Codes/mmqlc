@@ -180,6 +180,9 @@ However, the codebase will be constantly reviewed and optimizations and refactor
 MmQLC.exe is now available in build directory of the repo for testing purposes !
 Read the [**Information Here.**](build/mmqlc.md)
 
+## Our Intentions Regarding this Project
+You can read about it [**here**](DetailedDocs/plans.md)
+
 ## License
 This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
 
