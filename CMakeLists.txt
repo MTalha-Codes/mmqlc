@@ -1,16 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 project(mmqlc)
 set(CMAKE_CXX_STANDARD 23) # C++ standard version
-find_package(Boost REQUIRED) # Find boost
-if (Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})  # If Boost Found then include
-else ()
-    message(FATAL_ERROR "Boost Was Not Found On Your System !")
-endif ()
-#[[find_package(Eigen3 REQUIRED) # Find Eigen3
-if(EIGEN3_FOUND)
-    include_directories(${EIGEN3_INCLUDE_DIR}) 
-endif()]]
-# we will get dependent on this soon !
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+endif()
+set(CMAKE_EXE_LINKER_FLAGS "-static")
 add_subdirectory(src MmQLC)
 

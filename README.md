@@ -61,7 +61,6 @@ They are as follows:
 > pacman -S mingw-w64-ucrt-x86_64-fmt # Installs FMT.
 > pacman -S mingw-w64-ucrt-x86_64-boost # Installs Boost.  
 > ```  
-> - [X] Add the base **dir** of `boost` as a new **environment variable**.  
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
 > - [X] Install `scoop`:  
 > ```powershell  
@@ -175,6 +174,11 @@ Nesting two or more queries or using inline comments will also throw errors.
 ## Message !:
 Active development has been stopped from now till my 12th class exam ends.... Development will be continued somewhere after 20th July 2025, after I qualify the GIKI Entrance Test with Fully Funded Scholarship (Please Pray For Me 🤲 😢).
 However, the codebase will be constantly reviewed and optimizations and refactorings will done when needed.
+
+
+## New Build Added:
+MmQLC.exe is now available in build directory of the repo for testing purposes !
+Read the [**Information Here.**](build/mmqlc.md)
 
 ## License
 This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 

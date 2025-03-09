@@ -1,4 +1,5 @@
 set(MAIN main.cpp)
+set(GMP_MPFR_FMT_LIB_DIR "C:\\msys64\\ucrt64\\lib")
 set(
         HEADERS
         headers/mmqlc.ui.hpp
@@ -14,7 +15,6 @@ set(
 )
 
 add_executable(MmQLC ${MAIN} ${HEADERS})
-set(GMP_MPFR_FMT_LIB_DIR "E:/Softwares (Installed)/CLion/bin/mingw/lib")
 
 find_library(GMP_LIB gmp PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
 find_library(GMPXX_LIB gmpxx PATHS ${GMP_MPFR_FMT_LIB_DIR} NO_DEFAULT_PATH)
