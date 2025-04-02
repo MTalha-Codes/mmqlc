@@ -24,9 +24,9 @@ mmqlc -r PATH_TO_EXISTING_QUERY_FILE -w PATH_TO_GENERATE_ANSWER_FILE
 Explanation of the above command:
 
 1. **mmqlc:**  interpreter name in lowercase(**Recommended when using terminal or cmd**).
-2. **-r:** the handle used to load query file.[file of **mmql** extension type].
+2. **-r:** the handle used to load query file.
 3. **PATH_TO_EXISTING_QUERY_FILE:** for example **E:\\\\file.mmql**.
-4. **-w:** the handle used to write answers to answer file.[files of **ans** extension. type]
+4. **-w:** the handle used to write answers to answer file.
 5. **PATH_TO_GENERATE_ANSWER_FILE:** for example **E:\\\\file.ans**.
 
 > [!WARNING]

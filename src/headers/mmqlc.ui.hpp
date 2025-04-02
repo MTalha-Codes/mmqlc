@@ -72,7 +72,7 @@ class mmqlc_ui : public mmqlc_filesystem {
 
     static void launch_live() {
         constexpr auto copyright_notice =
-                "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+                "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under a custom license.\n";
         constexpr auto exit_cmd = "QUIT";
         constexpr auto clrscr_cmd = "CLRSCR";
         constexpr auto refresh_cmd = "REFRESH";
@@ -159,7 +159,7 @@ class mmqlc_ui : public mmqlc_filesystem {
     }
 
     static void showVersion() {
-        std::cout << "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under the CC0-1.0 License\n";
+        std::cout << "MmQLC (MTalha-Codes) 3.0\nCopyright (C) 2024\nLicensed under  a custom license.\n";
         exit(EXIT_SUCCESS);
     }
 

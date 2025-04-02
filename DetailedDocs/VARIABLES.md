@@ -44,7 +44,7 @@ QUERY a
 ```
 ---
 ## Feature Underdevelopment 🐣
-**Inshallah, the following features regarding to variables will be completed by the next update.**
+**Inshallah, the following features regarding variables will be completed by the next update.**
 
 **Using variables with numbers directly**. 
 - `QUERY number,var`

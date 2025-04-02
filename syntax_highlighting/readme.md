@@ -1,1 +1,0 @@
-# Paste this folder to packages folder of sublime text  located here: `C:\Users\EngineersPC\AppData\Roaming\Sublime Text\Packages`

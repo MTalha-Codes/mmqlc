@@ -1,3 +1,6 @@
+# This is the default Linux Specific Configuration for Linux
+# I use Arch Linux With Desktop Environment as LXQt
+
 cmake_minimum_required(VERSION 3.25)
 project(mmqlc)
 set(CMAKE_CXX_STANDARD 23) # C++ standard version

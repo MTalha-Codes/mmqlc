@@ -27,6 +27,7 @@
 *.lib
 
 # Executables
+*.exe
 *.out
 *.app
 
@@ -46,3 +47,6 @@ _deps
 # CMake Patch
 # External projects
 *-prefix/
+
+#.CMAKELISTS_FOR_WINDOWS
+cmake-list-windows

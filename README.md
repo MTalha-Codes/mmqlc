@@ -4,12 +4,12 @@
 ---
 
 ## What is MmQL ?
-**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is an interpreted language as well as a case-sensitive **where uppercase and  lowercase matters**. The interpreter (**MmQLC**) is a custom and and yet a very simple interpreter. Techniques like Tokenization and Parsing are used by **MmQLC**.
+**MmQL** is an acronym that stands for **M**athe**m**atical **Q**uery **L**anguage. It is an interpreted language as well as a case-sensitive **where uppercase and  lowercase matters**. The interpreter (**MmQLC**) is a custom and yet a very simple interpreter. Techniques like Tokenization and Parsing are used by **MmQLC**.
 
 **MmQL** is a lightweight, *cross-platform* query language tailored for mathematical computations. Designed for speed and simplicity, **MmQL** allows users to write precise mathematical queries.
 > [!NOTE]
-> - Please note that **MmQL** is not a symbolic language and it does not uses CAS (Computer Algebra Systems)
-> - **MmQL** is a unique because it does not uses an **Abstract Syntax Tree**.
+> - Please note that **MmQL** is not a symbolic language, and it does not use CAS (Computer Algebra Systems)
+> - **MmQL** is a unique because it does not use an **Abstract Syntax Tree**.
 
 ---
 
@@ -89,22 +89,21 @@ You have set up the environment for building **MmQLC** for Windows.
 > brew install gcc # Installs GCC compiler.  
 > brew install gmp mpfr fmt boost cmake make # Installs all required libraries and tools.  
 > ```  
-> - [X] Add the base **dir** of `boost` as a new **environment variable**.  
+> - [X] Add the base **dir** of `boost` as a new **environment variable(if needed)**.  
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
 
 🎉 Congratulations! 🎉  
-You have set up the environment for building **MmQLC** for MacOS.  
+You have set up the environment for building **MmQLC** for macOS.  
 
 ---
 
-### Linux:  
+### Linux(Arch Linux):  
 > [!IMPORTANT]  
 > - [X] **Install dependencies**. Open your terminal and paste these commands one by one:  
 > ```bash  
-> sudo apt update && sudo apt upgrade -y  
-> sudo apt install g++ gcc make cmake libgmp-dev libmpfr-dev libfmt-dev libboost-all-dev # Installs GCC, libraries, and tools.  
-> ```  
-> - [X] Add the base **dir** of `boost` as a new **environment variable**.  
+> sudo pacman -Sy # Update Package Database
+> sudo -S boost mpfr fmt gmp. # Install Dependencies.  
+> ```
 > - [X] Edit both top-level and inner `CMakeLists.txt` files to match your library paths.  
 
 🎉 Congratulations! 🎉  
@@ -113,35 +112,29 @@ You have set up the environment for building **MmQLC** for Linux.
 ---
 
 ### Step-By-Step Easy Building Procedure (Same on All OS):
-- Open up `cmake-gui` and choose the **base directory** of the `repo`.
-- Now, select the **build directory** of your choice (it can be an empty directory).
-- Click `Generate` and wait a bit.
-- After the generation of the `Makefile` is complete, open a terminal (or `cmd` on Windows) in the build directory.
-- Paste this command into the terminal:
-  ```cmd
-  make -j4
-  make install
-  ```
-- Wait for the compilation to complete and... `MmQLC` is ready to use !
+```bash
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
+```
 
 ---
 
 ## Using the MmQL Language For Calculations
 
-**MmQL**  is pretty simple to use , just download either the installer(**Windows**) from **Release** section or the source code **(If you want to build it for yourself.)(Other than Windows)** 
-
+**MmQL**  is pretty simple to use , just download either the installer(**Windows**) from **Release** section or the source code **(If you want to build it for yourself.)(Other than Windows)**
 - First of all write queries by using text editor.
-- Now for generation of answer file then you should run **MmQLC.exe** with special command line **arguments** defined for **MmQLC** The method for generating answer file from a query file is explained [**Here.**](DetailedDocs/MmQLC_Usage.md).
+- Now for generation of answer file then you should run **MmQLC.exe** with special command line **arguments** defined for **MmQLC** The method for generating answer file from a query file is explained [**Here.**](DetailedDocs/MMQLC_USE.md)
 - To view or see the answers, open the **.ans** in any text editor.
 
-> [!TIP]
->- For Syntax Highlighting; Use **Sublime Text, if you can afford it**.
 >- **MmQLC v2.2+** also includes a sophisticated **REPL** mode if you want direct calculations.
 
  > [!NOTE]
  > - Consider adding **MmQLC.exe** to your environment variables for running it from the shell directly. Click  [**Here**](https://www.youtube.com/watch?v=z84UIZy_qgE) if you don't know how to do it.
- > -  In  the case if you prefer the installer over manual build process then the installer wizard will take care of the above step.
 
+
+>[!NOTE]
+> There will be no installer in the future. Building from source is recommended.
 ---
 
 ## Supported Queries
@@ -165,31 +158,28 @@ Comments looks like this
 Compound queries or stacking multiple queries on a single line may cause errors.
 Nesting two or more queries or using inline comments will also throw errors.
 ### Examples of errors:
-- Compound Queries: `ADD 3,4 FACTORIAL 43`
-- Direct Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`
-- Inline Comments: `ADD 4,5 %% add two numbers`
+- Compound Queries: `ADD 3,4 FACTORIAL 43`. This is strictly prohibited.
+- Direct Nested Queries: `FACTORIAL ADD 3,4` , `INVERSE_SINE SINE 45`. Can be tackled via variables.
+- Inline Comments: `ADD 4,5 %% add two numbers`. Work In Progress.
 
---
+---
 
 ## Message !:
 Active development has been stopped from now till my 12th class exam ends.... Development will be continued somewhere after 20th July 2025, after I qualify the GIKI Entrance Test with Fully Funded Scholarship (Please Pray For Me 🤲 😢).
-However, the codebase will be constantly reviewed and optimizations and refactorings will done when needed.
+However, the codebase will be constantly reviewed and optimizations and refactorings will be done when needed.
 
 
-## New Build Added:
-MmQLC.exe is now available in build directory of the repo for testing purposes !
-Read the [**Information Here.**](build/mmqlc.md)
 
 ## Our Intentions Regarding this Project
-You can read about it [**here**](DetailedDocs/plans.md)
+You can read about it [**here**](DetailedDocs/PLANS.md)
 
 ## License
-This project is protected under a custom license. You are permitted to clone this repository for personal and non-commercial use only. 
+This project is protected under a custom license. You are permitted to clone this repository for learning purposes only. 
 
 ### Key Restrictions:
 1. Forking, redistribution, or creating derivative works is prohibited.
 2. The code may not be used for your academic submissions (e.g., final year projects, assignments) or included in resumes/portfolios.
-3. Contributions are allowed only with prior written permission. Send an email to **khankkhan123apsacs@gmail.com** if you'd like to contribute.
+3. Contributions are allowed only with prior written permission. Email **khankkhan123apsacs@gmail.com** if you'd like to contribute.
 
 For more details, see the [LICENSE](LICENSE) file.
 

@@ -1,5 +1,5 @@
 set(MAIN main.cpp)
-set(GMP_MPFR_FMT_LIB_DIR "C:\\msys64\\ucrt64\\lib")
+set(GMP_MPFR_FMT_LIB_DIR "/usr/lib")
 set(
         HEADERS
         headers/mmqlc.ui.hpp
