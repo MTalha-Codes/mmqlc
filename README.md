@@ -1,4 +1,4 @@
-# MmQL - The Mathematical Query Language 
+# MmQL - The Mathematical Query Language  *[Soon translated to Rust]*
 **MmQL** is a very lightweight computational query language used to compute operations involving real and complex numbers (the queries are interpreted by **MmQLC**) developed purely in **C++23**.
 
 ---
