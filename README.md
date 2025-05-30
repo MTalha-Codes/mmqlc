@@ -1,4 +1,8 @@
-# MmQL - The Mathematical Query Language  *[Soon translated to Rust]*
+# MmQL - The Mathematical Query Language 
+
+> [!NOTE]
+> ***This codebase will soon be rewritten in rust and this repo will be archived after it is done.***
+
 **MmQL** is a very lightweight computational query language used to compute operations involving real and complex numbers (the queries are interpreted by **MmQLC**) developed purely in **C++23**.
 
 ---
@@ -182,5 +186,4 @@ This project is protected under a custom license. You are permitted to clone thi
 3. Contributions are allowed only with prior written permission. Email **khankkhan123apsacs@gmail.com** if you'd like to contribute.
 
 For more details, see the [LICENSE](LICENSE) file.
-
 ---
